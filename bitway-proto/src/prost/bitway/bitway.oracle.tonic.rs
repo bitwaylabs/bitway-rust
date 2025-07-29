@@ -97,16 +97,16 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.incentive.Query/Params");
+            let path = http::uri::PathAndQuery::from_static("/bitway.oracle.Query/Params");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.incentive.Query", "Params"));
+                .insert(GrpcMethod::new("bitway.oracle.Query", "Params"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn rewards(
+        pub async fn list_prices(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryRewardsRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryRewardsResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::QueryListPricesRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryListPricesResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -115,16 +115,37 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.incentive.Query/Rewards");
+            let path = http::uri::PathAndQuery::from_static("/bitway.oracle.Query/ListPrices");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.incentive.Query", "Rewards"));
+                .insert(GrpcMethod::new("bitway.oracle.Query", "ListPrices"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn reward_stats(
+        pub async fn get_price_by_symbol(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryRewardStatsRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryRewardStatsResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::QueryGetPriceBySymbolRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryGetPriceBySymbolResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.oracle.Query/GetPriceBySymbol");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("bitway.oracle.Query", "GetPriceBySymbol"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn query_chain_tip(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryChainTipRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryChainTipResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -133,10 +154,78 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.incentive.Query/RewardStats");
+            let path = http::uri::PathAndQuery::from_static("/bitway.oracle.Query/QueryChainTip");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.incentive.Query", "RewardStats"));
+                .insert(GrpcMethod::new("bitway.oracle.Query", "QueryChainTip"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn query_block_header_by_height(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryBlockHeaderByHeightRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryBlockHeaderByHeightResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/bitway.oracle.Query/QueryBlockHeaderByHeight",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "bitway.oracle.Query",
+                "QueryBlockHeaderByHeight",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn query_block_header_by_hash(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryBlockHeaderByHashRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryBlockHeaderByHashResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.oracle.Query/QueryBlockHeaderByHash");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "bitway.oracle.Query",
+                "QueryBlockHeaderByHash",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn query_best_block_header(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryBestBlockHeaderRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryBestBlockHeaderResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.oracle.Query/QueryBestBlockHeader");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "bitway.oracle.Query",
+                "QueryBestBlockHeader",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -153,14 +242,39 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        async fn rewards(
+        async fn list_prices(
             &self,
-            request: tonic::Request<super::QueryRewardsRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryRewardsResponse>, tonic::Status>;
-        async fn reward_stats(
+            request: tonic::Request<super::QueryListPricesRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryListPricesResponse>, tonic::Status>;
+        async fn get_price_by_symbol(
             &self,
-            request: tonic::Request<super::QueryRewardStatsRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryRewardStatsResponse>, tonic::Status>;
+            request: tonic::Request<super::QueryGetPriceBySymbolRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryGetPriceBySymbolResponse>,
+            tonic::Status,
+        >;
+        async fn query_chain_tip(
+            &self,
+            request: tonic::Request<super::QueryChainTipRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryChainTipResponse>, tonic::Status>;
+        async fn query_block_header_by_height(
+            &self,
+            request: tonic::Request<super::QueryBlockHeaderByHeightRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryBlockHeaderByHeightResponse>,
+            tonic::Status,
+        >;
+        async fn query_block_header_by_hash(
+            &self,
+            request: tonic::Request<super::QueryBlockHeaderByHashRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryBlockHeaderByHashResponse>,
+            tonic::Status,
+        >;
+        async fn query_best_block_header(
+            &self,
+            request: tonic::Request<super::QueryBestBlockHeaderRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryBestBlockHeaderResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -238,7 +352,7 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.incentive.Query/Params" => {
+                "/bitway.oracle.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
@@ -276,18 +390,18 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.incentive.Query/Rewards" => {
+                "/bitway.oracle.Query/ListPrices" => {
                     #[allow(non_camel_case_types)]
-                    struct RewardsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryRewardsRequest> for RewardsSvc<T> {
-                        type Response = super::QueryRewardsResponse;
+                    struct ListPricesSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryListPricesRequest> for ListPricesSvc<T> {
+                        type Response = super::QueryListPricesResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryRewardsRequest>,
+                            request: tonic::Request<super::QueryListPricesRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).rewards(request).await };
+                            let fut = async move { (*inner).list_prices(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -298,7 +412,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = RewardsSvc(inner);
+                        let method = ListPricesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -314,18 +428,20 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.incentive.Query/RewardStats" => {
+                "/bitway.oracle.Query/GetPriceBySymbol" => {
                     #[allow(non_camel_case_types)]
-                    struct RewardStatsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryRewardStatsRequest> for RewardStatsSvc<T> {
-                        type Response = super::QueryRewardStatsResponse;
+                    struct GetPriceBySymbolSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryGetPriceBySymbolRequest>
+                        for GetPriceBySymbolSvc<T>
+                    {
+                        type Response = super::QueryGetPriceBySymbolResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryRewardStatsRequest>,
+                            request: tonic::Request<super::QueryGetPriceBySymbolRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).reward_stats(request).await };
+                            let fut = async move { (*inner).get_price_by_symbol(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -336,7 +452,169 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = RewardStatsSvc(inner);
+                        let method = GetPriceBySymbolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.oracle.Query/QueryChainTip" => {
+                    #[allow(non_camel_case_types)]
+                    struct QueryChainTipSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryChainTipRequest> for QueryChainTipSvc<T> {
+                        type Response = super::QueryChainTipResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryChainTipRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).query_chain_tip(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = QueryChainTipSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.oracle.Query/QueryBlockHeaderByHeight" => {
+                    #[allow(non_camel_case_types)]
+                    struct QueryBlockHeaderByHeightSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryBlockHeaderByHeightRequest>
+                        for QueryBlockHeaderByHeightSvc<T>
+                    {
+                        type Response = super::QueryBlockHeaderByHeightResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryBlockHeaderByHeightRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).query_block_header_by_height(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = QueryBlockHeaderByHeightSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.oracle.Query/QueryBlockHeaderByHash" => {
+                    #[allow(non_camel_case_types)]
+                    struct QueryBlockHeaderByHashSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryBlockHeaderByHashRequest>
+                        for QueryBlockHeaderByHashSvc<T>
+                    {
+                        type Response = super::QueryBlockHeaderByHashResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryBlockHeaderByHashRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).query_block_header_by_hash(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = QueryBlockHeaderByHashSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.oracle.Query/QueryBestBlockHeader" => {
+                    #[allow(non_camel_case_types)]
+                    struct QueryBestBlockHeaderSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryBestBlockHeaderRequest>
+                        for QueryBestBlockHeaderSvc<T>
+                    {
+                        type Response = super::QueryBestBlockHeaderResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryBestBlockHeaderRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut =
+                                async move { (*inner).query_best_block_header(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = QueryBestBlockHeaderSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -386,7 +664,7 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "side.incentive.Query";
+        const NAME: &'static str = "bitway.oracle.Query";
     }
 }
 /// Generated client implementations.
@@ -484,10 +762,10 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.incentive.Msg/UpdateParams");
+            let path = http::uri::PathAndQuery::from_static("/bitway.oracle.Msg/UpdateParams");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.incentive.Msg", "UpdateParams"));
+                .insert(GrpcMethod::new("bitway.oracle.Msg", "UpdateParams"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -581,7 +859,7 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.incentive.Msg/UpdateParams" => {
+                "/bitway.oracle.Msg/UpdateParams" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
                     impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
@@ -653,6 +931,6 @@ pub mod msg_server {
         }
     }
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "side.incentive.Msg";
+        const NAME: &'static str = "bitway.oracle.Msg";
     }
 }

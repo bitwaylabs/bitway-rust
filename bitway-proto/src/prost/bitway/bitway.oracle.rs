@@ -3,15 +3,15 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
-    /// define how many block headers keep on side chain
+    /// define how many block headers keep on bitway chain
     #[prost(uint32, tag = "1")]
     pub keep_bitcoin_blocks: u32,
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// Oracle Price from Price Extention
@@ -26,9 +26,9 @@ pub struct OraclePrice {
 }
 impl ::prost::Name for OraclePrice {
     const NAME: &'static str = "OraclePrice";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// Bitcoin Block Header From Price Extention
@@ -56,9 +56,9 @@ pub struct BlockHeader {
 }
 impl ::prost::Name for BlockHeader {
     const NAME: &'static str = "BlockHeader";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// Oracle Vote Extenstion
@@ -77,9 +77,9 @@ pub struct OracleVoteExtension {
 }
 impl ::prost::Name for OracleVoteExtension {
     const NAME: &'static str = "OracleVoteExtension";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// GenesisState defines the oracle module's genesis state.
@@ -95,9 +95,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryPoolRequest is request type for the Query/Pool RPC method.
@@ -109,9 +109,9 @@ pub struct QueryGetPriceBySymbolRequest {
 }
 impl ::prost::Name for QueryGetPriceBySymbolRequest {
     const NAME: &'static str = "QueryGetPriceBySymbolRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryPoolResponse is response type for the Query/Pool RPC method.
@@ -123,9 +123,9 @@ pub struct QueryGetPriceBySymbolResponse {
 }
 impl ::prost::Name for QueryGetPriceBySymbolResponse {
     const NAME: &'static str = "QueryGetPriceBySymbolResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryPoolsRequest is request type for the Query/Pools RPC method.
@@ -134,9 +134,9 @@ impl ::prost::Name for QueryGetPriceBySymbolResponse {
 pub struct QueryListPricesRequest {}
 impl ::prost::Name for QueryListPricesRequest {
     const NAME: &'static str = "QueryListPricesRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryPoolsResponse is response type for the Query/Pools RPC method.
@@ -148,9 +148,9 @@ pub struct QueryListPricesResponse {
 }
 impl ::prost::Name for QueryListPricesResponse {
     const NAME: &'static str = "QueryListPricesResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -159,9 +159,9 @@ impl ::prost::Name for QueryListPricesResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -174,9 +174,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryChainTipRequest is request type for the Query/ChainTip RPC method.
@@ -185,9 +185,9 @@ impl ::prost::Name for QueryParamsResponse {
 pub struct QueryChainTipRequest {}
 impl ::prost::Name for QueryChainTipRequest {
     const NAME: &'static str = "QueryChainTipRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryChainTipResponse is response type for the Query/ChainTip RPC method.
@@ -201,9 +201,9 @@ pub struct QueryChainTipResponse {
 }
 impl ::prost::Name for QueryChainTipResponse {
     const NAME: &'static str = "QueryChainTipResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBlockHeaderByHeightRequest is the request type for the Query/BlockHeaderByHeight RPC method.
@@ -215,9 +215,9 @@ pub struct QueryBlockHeaderByHeightRequest {
 }
 impl ::prost::Name for QueryBlockHeaderByHeightRequest {
     const NAME: &'static str = "QueryBlockHeaderByHeightRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBlockHeaderByHeightResponse is the response type for the Query/BlockHeaderByHeight RPC method.
@@ -229,9 +229,9 @@ pub struct QueryBlockHeaderByHeightResponse {
 }
 impl ::prost::Name for QueryBlockHeaderByHeightResponse {
     const NAME: &'static str = "QueryBlockHeaderByHeightResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBlockHeaderByHashRequest is the request type for the Query/BlockHeaderByHash RPC method.
@@ -243,9 +243,9 @@ pub struct QueryBlockHeaderByHashRequest {
 }
 impl ::prost::Name for QueryBlockHeaderByHashRequest {
     const NAME: &'static str = "QueryBlockHeaderByHashRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBlockHeaderByHashResponse is the response type for the Query/BlockHeaderByHash RPC method.
@@ -257,9 +257,9 @@ pub struct QueryBlockHeaderByHashResponse {
 }
 impl ::prost::Name for QueryBlockHeaderByHashResponse {
     const NAME: &'static str = "QueryBlockHeaderByHashResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBestBlockHeaderRequest is the request type for the Query/BestBlockHeader RPC method.
@@ -268,9 +268,9 @@ impl ::prost::Name for QueryBlockHeaderByHashResponse {
 pub struct QueryBestBlockHeaderRequest {}
 impl ::prost::Name for QueryBestBlockHeaderRequest {
     const NAME: &'static str = "QueryBestBlockHeaderRequest";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// QueryBestBlockHeaderResponse is the response type for the Query/BestBlockHeader RPC method.
@@ -282,9 +282,9 @@ pub struct QueryBestBlockHeaderResponse {
 }
 impl ::prost::Name for QueryBestBlockHeaderResponse {
     const NAME: &'static str = "QueryBestBlockHeaderResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -304,9 +304,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -317,11 +317,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.oracle";
+    const PACKAGE: &'static str = "bitway.oracle";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.oracle.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.oracle.{}", Self::NAME)
     }
 }
-include!("side.oracle.serde.rs");
-include!("side.oracle.tonic.rs");
+include!("bitway.oracle.serde.rs");
+include!("bitway.oracle.tonic.rs");
 // @@protoc_insertion_point(module)

@@ -15,9 +15,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// GenesisState defines the incentive module's genesis state.
@@ -29,9 +29,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// Rewards
@@ -53,9 +53,9 @@ pub struct Rewards {
 }
 impl ::prost::Name for Rewards {
     const NAME: &'static str = "Rewards";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// Reward Statistics
@@ -71,9 +71,9 @@ pub struct RewardStats {
 }
 impl ::prost::Name for RewardStats {
     const NAME: &'static str = "RewardStats";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryRewardsRequest is request type for the Query/Rewards RPC method.
@@ -85,9 +85,9 @@ pub struct QueryRewardsRequest {
 }
 impl ::prost::Name for QueryRewardsRequest {
     const NAME: &'static str = "QueryRewardsRequest";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryRewardsResponse is response type for the Query/Rewards RPC method.
@@ -99,9 +99,9 @@ pub struct QueryRewardsResponse {
 }
 impl ::prost::Name for QueryRewardsResponse {
     const NAME: &'static str = "QueryRewardsResponse";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryRewardStatsRequest is request type for the Query/RewardStats RPC method.
@@ -110,9 +110,9 @@ impl ::prost::Name for QueryRewardsResponse {
 pub struct QueryRewardStatsRequest {}
 impl ::prost::Name for QueryRewardStatsRequest {
     const NAME: &'static str = "QueryRewardStatsRequest";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryRewardStatsResponse is response type for the Query/RewardStats RPC method.
@@ -124,9 +124,9 @@ pub struct QueryRewardStatsResponse {
 }
 impl ::prost::Name for QueryRewardStatsResponse {
     const NAME: &'static str = "QueryRewardStatsResponse";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -135,9 +135,9 @@ impl ::prost::Name for QueryRewardStatsResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -150,9 +150,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -172,9 +172,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -185,11 +185,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.incentive";
+    const PACKAGE: &'static str = "bitway.incentive";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.incentive.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.incentive.{}", Self::NAME)
     }
 }
-include!("side.incentive.serde.rs");
-include!("side.incentive.tonic.rs");
+include!("bitway.incentive.serde.rs");
+include!("bitway.incentive.tonic.rs");
 // @@protoc_insertion_point(module)

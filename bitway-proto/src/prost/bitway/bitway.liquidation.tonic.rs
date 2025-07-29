@@ -97,16 +97,16 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.oracle.Query/Params");
+            let path = http::uri::PathAndQuery::from_static("/bitway.liquidation.Query/Params");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Query", "Params"));
+                .insert(GrpcMethod::new("bitway.liquidation.Query", "Params"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn list_prices(
+        pub async fn liquidation(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryListPricesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryListPricesResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::QueryLiquidationRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryLiquidationResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -115,36 +115,17 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.oracle.Query/ListPrices");
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.liquidation.Query/Liquidation");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Query", "ListPrices"));
+                .insert(GrpcMethod::new("bitway.liquidation.Query", "Liquidation"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn get_price_by_symbol(
+        pub async fn liquidations(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetPriceBySymbolRequest>,
-        ) -> core::result::Result<
-            tonic::Response<super::QueryGetPriceBySymbolResponse>,
-            tonic::Status,
-        > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    alloc::format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.oracle.Query/GetPriceBySymbol");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Query", "GetPriceBySymbol"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn query_chain_tip(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryChainTipRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryChainTipResponse>, tonic::Status>
+            request: impl tonic::IntoRequest<super::QueryLiquidationsRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryLiquidationsResponse>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -153,17 +134,18 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.oracle.Query/QueryChainTip");
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.liquidation.Query/Liquidations");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Query", "QueryChainTip"));
+                .insert(GrpcMethod::new("bitway.liquidation.Query", "Liquidations"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn query_block_header_by_height(
+        pub async fn liquidation_record(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryBlockHeaderByHeightRequest>,
+            request: impl tonic::IntoRequest<super::QueryLiquidationRecordRequest>,
         ) -> core::result::Result<
-            tonic::Response<super::QueryBlockHeaderByHeightResponse>,
+            tonic::Response<super::QueryLiquidationRecordResponse>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -174,19 +156,19 @@ pub mod query_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path =
-                http::uri::PathAndQuery::from_static("/side.oracle.Query/QueryBlockHeaderByHeight");
+                http::uri::PathAndQuery::from_static("/bitway.liquidation.Query/LiquidationRecord");
             let mut req = request.into_request();
             req.extensions_mut().insert(GrpcMethod::new(
-                "side.oracle.Query",
-                "QueryBlockHeaderByHeight",
+                "bitway.liquidation.Query",
+                "LiquidationRecord",
             ));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn query_block_header_by_hash(
+        pub async fn liquidation_records(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryBlockHeaderByHashRequest>,
+            request: impl tonic::IntoRequest<super::QueryLiquidationRecordsRequest>,
         ) -> core::result::Result<
-            tonic::Response<super::QueryBlockHeaderByHashResponse>,
+            tonic::Response<super::QueryLiquidationRecordsResponse>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -196,32 +178,14 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/side.oracle.Query/QueryBlockHeaderByHash");
+            let path = http::uri::PathAndQuery::from_static(
+                "/bitway.liquidation.Query/LiquidationRecords",
+            );
             let mut req = request.into_request();
             req.extensions_mut().insert(GrpcMethod::new(
-                "side.oracle.Query",
-                "QueryBlockHeaderByHash",
+                "bitway.liquidation.Query",
+                "LiquidationRecords",
             ));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn query_best_block_header(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryBestBlockHeaderRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryBestBlockHeaderResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    alloc::format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/side.oracle.Query/QueryBestBlockHeader");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Query", "QueryBestBlockHeader"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -238,39 +202,28 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        async fn list_prices(
+        async fn liquidation(
             &self,
-            request: tonic::Request<super::QueryListPricesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryListPricesResponse>, tonic::Status>;
-        async fn get_price_by_symbol(
+            request: tonic::Request<super::QueryLiquidationRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryLiquidationResponse>, tonic::Status>;
+        async fn liquidations(
             &self,
-            request: tonic::Request<super::QueryGetPriceBySymbolRequest>,
+            request: tonic::Request<super::QueryLiquidationsRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryLiquidationsResponse>, tonic::Status>;
+        async fn liquidation_record(
+            &self,
+            request: tonic::Request<super::QueryLiquidationRecordRequest>,
         ) -> core::result::Result<
-            tonic::Response<super::QueryGetPriceBySymbolResponse>,
+            tonic::Response<super::QueryLiquidationRecordResponse>,
             tonic::Status,
         >;
-        async fn query_chain_tip(
+        async fn liquidation_records(
             &self,
-            request: tonic::Request<super::QueryChainTipRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryChainTipResponse>, tonic::Status>;
-        async fn query_block_header_by_height(
-            &self,
-            request: tonic::Request<super::QueryBlockHeaderByHeightRequest>,
+            request: tonic::Request<super::QueryLiquidationRecordsRequest>,
         ) -> core::result::Result<
-            tonic::Response<super::QueryBlockHeaderByHeightResponse>,
+            tonic::Response<super::QueryLiquidationRecordsResponse>,
             tonic::Status,
         >;
-        async fn query_block_header_by_hash(
-            &self,
-            request: tonic::Request<super::QueryBlockHeaderByHashRequest>,
-        ) -> core::result::Result<
-            tonic::Response<super::QueryBlockHeaderByHashResponse>,
-            tonic::Status,
-        >;
-        async fn query_best_block_header(
-            &self,
-            request: tonic::Request<super::QueryBestBlockHeaderRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryBestBlockHeaderResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -348,7 +301,7 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.oracle.Query/Params" => {
+                "/bitway.liquidation.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
@@ -386,18 +339,18 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.oracle.Query/ListPrices" => {
+                "/bitway.liquidation.Query/Liquidation" => {
                     #[allow(non_camel_case_types)]
-                    struct ListPricesSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryListPricesRequest> for ListPricesSvc<T> {
-                        type Response = super::QueryListPricesResponse;
+                    struct LiquidationSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryLiquidationRequest> for LiquidationSvc<T> {
+                        type Response = super::QueryLiquidationResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryListPricesRequest>,
+                            request: tonic::Request<super::QueryLiquidationRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).list_prices(request).await };
+                            let fut = async move { (*inner).liquidation(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -408,7 +361,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = ListPricesSvc(inner);
+                        let method = LiquidationSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -424,20 +377,58 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.oracle.Query/GetPriceBySymbol" => {
+                "/bitway.liquidation.Query/Liquidations" => {
                     #[allow(non_camel_case_types)]
-                    struct GetPriceBySymbolSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryGetPriceBySymbolRequest>
-                        for GetPriceBySymbolSvc<T>
+                    struct LiquidationsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryLiquidationsRequest> for LiquidationsSvc<T> {
+                        type Response = super::QueryLiquidationsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryLiquidationsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).liquidations(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = LiquidationsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.liquidation.Query/LiquidationRecord" => {
+                    #[allow(non_camel_case_types)]
+                    struct LiquidationRecordSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryLiquidationRecordRequest>
+                        for LiquidationRecordSvc<T>
                     {
-                        type Response = super::QueryGetPriceBySymbolResponse;
+                        type Response = super::QueryLiquidationRecordResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryGetPriceBySymbolRequest>,
+                            request: tonic::Request<super::QueryLiquidationRecordRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).get_price_by_symbol(request).await };
+                            let fut = async move { (*inner).liquidation_record(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -448,7 +439,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = GetPriceBySymbolSvc(inner);
+                        let method = LiquidationRecordSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -464,60 +455,21 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.oracle.Query/QueryChainTip" => {
+                "/bitway.liquidation.Query/LiquidationRecords" => {
                     #[allow(non_camel_case_types)]
-                    struct QueryChainTipSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryChainTipRequest> for QueryChainTipSvc<T> {
-                        type Response = super::QueryChainTipResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryChainTipRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).query_chain_tip(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = QueryChainTipSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/side.oracle.Query/QueryBlockHeaderByHeight" => {
-                    #[allow(non_camel_case_types)]
-                    struct QueryBlockHeaderByHeightSvc<T: Query>(pub Arc<T>);
+                    struct LiquidationRecordsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query>
-                        tonic::server::UnaryService<super::QueryBlockHeaderByHeightRequest>
-                        for QueryBlockHeaderByHeightSvc<T>
+                        tonic::server::UnaryService<super::QueryLiquidationRecordsRequest>
+                        for LiquidationRecordsSvc<T>
                     {
-                        type Response = super::QueryBlockHeaderByHeightResponse;
+                        type Response = super::QueryLiquidationRecordsResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryBlockHeaderByHeightRequest>,
+                            request: tonic::Request<super::QueryLiquidationRecordsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).query_block_header_by_height(request).await };
+                            let fut = async move { (*inner).liquidation_records(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -528,89 +480,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = QueryBlockHeaderByHeightSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/side.oracle.Query/QueryBlockHeaderByHash" => {
-                    #[allow(non_camel_case_types)]
-                    struct QueryBlockHeaderByHashSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryBlockHeaderByHashRequest>
-                        for QueryBlockHeaderByHashSvc<T>
-                    {
-                        type Response = super::QueryBlockHeaderByHashResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryBlockHeaderByHashRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).query_block_header_by_hash(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = QueryBlockHeaderByHashSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/side.oracle.Query/QueryBestBlockHeader" => {
-                    #[allow(non_camel_case_types)]
-                    struct QueryBestBlockHeaderSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryBestBlockHeaderRequest>
-                        for QueryBestBlockHeaderSvc<T>
-                    {
-                        type Response = super::QueryBestBlockHeaderResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryBestBlockHeaderRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { (*inner).query_best_block_header(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = QueryBestBlockHeaderSvc(inner);
+                        let method = LiquidationRecordsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -660,7 +530,7 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "side.oracle.Query";
+        const NAME: &'static str = "bitway.liquidation.Query";
     }
 }
 /// Generated client implementations.
@@ -746,6 +616,24 @@ pub mod msg_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
+        pub async fn liquidate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgLiquidate>,
+        ) -> core::result::Result<tonic::Response<super::MsgLiquidateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/bitway.liquidation.Msg/Liquidate");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("bitway.liquidation.Msg", "Liquidate"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn update_params(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpdateParams>,
@@ -758,10 +646,10 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.oracle.Msg/UpdateParams");
+            let path = http::uri::PathAndQuery::from_static("/bitway.liquidation.Msg/UpdateParams");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.oracle.Msg", "UpdateParams"));
+                .insert(GrpcMethod::new("bitway.liquidation.Msg", "UpdateParams"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -774,6 +662,10 @@ pub mod msg_server {
     /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
     pub trait Msg: Send + Sync + 'static {
+        async fn liquidate(
+            &self,
+            request: tonic::Request<super::MsgLiquidate>,
+        ) -> core::result::Result<tonic::Response<super::MsgLiquidateResponse>, tonic::Status>;
         async fn update_params(
             &self,
             request: tonic::Request<super::MsgUpdateParams>,
@@ -855,7 +747,45 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.oracle.Msg/UpdateParams" => {
+                "/bitway.liquidation.Msg/Liquidate" => {
+                    #[allow(non_camel_case_types)]
+                    struct LiquidateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgLiquidate> for LiquidateSvc<T> {
+                        type Response = super::MsgLiquidateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgLiquidate>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).liquidate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = LiquidateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.liquidation.Msg/UpdateParams" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
                     impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
@@ -927,6 +857,6 @@ pub mod msg_server {
         }
     }
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "side.oracle.Msg";
+        const NAME: &'static str = "bitway.liquidation.Msg";
     }
 }

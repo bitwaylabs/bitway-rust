@@ -35,7 +35,7 @@ impl serde::Serialize for BlockHeader {
         if self.ntx != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.BlockHeader", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.oracle.BlockHeader", len)?;
         if self.version != 0 {
             struct_ser.serialize_field("version", &self.version)?;
         }
@@ -154,7 +154,7 @@ impl<'de> serde::Deserialize<'de> for BlockHeader {
             type Value = BlockHeader;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.BlockHeader")
+                formatter.write_str("struct bitway.oracle.BlockHeader")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<BlockHeader, V::Error>
@@ -256,7 +256,7 @@ impl<'de> serde::Deserialize<'de> for BlockHeader {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.BlockHeader", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.oracle.BlockHeader", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -277,7 +277,7 @@ impl serde::Serialize for GenesisState {
         if !self.blocks.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.oracle.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -344,7 +344,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.GenesisState")
+                formatter.write_str("struct bitway.oracle.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -383,7 +383,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.oracle.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -401,7 +401,7 @@ impl serde::Serialize for MsgUpdateParams {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.MsgUpdateParams", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.oracle.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -463,7 +463,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.MsgUpdateParams")
+                formatter.write_str("struct bitway.oracle.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -494,7 +494,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.MsgUpdateParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.oracle.MsgUpdateParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -506,7 +506,8 @@ impl serde::Serialize for MsgUpdateParamsResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.oracle.MsgUpdateParamsResponse", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.oracle.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -555,7 +556,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.oracle.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -572,7 +573,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.MsgUpdateParamsResponse",
+            "bitway.oracle.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -593,7 +594,7 @@ impl serde::Serialize for OraclePrice {
         if !self.price.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.OraclePrice", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.oracle.OraclePrice", len)?;
         if !self.symbol.is_empty() {
             struct_ser.serialize_field("symbol", &self.symbol)?;
         }
@@ -655,7 +656,7 @@ impl<'de> serde::Deserialize<'de> for OraclePrice {
             type Value = OraclePrice;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.OraclePrice")
+                formatter.write_str("struct bitway.oracle.OraclePrice")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<OraclePrice, V::Error>
@@ -686,7 +687,7 @@ impl<'de> serde::Deserialize<'de> for OraclePrice {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.OraclePrice", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.oracle.OraclePrice", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -710,7 +711,8 @@ impl serde::Serialize for OracleVoteExtension {
         if self.has_error {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.OracleVoteExtension", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.oracle.OracleVoteExtension", len)?;
         if self.height != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -786,7 +788,7 @@ impl<'de> serde::Deserialize<'de> for OracleVoteExtension {
             type Value = OracleVoteExtension;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.OracleVoteExtension")
+                formatter.write_str("struct bitway.oracle.OracleVoteExtension")
             }
 
             fn visit_map<V>(
@@ -839,7 +841,11 @@ impl<'de> serde::Deserialize<'de> for OracleVoteExtension {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.OracleVoteExtension", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.oracle.OracleVoteExtension",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -854,7 +860,7 @@ impl serde::Serialize for Params {
         if self.keep_bitcoin_blocks != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.oracle.Params", len)?;
         if self.keep_bitcoin_blocks != 0 {
             struct_ser.serialize_field("keepBitcoinBlocks", &self.keep_bitcoin_blocks)?;
         }
@@ -913,7 +919,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.Params")
+                formatter.write_str("struct bitway.oracle.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -939,7 +945,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.oracle.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.oracle.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -952,7 +958,7 @@ impl serde::Serialize for QueryBestBlockHeaderRequest {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBestBlockHeaderRequest", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBestBlockHeaderRequest", len)?;
         struct_ser.end()
     }
 }
@@ -1001,7 +1007,7 @@ impl<'de> serde::Deserialize<'de> for QueryBestBlockHeaderRequest {
             type Value = QueryBestBlockHeaderRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBestBlockHeaderRequest")
+                formatter.write_str("struct bitway.oracle.QueryBestBlockHeaderRequest")
             }
 
             fn visit_map<V>(
@@ -1018,7 +1024,7 @@ impl<'de> serde::Deserialize<'de> for QueryBestBlockHeaderRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBestBlockHeaderRequest",
+            "bitway.oracle.QueryBestBlockHeaderRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1037,7 +1043,7 @@ impl serde::Serialize for QueryBestBlockHeaderResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBestBlockHeaderResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBestBlockHeaderResponse", len)?;
         if let Some(v) = self.block_header.as_ref() {
             struct_ser.serialize_field("blockHeader", v)?;
         }
@@ -1094,7 +1100,7 @@ impl<'de> serde::Deserialize<'de> for QueryBestBlockHeaderResponse {
             type Value = QueryBestBlockHeaderResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBestBlockHeaderResponse")
+                formatter.write_str("struct bitway.oracle.QueryBestBlockHeaderResponse")
             }
 
             fn visit_map<V>(
@@ -1121,7 +1127,7 @@ impl<'de> serde::Deserialize<'de> for QueryBestBlockHeaderResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBestBlockHeaderResponse",
+            "bitway.oracle.QueryBestBlockHeaderResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1140,7 +1146,7 @@ impl serde::Serialize for QueryBlockHeaderByHashRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBlockHeaderByHashRequest", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBlockHeaderByHashRequest", len)?;
         if !self.hash.is_empty() {
             struct_ser.serialize_field("hash", &self.hash)?;
         }
@@ -1197,7 +1203,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHashRequest {
             type Value = QueryBlockHeaderByHashRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBlockHeaderByHashRequest")
+                formatter.write_str("struct bitway.oracle.QueryBlockHeaderByHashRequest")
             }
 
             fn visit_map<V>(
@@ -1224,7 +1230,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHashRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBlockHeaderByHashRequest",
+            "bitway.oracle.QueryBlockHeaderByHashRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1243,7 +1249,7 @@ impl serde::Serialize for QueryBlockHeaderByHashResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBlockHeaderByHashResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBlockHeaderByHashResponse", len)?;
         if let Some(v) = self.block_header.as_ref() {
             struct_ser.serialize_field("blockHeader", v)?;
         }
@@ -1300,7 +1306,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHashResponse {
             type Value = QueryBlockHeaderByHashResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBlockHeaderByHashResponse")
+                formatter.write_str("struct bitway.oracle.QueryBlockHeaderByHashResponse")
             }
 
             fn visit_map<V>(
@@ -1327,7 +1333,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHashResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBlockHeaderByHashResponse",
+            "bitway.oracle.QueryBlockHeaderByHashResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1346,7 +1352,7 @@ impl serde::Serialize for QueryBlockHeaderByHeightRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBlockHeaderByHeightRequest", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBlockHeaderByHeightRequest", len)?;
         if self.height != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -1407,7 +1413,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHeightRequest {
             type Value = QueryBlockHeaderByHeightRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBlockHeaderByHeightRequest")
+                formatter.write_str("struct bitway.oracle.QueryBlockHeaderByHeightRequest")
             }
 
             fn visit_map<V>(
@@ -1437,7 +1443,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHeightRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBlockHeaderByHeightRequest",
+            "bitway.oracle.QueryBlockHeaderByHeightRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1456,7 +1462,7 @@ impl serde::Serialize for QueryBlockHeaderByHeightResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryBlockHeaderByHeightResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryBlockHeaderByHeightResponse", len)?;
         if let Some(v) = self.block_header.as_ref() {
             struct_ser.serialize_field("blockHeader", v)?;
         }
@@ -1513,7 +1519,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHeightResponse {
             type Value = QueryBlockHeaderByHeightResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryBlockHeaderByHeightResponse")
+                formatter.write_str("struct bitway.oracle.QueryBlockHeaderByHeightResponse")
             }
 
             fn visit_map<V>(
@@ -1540,7 +1546,7 @@ impl<'de> serde::Deserialize<'de> for QueryBlockHeaderByHeightResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryBlockHeaderByHeightResponse",
+            "bitway.oracle.QueryBlockHeaderByHeightResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1555,7 +1561,7 @@ impl serde::Serialize for QueryChainTipRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.oracle.QueryChainTipRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.oracle.QueryChainTipRequest", len)?;
         struct_ser.end()
     }
 }
@@ -1604,7 +1610,7 @@ impl<'de> serde::Deserialize<'de> for QueryChainTipRequest {
             type Value = QueryChainTipRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryChainTipRequest")
+                formatter.write_str("struct bitway.oracle.QueryChainTipRequest")
             }
 
             fn visit_map<V>(
@@ -1621,7 +1627,7 @@ impl<'de> serde::Deserialize<'de> for QueryChainTipRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryChainTipRequest",
+            "bitway.oracle.QueryChainTipRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1643,7 +1649,7 @@ impl serde::Serialize for QueryChainTipResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryChainTipResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryChainTipResponse", len)?;
         if !self.hash.is_empty() {
             struct_ser.serialize_field("hash", &self.hash)?;
         }
@@ -1709,7 +1715,7 @@ impl<'de> serde::Deserialize<'de> for QueryChainTipResponse {
             type Value = QueryChainTipResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryChainTipResponse")
+                formatter.write_str("struct bitway.oracle.QueryChainTipResponse")
             }
 
             fn visit_map<V>(
@@ -1747,7 +1753,7 @@ impl<'de> serde::Deserialize<'de> for QueryChainTipResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryChainTipResponse",
+            "bitway.oracle.QueryChainTipResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1766,7 +1772,7 @@ impl serde::Serialize for QueryGetPriceBySymbolRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryGetPriceBySymbolRequest", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryGetPriceBySymbolRequest", len)?;
         if !self.symbol.is_empty() {
             struct_ser.serialize_field("symbol", &self.symbol)?;
         }
@@ -1823,7 +1829,7 @@ impl<'de> serde::Deserialize<'de> for QueryGetPriceBySymbolRequest {
             type Value = QueryGetPriceBySymbolRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryGetPriceBySymbolRequest")
+                formatter.write_str("struct bitway.oracle.QueryGetPriceBySymbolRequest")
             }
 
             fn visit_map<V>(
@@ -1850,7 +1856,7 @@ impl<'de> serde::Deserialize<'de> for QueryGetPriceBySymbolRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryGetPriceBySymbolRequest",
+            "bitway.oracle.QueryGetPriceBySymbolRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1869,7 +1875,7 @@ impl serde::Serialize for QueryGetPriceBySymbolResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryGetPriceBySymbolResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryGetPriceBySymbolResponse", len)?;
         if !self.price.is_empty() {
             struct_ser.serialize_field("price", &self.price)?;
         }
@@ -1926,7 +1932,7 @@ impl<'de> serde::Deserialize<'de> for QueryGetPriceBySymbolResponse {
             type Value = QueryGetPriceBySymbolResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryGetPriceBySymbolResponse")
+                formatter.write_str("struct bitway.oracle.QueryGetPriceBySymbolResponse")
             }
 
             fn visit_map<V>(
@@ -1953,7 +1959,7 @@ impl<'de> serde::Deserialize<'de> for QueryGetPriceBySymbolResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryGetPriceBySymbolResponse",
+            "bitway.oracle.QueryGetPriceBySymbolResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1968,7 +1974,8 @@ impl serde::Serialize for QueryListPricesRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.oracle.QueryListPricesRequest", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.oracle.QueryListPricesRequest", len)?;
         struct_ser.end()
     }
 }
@@ -2017,7 +2024,7 @@ impl<'de> serde::Deserialize<'de> for QueryListPricesRequest {
             type Value = QueryListPricesRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryListPricesRequest")
+                formatter.write_str("struct bitway.oracle.QueryListPricesRequest")
             }
 
             fn visit_map<V>(
@@ -2034,7 +2041,7 @@ impl<'de> serde::Deserialize<'de> for QueryListPricesRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryListPricesRequest",
+            "bitway.oracle.QueryListPricesRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2053,7 +2060,7 @@ impl serde::Serialize for QueryListPricesResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.oracle.QueryListPricesResponse", len)?;
+            serializer.serialize_struct("bitway.oracle.QueryListPricesResponse", len)?;
         if !self.prices.is_empty() {
             struct_ser.serialize_field("prices", &self.prices)?;
         }
@@ -2110,7 +2117,7 @@ impl<'de> serde::Deserialize<'de> for QueryListPricesResponse {
             type Value = QueryListPricesResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryListPricesResponse")
+                formatter.write_str("struct bitway.oracle.QueryListPricesResponse")
             }
 
             fn visit_map<V>(
@@ -2137,7 +2144,7 @@ impl<'de> serde::Deserialize<'de> for QueryListPricesResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.oracle.QueryListPricesResponse",
+            "bitway.oracle.QueryListPricesResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2152,7 +2159,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.oracle.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.oracle.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -2201,7 +2208,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryParamsRequest")
+                formatter.write_str("struct bitway.oracle.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -2214,7 +2221,11 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 Ok(QueryParamsRequest {})
             }
         }
-        deserializer.deserialize_struct("side.oracle.QueryParamsRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.oracle.QueryParamsRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -2229,7 +2240,8 @@ impl serde::Serialize for QueryParamsResponse {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.oracle.QueryParamsResponse", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.oracle.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -2286,7 +2298,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.oracle.QueryParamsResponse")
+                formatter.write_str("struct bitway.oracle.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -2310,6 +2322,10 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 Ok(QueryParamsResponse { params: params__ })
             }
         }
-        deserializer.deserialize_struct("side.oracle.QueryParamsResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.oracle.QueryParamsResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }

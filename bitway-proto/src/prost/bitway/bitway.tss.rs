@@ -11,9 +11,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// DKG Participant
@@ -29,9 +29,9 @@ pub struct DkgParticipant {
 }
 impl ::prost::Name for DkgParticipant {
     const NAME: &'static str = "DKGParticipant";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// DKG Request
@@ -68,9 +68,9 @@ pub struct DkgRequest {
 }
 impl ::prost::Name for DkgRequest {
     const NAME: &'static str = "DKGRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// DKG Completion
@@ -95,9 +95,9 @@ pub struct DkgCompletion {
 }
 impl ::prost::Name for DkgCompletion {
     const NAME: &'static str = "DKGCompletion";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// Signing Options
@@ -116,9 +116,9 @@ pub struct SigningOptions {
 }
 impl ::prost::Name for SigningOptions {
     const NAME: &'static str = "SigningOptions";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// Signing Request
@@ -158,9 +158,9 @@ pub struct SigningRequest {
 }
 impl ::prost::Name for SigningRequest {
     const NAME: &'static str = "SigningRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// Refreshing Request
@@ -188,9 +188,9 @@ pub struct RefreshingRequest {
 }
 impl ::prost::Name for RefreshingRequest {
     const NAME: &'static str = "RefreshingRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// Refreshing Completion
@@ -212,9 +212,9 @@ pub struct RefreshingCompletion {
 }
 impl ::prost::Name for RefreshingCompletion {
     const NAME: &'static str = "RefreshingCompletion";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// DKG Status
@@ -382,9 +382,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -395,9 +395,9 @@ pub struct QueryDkgRequestRequest {
 }
 impl ::prost::Name for QueryDkgRequestRequest {
     const NAME: &'static str = "QueryDKGRequestRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -408,9 +408,9 @@ pub struct QueryDkgRequestResponse {
 }
 impl ::prost::Name for QueryDkgRequestResponse {
     const NAME: &'static str = "QueryDKGRequestResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -425,9 +425,9 @@ pub struct QueryDkgRequestsRequest {
 }
 impl ::prost::Name for QueryDkgRequestsRequest {
     const NAME: &'static str = "QueryDKGRequestsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -441,9 +441,9 @@ pub struct QueryDkgRequestsResponse {
 }
 impl ::prost::Name for QueryDkgRequestsResponse {
     const NAME: &'static str = "QueryDKGRequestsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -456,9 +456,9 @@ pub struct QueryDkgCompletionsRequest {
 }
 impl ::prost::Name for QueryDkgCompletionsRequest {
     const NAME: &'static str = "QueryDKGCompletionsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -472,9 +472,9 @@ pub struct QueryDkgCompletionsResponse {
 }
 impl ::prost::Name for QueryDkgCompletionsResponse {
     const NAME: &'static str = "QueryDKGCompletionsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -485,9 +485,9 @@ pub struct QuerySigningRequestRequest {
 }
 impl ::prost::Name for QuerySigningRequestRequest {
     const NAME: &'static str = "QuerySigningRequestRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -498,9 +498,9 @@ pub struct QuerySigningRequestResponse {
 }
 impl ::prost::Name for QuerySigningRequestResponse {
     const NAME: &'static str = "QuerySigningRequestResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -515,9 +515,9 @@ pub struct QuerySigningRequestsRequest {
 }
 impl ::prost::Name for QuerySigningRequestsRequest {
     const NAME: &'static str = "QuerySigningRequestsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -531,9 +531,9 @@ pub struct QuerySigningRequestsResponse {
 }
 impl ::prost::Name for QuerySigningRequestsResponse {
     const NAME: &'static str = "QuerySigningRequestsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -544,9 +544,9 @@ pub struct QueryRefreshingRequestRequest {
 }
 impl ::prost::Name for QueryRefreshingRequestRequest {
     const NAME: &'static str = "QueryRefreshingRequestRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -557,9 +557,9 @@ pub struct QueryRefreshingRequestResponse {
 }
 impl ::prost::Name for QueryRefreshingRequestResponse {
     const NAME: &'static str = "QueryRefreshingRequestResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -572,9 +572,9 @@ pub struct QueryRefreshingRequestsRequest {
 }
 impl ::prost::Name for QueryRefreshingRequestsRequest {
     const NAME: &'static str = "QueryRefreshingRequestsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -588,9 +588,9 @@ pub struct QueryRefreshingRequestsResponse {
 }
 impl ::prost::Name for QueryRefreshingRequestsResponse {
     const NAME: &'static str = "QueryRefreshingRequestsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -603,9 +603,9 @@ pub struct QueryRefreshingCompletionsRequest {
 }
 impl ::prost::Name for QueryRefreshingCompletionsRequest {
     const NAME: &'static str = "QueryRefreshingCompletionsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -619,9 +619,9 @@ pub struct QueryRefreshingCompletionsResponse {
 }
 impl ::prost::Name for QueryRefreshingCompletionsResponse {
     const NAME: &'static str = "QueryRefreshingCompletionsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -630,9 +630,9 @@ impl ::prost::Name for QueryRefreshingCompletionsResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -644,9 +644,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgCompleteDKG is the Msg/CompleteDKG request type.
@@ -671,9 +671,9 @@ pub struct MsgCompleteDkg {
 }
 impl ::prost::Name for MsgCompleteDkg {
     const NAME: &'static str = "MsgCompleteDKG";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgCompleteDKGResponse defines the Msg/CompleteDKG response type.
@@ -682,9 +682,9 @@ impl ::prost::Name for MsgCompleteDkg {
 pub struct MsgCompleteDkgResponse {}
 impl ::prost::Name for MsgCompleteDkgResponse {
     const NAME: &'static str = "MsgCompleteDKGResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgSubmitSignatures defines the Msg/SubmitSignatures request type.
@@ -700,9 +700,9 @@ pub struct MsgSubmitSignatures {
 }
 impl ::prost::Name for MsgSubmitSignatures {
     const NAME: &'static str = "MsgSubmitSignatures";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgSubmitSignaturesResponse defines the Msg/SubmitSignatures response type.
@@ -711,9 +711,9 @@ impl ::prost::Name for MsgSubmitSignatures {
 pub struct MsgSubmitSignaturesResponse {}
 impl ::prost::Name for MsgSubmitSignaturesResponse {
     const NAME: &'static str = "MsgSubmitSignaturesResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgRefresh defines the Msg/Refresh request type.
@@ -738,9 +738,9 @@ pub struct MsgRefresh {
 }
 impl ::prost::Name for MsgRefresh {
     const NAME: &'static str = "MsgRefresh";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgRefreshResponse defines the Msg/Refresh response type.
@@ -749,9 +749,9 @@ impl ::prost::Name for MsgRefresh {
 pub struct MsgRefreshResponse {}
 impl ::prost::Name for MsgRefreshResponse {
     const NAME: &'static str = "MsgRefreshResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgCompleteRefreshing defines the Msg/CompleteRefreshing request type.
@@ -773,9 +773,9 @@ pub struct MsgCompleteRefreshing {
 }
 impl ::prost::Name for MsgCompleteRefreshing {
     const NAME: &'static str = "MsgCompleteRefreshing";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgCompleteRefreshingResponse defines the Msg/CompleteRefreshing response type.
@@ -784,9 +784,9 @@ impl ::prost::Name for MsgCompleteRefreshing {
 pub struct MsgCompleteRefreshingResponse {}
 impl ::prost::Name for MsgCompleteRefreshingResponse {
     const NAME: &'static str = "MsgCompleteRefreshingResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -806,9 +806,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -819,11 +819,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.tss";
+    const PACKAGE: &'static str = "bitway.tss";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.tss.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.tss.{}", Self::NAME)
     }
 }
-include!("side.tss.serde.rs");
-include!("side.tss.tonic.rs");
+include!("bitway.tss.serde.rs");
+include!("bitway.tss.tonic.rs");
 // @@protoc_insertion_point(module)

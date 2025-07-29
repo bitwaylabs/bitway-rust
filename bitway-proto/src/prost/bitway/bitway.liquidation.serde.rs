@@ -23,7 +23,8 @@ impl serde::Serialize for AssetMetadata {
         if self.is_base_price_asset {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.liquidation.AssetMetadata", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.liquidation.AssetMetadata", len)?;
         if !self.denom.is_empty() {
             struct_ser.serialize_field("denom", &self.denom)?;
         }
@@ -110,7 +111,7 @@ impl<'de> serde::Deserialize<'de> for AssetMetadata {
             type Value = AssetMetadata;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.AssetMetadata")
+                formatter.write_str("struct bitway.liquidation.AssetMetadata")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<AssetMetadata, V::Error>
@@ -168,7 +169,11 @@ impl<'de> serde::Deserialize<'de> for AssetMetadata {
                 })
             }
         }
-        deserializer.deserialize_struct("side.liquidation.AssetMetadata", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.liquidation.AssetMetadata",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -189,7 +194,7 @@ impl serde::Serialize for GenesisState {
         if !self.liquidation_records.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.liquidation.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.liquidation.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -256,7 +261,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.GenesisState")
+                formatter.write_str("struct bitway.liquidation.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -297,7 +302,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("side.liquidation.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.liquidation.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -369,7 +374,7 @@ impl serde::Serialize for Liquidation {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.liquidation.Liquidation", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.liquidation.Liquidation", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -587,7 +592,7 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
             type Value = Liquidation;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.Liquidation")
+                formatter.write_str("struct bitway.liquidation.Liquidation")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Liquidation, V::Error>
@@ -777,7 +782,7 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
                 })
             }
         }
-        deserializer.deserialize_struct("side.liquidation.Liquidation", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.liquidation.Liquidation", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -811,7 +816,7 @@ impl serde::Serialize for LiquidationRecord {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.LiquidationRecord", len)?;
+            serializer.serialize_struct("bitway.liquidation.LiquidationRecord", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -918,7 +923,7 @@ impl<'de> serde::Deserialize<'de> for LiquidationRecord {
             type Value = LiquidationRecord;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.LiquidationRecord")
+                formatter.write_str("struct bitway.liquidation.LiquidationRecord")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<LiquidationRecord, V::Error>
@@ -996,7 +1001,7 @@ impl<'de> serde::Deserialize<'de> for LiquidationRecord {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.LiquidationRecord",
+            "bitway.liquidation.LiquidationRecord",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1102,7 +1107,7 @@ impl serde::Serialize for MsgLiquidate {
         if self.debt_amount.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.liquidation.MsgLiquidate", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.liquidation.MsgLiquidate", len)?;
         if !self.liquidator.is_empty() {
             struct_ser.serialize_field("liquidator", &self.liquidator)?;
         }
@@ -1179,7 +1184,7 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidate {
             type Value = MsgLiquidate;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.MsgLiquidate")
+                formatter.write_str("struct bitway.liquidation.MsgLiquidate")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgLiquidate, V::Error>
@@ -1221,7 +1226,7 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidate {
                 })
             }
         }
-        deserializer.deserialize_struct("side.liquidation.MsgLiquidate", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.liquidation.MsgLiquidate", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1234,7 +1239,7 @@ impl serde::Serialize for MsgLiquidateResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.liquidation.MsgLiquidateResponse", len)?;
+            serializer.serialize_struct("bitway.liquidation.MsgLiquidateResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1283,7 +1288,7 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidateResponse {
             type Value = MsgLiquidateResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.MsgLiquidateResponse")
+                formatter.write_str("struct bitway.liquidation.MsgLiquidateResponse")
             }
 
             fn visit_map<V>(
@@ -1300,7 +1305,7 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidateResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.MsgLiquidateResponse",
+            "bitway.liquidation.MsgLiquidateResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1322,7 +1327,7 @@ impl serde::Serialize for MsgUpdateParams {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.MsgUpdateParams", len)?;
+            serializer.serialize_struct("bitway.liquidation.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -1384,7 +1389,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.MsgUpdateParams")
+                formatter.write_str("struct bitway.liquidation.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -1416,7 +1421,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.MsgUpdateParams",
+            "bitway.liquidation.MsgUpdateParams",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1432,7 +1437,7 @@ impl serde::Serialize for MsgUpdateParamsResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.liquidation.MsgUpdateParamsResponse", len)?;
+            serializer.serialize_struct("bitway.liquidation.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1481,7 +1486,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.liquidation.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -1498,7 +1503,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.MsgUpdateParamsResponse",
+            "bitway.liquidation.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1525,7 +1530,7 @@ impl serde::Serialize for Params {
         if !self.protocol_liquidation_fee_collector.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.liquidation.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.liquidation.Params", len)?;
         if self.min_liquidation_factor != 0 {
             struct_ser.serialize_field("minLiquidationFactor", &self.min_liquidation_factor)?;
         }
@@ -1621,7 +1626,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.Params")
+                formatter.write_str("struct bitway.liquidation.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -1687,7 +1692,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.liquidation.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.liquidation.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1703,7 +1708,7 @@ impl serde::Serialize for QueryLiquidationRecordRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationRecordRequest", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryLiquidationRecordRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -1762,7 +1767,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordRequest {
             type Value = QueryLiquidationRecordRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationRecordRequest")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationRecordRequest")
             }
 
             fn visit_map<V>(
@@ -1792,7 +1797,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationRecordRequest",
+            "bitway.liquidation.QueryLiquidationRecordRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1810,8 +1815,8 @@ impl serde::Serialize for QueryLiquidationRecordResponse {
         if self.liquidation_record.is_some() {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationRecordResponse", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.liquidation.QueryLiquidationRecordResponse", len)?;
         if let Some(v) = self.liquidation_record.as_ref() {
             struct_ser.serialize_field("liquidationRecord", v)?;
         }
@@ -1870,7 +1875,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordResponse {
             type Value = QueryLiquidationRecordResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationRecordResponse")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationRecordResponse")
             }
 
             fn visit_map<V>(
@@ -1897,7 +1902,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationRecordResponse",
+            "bitway.liquidation.QueryLiquidationRecordResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1918,8 +1923,8 @@ impl serde::Serialize for QueryLiquidationRecordsRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationRecordsRequest", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.liquidation.QueryLiquidationRecordsRequest", len)?;
         if self.liquidation_id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -1985,7 +1990,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordsRequest {
             type Value = QueryLiquidationRecordsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationRecordsRequest")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationRecordsRequest")
             }
 
             fn visit_map<V>(
@@ -2023,7 +2028,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationRecordsRequest",
+            "bitway.liquidation.QueryLiquidationRecordsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2044,8 +2049,8 @@ impl serde::Serialize for QueryLiquidationRecordsResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationRecordsResponse", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.liquidation.QueryLiquidationRecordsResponse", len)?;
         if !self.liquidation_records.is_empty() {
             struct_ser.serialize_field("liquidationRecords", &self.liquidation_records)?;
         }
@@ -2109,7 +2114,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordsResponse {
             type Value = QueryLiquidationRecordsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationRecordsResponse")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationRecordsResponse")
             }
 
             fn visit_map<V>(
@@ -2146,7 +2151,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRecordsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationRecordsResponse",
+            "bitway.liquidation.QueryLiquidationRecordsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2165,7 +2170,7 @@ impl serde::Serialize for QueryLiquidationRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationRequest", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryLiquidationRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -2224,7 +2229,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRequest {
             type Value = QueryLiquidationRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationRequest")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationRequest")
             }
 
             fn visit_map<V>(
@@ -2254,7 +2259,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationRequest",
+            "bitway.liquidation.QueryLiquidationRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2273,7 +2278,7 @@ impl serde::Serialize for QueryLiquidationResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationResponse", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryLiquidationResponse", len)?;
         if let Some(v) = self.liquidation.as_ref() {
             struct_ser.serialize_field("liquidation", v)?;
         }
@@ -2330,7 +2335,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationResponse {
             type Value = QueryLiquidationResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationResponse")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationResponse")
             }
 
             fn visit_map<V>(
@@ -2357,7 +2362,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationResponse",
+            "bitway.liquidation.QueryLiquidationResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2379,7 +2384,7 @@ impl serde::Serialize for QueryLiquidationsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationsRequest", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryLiquidationsRequest", len)?;
         if self.status != 0 {
             let v = LiquidationStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -2444,7 +2449,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationsRequest {
             type Value = QueryLiquidationsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationsRequest")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationsRequest")
             }
 
             fn visit_map<V>(
@@ -2479,7 +2484,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationsRequest",
+            "bitway.liquidation.QueryLiquidationsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2501,7 +2506,7 @@ impl serde::Serialize for QueryLiquidationsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryLiquidationsResponse", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryLiquidationsResponse", len)?;
         if !self.liquidations.is_empty() {
             struct_ser.serialize_field("liquidations", &self.liquidations)?;
         }
@@ -2563,7 +2568,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationsResponse {
             type Value = QueryLiquidationsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryLiquidationsResponse")
+                formatter.write_str("struct bitway.liquidation.QueryLiquidationsResponse")
             }
 
             fn visit_map<V>(
@@ -2598,7 +2603,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryLiquidationsResponse",
+            "bitway.liquidation.QueryLiquidationsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2613,7 +2618,8 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.liquidation.QueryParamsRequest", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.liquidation.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -2662,7 +2668,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryParamsRequest")
+                formatter.write_str("struct bitway.liquidation.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -2676,7 +2682,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryParamsRequest",
+            "bitway.liquidation.QueryParamsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2695,7 +2701,7 @@ impl serde::Serialize for QueryParamsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.liquidation.QueryParamsResponse", len)?;
+            serializer.serialize_struct("bitway.liquidation.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -2752,7 +2758,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.liquidation.QueryParamsResponse")
+                formatter.write_str("struct bitway.liquidation.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -2777,7 +2783,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.liquidation.QueryParamsResponse",
+            "bitway.liquidation.QueryParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )

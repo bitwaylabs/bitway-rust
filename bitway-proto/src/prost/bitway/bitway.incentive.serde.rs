@@ -11,7 +11,7 @@ impl serde::Serialize for GenesisState {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.incentive.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.incentive.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -68,7 +68,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.GenesisState")
+                formatter.write_str("struct bitway.incentive.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -89,7 +89,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 Ok(GenesisState { params: params__ })
             }
         }
-        deserializer.deserialize_struct("side.incentive.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.incentive.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -107,7 +107,8 @@ impl serde::Serialize for MsgUpdateParams {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.incentive.MsgUpdateParams", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.incentive.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -169,7 +170,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.MsgUpdateParams")
+                formatter.write_str("struct bitway.incentive.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -200,7 +201,11 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.incentive.MsgUpdateParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.incentive.MsgUpdateParams",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -213,7 +218,7 @@ impl serde::Serialize for MsgUpdateParamsResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.incentive.MsgUpdateParamsResponse", len)?;
+            serializer.serialize_struct("bitway.incentive.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -262,7 +267,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.incentive.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -279,7 +284,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.MsgUpdateParamsResponse",
+            "bitway.incentive.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -303,7 +308,7 @@ impl serde::Serialize for Params {
         if self.reward_per_withdraw.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.incentive.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.incentive.Params", len)?;
         if self.enabled {
             struct_ser.serialize_field("enabled", &self.enabled)?;
         }
@@ -380,7 +385,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.Params")
+                formatter.write_str("struct bitway.incentive.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -419,7 +424,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.incentive.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.incentive.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -431,7 +436,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.incentive.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.incentive.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -480,7 +485,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryParamsRequest")
+                formatter.write_str("struct bitway.incentive.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -494,7 +499,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryParamsRequest",
+            "bitway.incentive.QueryParamsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -513,7 +518,7 @@ impl serde::Serialize for QueryParamsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.incentive.QueryParamsResponse", len)?;
+            serializer.serialize_struct("bitway.incentive.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -570,7 +575,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryParamsResponse")
+                formatter.write_str("struct bitway.incentive.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -595,7 +600,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryParamsResponse",
+            "bitway.incentive.QueryParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -611,7 +616,7 @@ impl serde::Serialize for QueryRewardStatsRequest {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.incentive.QueryRewardStatsRequest", len)?;
+            serializer.serialize_struct("bitway.incentive.QueryRewardStatsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -660,7 +665,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardStatsRequest {
             type Value = QueryRewardStatsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryRewardStatsRequest")
+                formatter.write_str("struct bitway.incentive.QueryRewardStatsRequest")
             }
 
             fn visit_map<V>(
@@ -677,7 +682,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardStatsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryRewardStatsRequest",
+            "bitway.incentive.QueryRewardStatsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -696,7 +701,7 @@ impl serde::Serialize for QueryRewardStatsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.incentive.QueryRewardStatsResponse", len)?;
+            serializer.serialize_struct("bitway.incentive.QueryRewardStatsResponse", len)?;
         if let Some(v) = self.reward_stats.as_ref() {
             struct_ser.serialize_field("rewardStats", v)?;
         }
@@ -753,7 +758,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardStatsResponse {
             type Value = QueryRewardStatsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryRewardStatsResponse")
+                formatter.write_str("struct bitway.incentive.QueryRewardStatsResponse")
             }
 
             fn visit_map<V>(
@@ -780,7 +785,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardStatsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryRewardStatsResponse",
+            "bitway.incentive.QueryRewardStatsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -799,7 +804,7 @@ impl serde::Serialize for QueryRewardsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.incentive.QueryRewardsRequest", len)?;
+            serializer.serialize_struct("bitway.incentive.QueryRewardsRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -856,7 +861,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardsRequest {
             type Value = QueryRewardsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryRewardsRequest")
+                formatter.write_str("struct bitway.incentive.QueryRewardsRequest")
             }
 
             fn visit_map<V>(
@@ -883,7 +888,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryRewardsRequest",
+            "bitway.incentive.QueryRewardsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -902,7 +907,7 @@ impl serde::Serialize for QueryRewardsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.incentive.QueryRewardsResponse", len)?;
+            serializer.serialize_struct("bitway.incentive.QueryRewardsResponse", len)?;
         if let Some(v) = self.rewards.as_ref() {
             struct_ser.serialize_field("rewards", v)?;
         }
@@ -959,7 +964,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardsResponse {
             type Value = QueryRewardsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.QueryRewardsResponse")
+                formatter.write_str("struct bitway.incentive.QueryRewardsResponse")
             }
 
             fn visit_map<V>(
@@ -984,7 +989,7 @@ impl<'de> serde::Deserialize<'de> for QueryRewardsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.incentive.QueryRewardsResponse",
+            "bitway.incentive.QueryRewardsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1008,7 +1013,7 @@ impl serde::Serialize for RewardStats {
         if self.total_reward_amount.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.incentive.RewardStats", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.incentive.RewardStats", len)?;
         if self.address_count != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -1092,7 +1097,7 @@ impl<'de> serde::Deserialize<'de> for RewardStats {
             type Value = RewardStats;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.RewardStats")
+                formatter.write_str("struct bitway.incentive.RewardStats")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RewardStats, V::Error>
@@ -1137,7 +1142,7 @@ impl<'de> serde::Deserialize<'de> for RewardStats {
                 })
             }
         }
-        deserializer.deserialize_struct("side.incentive.RewardStats", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.incentive.RewardStats", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1167,7 +1172,7 @@ impl serde::Serialize for Rewards {
         if self.total_amount.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.incentive.Rewards", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.incentive.Rewards", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -1271,7 +1276,7 @@ impl<'de> serde::Deserialize<'de> for Rewards {
             type Value = Rewards;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.incentive.Rewards")
+                formatter.write_str("struct bitway.incentive.Rewards")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Rewards, V::Error>
@@ -1340,6 +1345,6 @@ impl<'de> serde::Deserialize<'de> for Rewards {
                 })
             }
         }
-        deserializer.deserialize_struct("side.incentive.Rewards", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.incentive.Rewards", FIELDS, GeneratedVisitor)
     }
 }

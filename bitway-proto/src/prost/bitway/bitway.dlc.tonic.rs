@@ -97,10 +97,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Params");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Params");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Params"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Params"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn event(
@@ -115,10 +115,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Event");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Event");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Event"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Event"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn events(
@@ -133,10 +133,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Events");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Events");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Events"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Events"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn attestation(
@@ -151,10 +151,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Attestation");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Attestation");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Attestation"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Attestation"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn attestation_by_event(
@@ -171,10 +171,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/AttestationByEvent");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/AttestationByEvent");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "AttestationByEvent"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "AttestationByEvent"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn attestations(
@@ -189,10 +189,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Attestations");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Attestations");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Attestations"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Attestations"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn nonce(
@@ -207,10 +207,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Nonce");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Nonce");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Nonce"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Nonce"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn nonces(
@@ -225,10 +225,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Nonces");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Nonces");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Nonces"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Nonces"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn count_nonces(
@@ -243,17 +243,16 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/CountNonces");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/CountNonces");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "CountNonces"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "CountNonces"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn oracles(
+        pub async fn dcm(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryOraclesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryOraclesResponse>, tonic::Status>
-        {
+            request: impl tonic::IntoRequest<super::QueryDcmRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryDcmResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -261,10 +260,10 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/Oracles");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/DCM");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "Oracles"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "DCM"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn dc_ms(
@@ -279,10 +278,69 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Query/DCMs");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/DCMs");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Query", "DCMs"));
+                .insert(GrpcMethod::new("bitway.dlc.Query", "DCMs"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn oracle(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryOracleRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryOracleResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Oracle");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Oracle"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn oracles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryOraclesRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryOraclesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Oracles");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("bitway.dlc.Query", "Oracles"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn oracle_participant_liveness(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryOracleParticipantLivenessRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryOracleParticipantLivenessResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/bitway.dlc.Query/OracleParticipantLiveness");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "bitway.dlc.Query",
+                "OracleParticipantLiveness",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -334,14 +392,29 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryCountNoncesRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryCountNoncesResponse>, tonic::Status>;
-        async fn oracles(
+        async fn dcm(
             &self,
-            request: tonic::Request<super::QueryOraclesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryOraclesResponse>, tonic::Status>;
+            request: tonic::Request<super::QueryDcmRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryDcmResponse>, tonic::Status>;
         async fn dc_ms(
             &self,
             request: tonic::Request<super::QueryDcMsRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryDcMsResponse>, tonic::Status>;
+        async fn oracle(
+            &self,
+            request: tonic::Request<super::QueryOracleRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryOracleResponse>, tonic::Status>;
+        async fn oracles(
+            &self,
+            request: tonic::Request<super::QueryOraclesRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryOraclesResponse>, tonic::Status>;
+        async fn oracle_participant_liveness(
+            &self,
+            request: tonic::Request<super::QueryOracleParticipantLivenessRequest>,
+        ) -> core::result::Result<
+            tonic::Response<super::QueryOracleParticipantLivenessResponse>,
+            tonic::Status,
+        >;
     }
     #[derive(Debug)]
     pub struct QueryServer<T: Query> {
@@ -419,7 +492,7 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.dlc.Query/Params" => {
+                "/bitway.dlc.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
@@ -457,7 +530,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Event" => {
+                "/bitway.dlc.Query/Event" => {
                     #[allow(non_camel_case_types)]
                     struct EventSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryEventRequest> for EventSvc<T> {
@@ -495,7 +568,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Events" => {
+                "/bitway.dlc.Query/Events" => {
                     #[allow(non_camel_case_types)]
                     struct EventsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryEventsRequest> for EventsSvc<T> {
@@ -533,7 +606,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Attestation" => {
+                "/bitway.dlc.Query/Attestation" => {
                     #[allow(non_camel_case_types)]
                     struct AttestationSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryAttestationRequest> for AttestationSvc<T> {
@@ -571,7 +644,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/AttestationByEvent" => {
+                "/bitway.dlc.Query/AttestationByEvent" => {
                     #[allow(non_camel_case_types)]
                     struct AttestationByEventSvc<T: Query>(pub Arc<T>);
                     impl<T: Query>
@@ -612,7 +685,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Attestations" => {
+                "/bitway.dlc.Query/Attestations" => {
                     #[allow(non_camel_case_types)]
                     struct AttestationsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryAttestationsRequest> for AttestationsSvc<T> {
@@ -650,7 +723,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Nonce" => {
+                "/bitway.dlc.Query/Nonce" => {
                     #[allow(non_camel_case_types)]
                     struct NonceSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryNonceRequest> for NonceSvc<T> {
@@ -688,7 +761,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Nonces" => {
+                "/bitway.dlc.Query/Nonces" => {
                     #[allow(non_camel_case_types)]
                     struct NoncesSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryNoncesRequest> for NoncesSvc<T> {
@@ -726,7 +799,7 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/CountNonces" => {
+                "/bitway.dlc.Query/CountNonces" => {
                     #[allow(non_camel_case_types)]
                     struct CountNoncesSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryCountNoncesRequest> for CountNoncesSvc<T> {
@@ -764,7 +837,121 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/Oracles" => {
+                "/bitway.dlc.Query/DCM" => {
+                    #[allow(non_camel_case_types)]
+                    struct DCMSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryDcmRequest> for DCMSvc<T> {
+                        type Response = super::QueryDcmResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryDcmRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).dcm(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DCMSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.dlc.Query/DCMs" => {
+                    #[allow(non_camel_case_types)]
+                    struct DCMsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryDcMsRequest> for DCMsSvc<T> {
+                        type Response = super::QueryDcMsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryDcMsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).dc_ms(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DCMsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.dlc.Query/Oracle" => {
+                    #[allow(non_camel_case_types)]
+                    struct OracleSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryOracleRequest> for OracleSvc<T> {
+                        type Response = super::QueryOracleResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryOracleRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move { (*inner).oracle(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = OracleSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/bitway.dlc.Query/Oracles" => {
                     #[allow(non_camel_case_types)]
                     struct OraclesSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryOraclesRequest> for OraclesSvc<T> {
@@ -802,18 +989,22 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Query/DCMs" => {
+                "/bitway.dlc.Query/OracleParticipantLiveness" => {
                     #[allow(non_camel_case_types)]
-                    struct DCMsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryDcMsRequest> for DCMsSvc<T> {
-                        type Response = super::QueryDcMsResponse;
+                    struct OracleParticipantLivenessSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryOracleParticipantLivenessRequest>
+                        for OracleParticipantLivenessSvc<T>
+                    {
+                        type Response = super::QueryOracleParticipantLivenessResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryDcMsRequest>,
+                            request: tonic::Request<super::QueryOracleParticipantLivenessRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).dc_ms(request).await };
+                            let fut =
+                                async move { (*inner).oracle_participant_liveness(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -824,7 +1015,7 @@ pub mod query_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = DCMsSvc(inner);
+                        let method = OracleParticipantLivenessSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -874,7 +1065,7 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "side.dlc.Query";
+        const NAME: &'static str = "bitway.dlc.Query";
     }
 }
 /// Generated client implementations.
@@ -972,10 +1163,10 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Msg/CreateDCM");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Msg/CreateDCM");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Msg", "CreateDCM"));
+                .insert(GrpcMethod::new("bitway.dlc.Msg", "CreateDCM"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn update_params(
@@ -990,10 +1181,10 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/side.dlc.Msg/UpdateParams");
+            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Msg/UpdateParams");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("side.dlc.Msg", "UpdateParams"));
+                .insert(GrpcMethod::new("bitway.dlc.Msg", "UpdateParams"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -1091,7 +1282,7 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/side.dlc.Msg/CreateDCM" => {
+                "/bitway.dlc.Msg/CreateDCM" => {
                     #[allow(non_camel_case_types)]
                     struct CreateDCMSvc<T: Msg>(pub Arc<T>);
                     impl<T: Msg> tonic::server::UnaryService<super::MsgCreateDcm> for CreateDCMSvc<T> {
@@ -1129,7 +1320,7 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 }
-                "/side.dlc.Msg/UpdateParams" => {
+                "/bitway.dlc.Msg/UpdateParams" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
                     impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
@@ -1201,6 +1392,6 @@ pub mod msg_server {
         }
     }
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "side.dlc.Msg";
+        const NAME: &'static str = "bitway.dlc.Msg";
     }
 }

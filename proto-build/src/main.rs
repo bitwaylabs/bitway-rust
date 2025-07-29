@@ -25,10 +25,10 @@ const COSMOS_SDK_REV: &str = "release/v2.0.x";
 // All paths must end with a / and either be absolute or include a ./ to reference the current
 // working directory.
 
-/// The directory generated side proto files go into in this repo
-const COSMOS_SDK_PROTO_DIR: &str = "../side-proto/src/prost/";
-/// Directory where the side submodule is located
-const COSMOS_SDK_DIR: &str = "../side";
+/// The directory generated bitway proto files go into in this repo
+const COSMOS_SDK_PROTO_DIR: &str = "../bitway-proto/src/prost/";
+/// Directory where the bitway submodule is located
+const COSMOS_SDK_DIR: &str = "../bitway";
 /// A temporary directory for proto building
 const TMP_BUILD_DIR: &str = "/tmp/tmp-protobuf/";
 
@@ -63,7 +63,7 @@ fn main() {
         fs::remove_dir_all(tmp_build_dir.clone()).unwrap();
     }
 
-    let temp_sdk_dir = tmp_build_dir.join("side");
+    let temp_sdk_dir = tmp_build_dir.join("bitway");
 
     fs::create_dir_all(&temp_sdk_dir).unwrap();
 
@@ -71,7 +71,7 @@ fn main() {
     output_sdk_version(&temp_sdk_dir);
     compile_sdk_protos_and_services(&temp_sdk_dir);
 
-    copy_generated_files(&temp_sdk_dir, &proto_dir.join("side"));
+    copy_generated_files(&temp_sdk_dir, &proto_dir.join("bitway"));
 
     apply_patches(&proto_dir);
 
@@ -80,7 +80,7 @@ fn main() {
 
     if is_github() {
         println!(
-            "Rebuild protos with proto-build (side rev: {}))",
+            "Rebuild protos with proto-build (bitway rev: {}))",
             COSMOS_SDK_REV
         );
     }
@@ -165,7 +165,7 @@ fn run_rustfmt(dir: &Path) {
 }
 
 fn update_submodules() {
-    info!("Updating cosmos/side submodule...");
+    info!("Updating cosmos/bitway submodule...");
     run_git(["submodule", "update", "--init"]);
     run_git(["-C", COSMOS_SDK_DIR, "fetch"]);
     run_git(["-C", COSMOS_SDK_DIR, "reset", "--hard", COSMOS_SDK_REV]);
@@ -178,7 +178,7 @@ fn output_sdk_version(out_dir: &Path) {
 
 fn compile_sdk_protos_and_services(out_dir: &Path) {
     info!(
-        "Compiling side .proto files to Rust into '{}'...",
+        "Compiling bitway .proto files to Rust into '{}'...",
         out_dir.display()
     );
 
@@ -325,7 +325,7 @@ fn apply_patches(_proto_dir: &Path) {
     //     ),
     // ] {
     //     patch_file(
-    //         &proto_dir.join("side/cosmos.staking.v1beta1.rs"),
+    //         &proto_dir.join("bitway/cosmos.staking.v1beta1.rs"),
     //         &Regex::new(pattern).unwrap(),
     //         replacement,
     //     )
@@ -343,7 +343,7 @@ fn apply_patches(_proto_dir: &Path) {
     //     ),
     // ] {
     //     patch_file(
-    //         &proto_dir.join("side/cosmos.staking.v1beta1.serde.rs"),
+    //         &proto_dir.join("bitway/cosmos.staking.v1beta1.serde.rs"),
     //         &Regex::new(pattern).unwrap(),
     //         replacement,
     //     )

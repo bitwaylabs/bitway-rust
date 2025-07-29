@@ -19,9 +19,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Asset metadata
@@ -41,9 +41,9 @@ pub struct AssetMetadata {
 }
 impl ::prost::Name for AssetMetadata {
     const NAME: &'static str = "AssetMetadata";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Pool tranche config
@@ -56,15 +56,12 @@ pub struct PoolTrancheConfig {
     /// borrow apr permille
     #[prost(uint32, tag = "2")]
     pub borrow_apr: u32,
-    /// minimum maturity factor permille
-    #[prost(uint32, tag = "3")]
-    pub min_maturity_factor: u32,
 }
 impl ::prost::Name for PoolTrancheConfig {
     const NAME: &'static str = "PoolTrancheConfig";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Pool config
@@ -95,30 +92,27 @@ pub struct PoolConfig {
     /// request fee
     #[prost(message, optional, tag = "8")]
     pub request_fee: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    /// origination fee
-    #[prost(string, tag = "9")]
-    pub origination_fee: ::prost::alloc::string::String,
+    /// origination fee factor permille
+    #[prost(uint32, tag = "9")]
+    pub origination_fee_factor: u32,
     /// reserve factor permille
     #[prost(uint32, tag = "10")]
     pub reserve_factor: u32,
-    /// referral fee factor permille
-    #[prost(uint32, tag = "11")]
-    pub referral_fee_factor: u32,
     /// maximum ltv percent
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "11")]
     pub max_ltv: u32,
     /// liquidation ltv percent
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "12")]
     pub liquidation_threshold: u32,
     /// indicates if the pool is paused
-    #[prost(bool, tag = "14")]
+    #[prost(bool, tag = "13")]
     pub paused: bool,
 }
 impl ::prost::Name for PoolConfig {
     const NAME: &'static str = "PoolConfig";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Pool tranche
@@ -140,9 +134,9 @@ pub struct PoolTranche {
 }
 impl ::prost::Name for PoolTranche {
     const NAME: &'static str = "PoolTranche";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -163,7 +157,7 @@ pub struct LendingPool {
     #[prost(string, tag = "7")]
     pub total_reserve: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "8")]
-    pub total_stokens: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    pub total_ytokens: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "9")]
     pub tranches: ::prost::alloc::vec::Vec<PoolTranche>,
     #[prost(message, optional, tag = "10")]
@@ -173,9 +167,9 @@ pub struct LendingPool {
 }
 impl ::prost::Name for LendingPool {
     const NAME: &'static str = "LendingPool";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Authorization with deposit txs for cets
@@ -191,9 +185,9 @@ pub struct Authorization {
 }
 impl ::prost::Name for Authorization {
     const NAME: &'static str = "Authorization";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -230,34 +224,56 @@ pub struct Loan {
     pub maturity: i64,
     #[prost(uint32, tag = "15")]
     pub borrow_apr: u32,
-    #[prost(int64, tag = "16")]
-    pub min_maturity: i64,
-    #[prost(string, tag = "17")]
+    #[prost(string, tag = "16")]
     pub start_borrow_index: ::prost::alloc::string::String,
-    #[prost(string, tag = "18")]
+    #[prost(string, tag = "17")]
     pub liquidation_price: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "19")]
+    #[prost(uint64, tag = "18")]
     pub dlc_event_id: u64,
-    #[prost(message, repeated, tag = "20")]
+    #[prost(message, repeated, tag = "19")]
     pub authorizations: ::prost::alloc::vec::Vec<Authorization>,
-    #[prost(string, tag = "21")]
+    #[prost(string, tag = "20")]
     pub collateral_amount: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "22")]
+    #[prost(uint64, tag = "21")]
     pub liquidation_id: u64,
-    #[prost(string, tag = "23")]
-    pub referrer: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "24")]
+    #[prost(message, optional, tag = "22")]
+    pub referrer: ::core::option::Option<Referrer>,
+    #[prost(message, optional, tag = "23")]
     pub create_at: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
-    #[prost(message, optional, tag = "25")]
+    #[prost(message, optional, tag = "24")]
     pub disburse_at: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
-    #[prost(enumeration = "LoanStatus", tag = "26")]
+    #[prost(enumeration = "LoanStatus", tag = "25")]
     pub status: i32,
 }
 impl ::prost::Name for Loan {
     const NAME: &'static str = "Loan";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// Referrer defines the referrer
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Referrer {
+    /// Optional name
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Unique referral code with 8 alphanumeric characters
+    #[prost(string, tag = "2")]
+    pub referral_code: ::prost::alloc::string::String,
+    /// Referrer address
+    #[prost(string, tag = "3")]
+    pub address: ::prost::alloc::string::String,
+    /// Referral fee factor
+    #[prost(string, tag = "4")]
+    pub referral_fee_factor: ::prost::alloc::string::String,
+}
+impl ::prost::Name for Referrer {
+    const NAME: &'static str = "Referrer";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// LeafScript defines the tap leaf script
@@ -271,9 +287,9 @@ pub struct LeafScript {
 }
 impl ::prost::Name for LeafScript {
     const NAME: &'static str = "LeafScript";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -287,12 +303,14 @@ pub struct CetInfo {
     pub signature_point: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
     pub script: ::core::option::Option<LeafScript>,
+    #[prost(uint32, tag = "5")]
+    pub sighash_type: u32,
 }
 impl ::prost::Name for CetInfo {
     const NAME: &'static str = "CetInfo";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -311,9 +329,9 @@ pub struct LiquidationCet {
 }
 impl ::prost::Name for LiquidationCet {
     const NAME: &'static str = "LiquidationCet";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -332,9 +350,9 @@ pub struct RepaymentCet {
 }
 impl ::prost::Name for RepaymentCet {
     const NAME: &'static str = "RepaymentCet";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -361,9 +379,9 @@ pub struct DlcMeta {
 }
 impl ::prost::Name for DlcMeta {
     const NAME: &'static str = "DLCMeta";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -382,9 +400,9 @@ pub struct DepositLog {
 }
 impl ::prost::Name for DepositLog {
     const NAME: &'static str = "DepositLog";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -399,9 +417,9 @@ pub struct Repayment {
 }
 impl ::prost::Name for Repayment {
     const NAME: &'static str = "Repayment";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -424,9 +442,9 @@ pub struct Redemption {
 }
 impl ::prost::Name for Redemption {
     const NAME: &'static str = "Redemption";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// Status options for a lending pool
@@ -467,20 +485,22 @@ pub enum LoanStatus {
     Unspecified = 0,
     /// Loan Requested
     Requested = 1,
+    /// Loan Cancelled
+    Cancelled = 2,
     /// Loan Authorized
-    Authorized = 2,
+    Authorized = 3,
     /// Loan Rejected
-    Rejected = 3,
+    Rejected = 4,
     /// Loan Open
-    Open = 4,
+    Open = 5,
     /// Loan Repaid
-    Repaid = 5,
+    Repaid = 6,
     /// Loan Defaulted
-    Defaulted = 6,
+    Defaulted = 7,
     /// Loan Liquidated
-    Liquidated = 7,
+    Liquidated = 8,
     /// Loan Closed
-    Closed = 8,
+    Closed = 9,
 }
 impl LoanStatus {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -491,6 +511,7 @@ impl LoanStatus {
         match self {
             LoanStatus::Unspecified => "Unspecified",
             LoanStatus::Requested => "Requested",
+            LoanStatus::Cancelled => "Cancelled",
             LoanStatus::Authorized => "Authorized",
             LoanStatus::Rejected => "Rejected",
             LoanStatus::Open => "Open",
@@ -505,6 +526,7 @@ impl LoanStatus {
         match value {
             "Unspecified" => Some(Self::Unspecified),
             "Requested" => Some(Self::Requested),
+            "Cancelled" => Some(Self::Cancelled),
             "Authorized" => Some(Self::Authorized),
             "Rejected" => Some(Self::Rejected),
             "Open" => Some(Self::Open),
@@ -654,9 +676,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolRequest is request type for the Query/Pool RPC method.
@@ -668,9 +690,9 @@ pub struct QueryPoolRequest {
 }
 impl ::prost::Name for QueryPoolRequest {
     const NAME: &'static str = "QueryPoolRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolResponse is response type for the Query/Pool RPC method.
@@ -682,9 +704,9 @@ pub struct QueryPoolResponse {
 }
 impl ::prost::Name for QueryPoolResponse {
     const NAME: &'static str = "QueryPoolResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolsRequest is request type for the Query/Pools RPC method.
@@ -696,9 +718,9 @@ pub struct QueryPoolsRequest {
 }
 impl ::prost::Name for QueryPoolsRequest {
     const NAME: &'static str = "QueryPoolsRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolsResponse is response type for the Query/Pools RPC method.
@@ -713,9 +735,9 @@ pub struct QueryPoolsResponse {
 }
 impl ::prost::Name for QueryPoolsResponse {
     const NAME: &'static str = "QueryPoolsResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolExchangeRateRequest is request type for the Query/PoolExchangeRate RPC method.
@@ -727,9 +749,9 @@ pub struct QueryPoolExchangeRateRequest {
 }
 impl ::prost::Name for QueryPoolExchangeRateRequest {
     const NAME: &'static str = "QueryPoolExchangeRateRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryPoolExchangeRateResponse is response type for the Query/PoolExchangeRate RPC method.
@@ -741,9 +763,9 @@ pub struct QueryPoolExchangeRateResponse {
 }
 impl ::prost::Name for QueryPoolExchangeRateResponse {
     const NAME: &'static str = "QueryPoolExchangeRateResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -760,9 +782,9 @@ pub struct QueryLiquidationPriceRequest {
 }
 impl ::prost::Name for QueryLiquidationPriceRequest {
     const NAME: &'static str = "QueryLiquidationPriceRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -775,9 +797,9 @@ pub struct QueryLiquidationPriceResponse {
 }
 impl ::prost::Name for QueryLiquidationPriceResponse {
     const NAME: &'static str = "QueryLiquidationPriceResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -785,9 +807,9 @@ impl ::prost::Name for QueryLiquidationPriceResponse {
 pub struct QueryDlcEventCountRequest {}
 impl ::prost::Name for QueryDlcEventCountRequest {
     const NAME: &'static str = "QueryDlcEventCountRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -798,9 +820,9 @@ pub struct QueryDlcEventCountResponse {
 }
 impl ::prost::Name for QueryDlcEventCountResponse {
     const NAME: &'static str = "QueryDlcEventCountResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -808,12 +830,14 @@ impl ::prost::Name for QueryDlcEventCountResponse {
 pub struct QueryLoanCetInfosRequest {
     #[prost(string, tag = "1")]
     pub loan_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub collateral_amount: ::prost::alloc::string::String,
 }
 impl ::prost::Name for QueryLoanCetInfosRequest {
     const NAME: &'static str = "QueryLoanCetInfosRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -828,9 +852,9 @@ pub struct QueryLoanCetInfosResponse {
 }
 impl ::prost::Name for QueryLoanCetInfosResponse {
     const NAME: &'static str = "QueryLoanCetInfosResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -847,9 +871,9 @@ pub struct QueryCollateralAddressRequest {
 }
 impl ::prost::Name for QueryCollateralAddressRequest {
     const NAME: &'static str = "QueryCollateralAddressRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -860,9 +884,9 @@ pub struct QueryCollateralAddressResponse {
 }
 impl ::prost::Name for QueryCollateralAddressResponse {
     const NAME: &'static str = "QueryCollateralAddressResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -871,9 +895,9 @@ impl ::prost::Name for QueryCollateralAddressResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -885,9 +909,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanRequest is request type for the Query/Loan RPC method.
@@ -899,9 +923,9 @@ pub struct QueryLoanRequest {
 }
 impl ::prost::Name for QueryLoanRequest {
     const NAME: &'static str = "QueryLoanRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanResponse is response type for the Query/Loan RPC method.
@@ -913,9 +937,9 @@ pub struct QueryLoanResponse {
 }
 impl ::prost::Name for QueryLoanResponse {
     const NAME: &'static str = "QueryLoanResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoansRequest is request type for the Query/Loans RPC method.
@@ -929,9 +953,9 @@ pub struct QueryLoansRequest {
 }
 impl ::prost::Name for QueryLoansRequest {
     const NAME: &'static str = "QueryLoansRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoansResponse is response type for the Query/Loans RPC method.
@@ -946,9 +970,9 @@ pub struct QueryLoansResponse {
 }
 impl ::prost::Name for QueryLoansResponse {
     const NAME: &'static str = "QueryLoansResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoansByAddressRequest is request type for the Query/LoansByAddress RPC method.
@@ -964,9 +988,9 @@ pub struct QueryLoansByAddressRequest {
 }
 impl ::prost::Name for QueryLoansByAddressRequest {
     const NAME: &'static str = "QueryLoansByAddressRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoansByAddressResponse is response type for the Query/LoansByAddress RPC method.
@@ -981,9 +1005,42 @@ pub struct QueryLoansByAddressResponse {
 }
 impl ::prost::Name for QueryLoansByAddressResponse {
     const NAME: &'static str = "QueryLoansByAddressResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// QueryLoansByOracleRequest is request type for the Query/LoansByOracle RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryLoansByOracleRequest {
+    #[prost(string, tag = "1")]
+    pub oracle_pubkey: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for QueryLoansByOracleRequest {
+    const NAME: &'static str = "QueryLoansByOracleRequest";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// QueryLoansByOracleResponse is response type for the Query/LoansByOracle RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryLoansByOracleResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub loans: ::prost::alloc::vec::Vec<Loan>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for QueryLoansByOracleResponse {
+    const NAME: &'static str = "QueryLoansByOracleResponse";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanDlcMetaRequest is request type for the Query/LoanDlcMeta RPC method.
@@ -995,9 +1052,9 @@ pub struct QueryLoanDlcMetaRequest {
 }
 impl ::prost::Name for QueryLoanDlcMetaRequest {
     const NAME: &'static str = "QueryLoanDlcMetaRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanDlcMetaResponse is response type for the Query/LoanDlcMeta RPC method.
@@ -1009,9 +1066,9 @@ pub struct QueryLoanDlcMetaResponse {
 }
 impl ::prost::Name for QueryLoanDlcMetaResponse {
     const NAME: &'static str = "QueryLoanDlcMetaResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanAuthorizationRequest is request type for the Query/LoanAuthorization RPC method.
@@ -1025,9 +1082,9 @@ pub struct QueryLoanAuthorizationRequest {
 }
 impl ::prost::Name for QueryLoanAuthorizationRequest {
     const NAME: &'static str = "QueryLoanAuthorizationRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryLoanAuthorizationResponse is response type for the Query/LoanAuthorization RPC method.
@@ -1041,9 +1098,9 @@ pub struct QueryLoanAuthorizationResponse {
 }
 impl ::prost::Name for QueryLoanAuthorizationResponse {
     const NAME: &'static str = "QueryLoanAuthorizationResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1054,9 +1111,9 @@ pub struct QueryLoanDepositsRequest {
 }
 impl ::prost::Name for QueryLoanDepositsRequest {
     const NAME: &'static str = "QueryLoanDepositsRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1067,9 +1124,9 @@ pub struct QueryLoanDepositsResponse {
 }
 impl ::prost::Name for QueryLoanDepositsResponse {
     const NAME: &'static str = "QueryLoanDepositsResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryRedemptionRequest is request type for the Query/Redemption RPC method.
@@ -1081,9 +1138,9 @@ pub struct QueryRedemptionRequest {
 }
 impl ::prost::Name for QueryRedemptionRequest {
     const NAME: &'static str = "QueryRedemptionRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// QueryRedemptionResponse is response type for the Query/Redemption RPC method.
@@ -1095,9 +1152,9 @@ pub struct QueryRedemptionResponse {
 }
 impl ::prost::Name for QueryRedemptionResponse {
     const NAME: &'static str = "QueryRedemptionResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1108,9 +1165,9 @@ pub struct QueryRepaymentRequest {
 }
 impl ::prost::Name for QueryRepaymentRequest {
     const NAME: &'static str = "QueryRepaymentRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1121,9 +1178,9 @@ pub struct QueryRepaymentResponse {
 }
 impl ::prost::Name for QueryRepaymentResponse {
     const NAME: &'static str = "QueryRepaymentResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1134,9 +1191,9 @@ pub struct QueryCurrentInterestRequest {
 }
 impl ::prost::Name for QueryCurrentInterestRequest {
     const NAME: &'static str = "QueryCurrentInterestRequest";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1147,9 +1204,38 @@ pub struct QueryCurrentInterestResponse {
 }
 impl ::prost::Name for QueryCurrentInterestResponse {
     const NAME: &'static str = "QueryCurrentInterestResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryReferrersRequest {
+    #[prost(message, optional, tag = "1")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+impl ::prost::Name for QueryReferrersRequest {
+    const NAME: &'static str = "QueryReferrersRequest";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryReferrersResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub referrers: ::prost::alloc::vec::Vec<Referrer>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+impl ::prost::Name for QueryReferrersResponse {
+    const NAME: &'static str = "QueryReferrersResponse";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1167,9 +1253,9 @@ pub struct MsgCreatePool {
 }
 impl ::prost::Name for MsgCreatePool {
     const NAME: &'static str = "MsgCreatePool";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1177,9 +1263,9 @@ impl ::prost::Name for MsgCreatePool {
 pub struct MsgCreatePoolResponse {}
 impl ::prost::Name for MsgCreatePoolResponse {
     const NAME: &'static str = "MsgCreatePoolResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1197,9 +1283,9 @@ pub struct MsgUpdatePoolConfig {
 }
 impl ::prost::Name for MsgUpdatePoolConfig {
     const NAME: &'static str = "MsgUpdatePoolConfig";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1207,9 +1293,9 @@ impl ::prost::Name for MsgUpdatePoolConfig {
 pub struct MsgUpdatePoolConfigResponse {}
 impl ::prost::Name for MsgUpdatePoolConfigResponse {
     const NAME: &'static str = "MsgUpdatePoolConfigResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1222,9 +1308,9 @@ pub struct MsgRepay {
 }
 impl ::prost::Name for MsgRepay {
     const NAME: &'static str = "MsgRepay";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1232,9 +1318,9 @@ impl ::prost::Name for MsgRepay {
 pub struct MsgRepayResponse {}
 impl ::prost::Name for MsgRepayResponse {
     const NAME: &'static str = "MsgRepayResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1249,9 +1335,9 @@ pub struct MsgAddLiquidity {
 }
 impl ::prost::Name for MsgAddLiquidity {
     const NAME: &'static str = "MsgAddLiquidity";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1259,9 +1345,9 @@ impl ::prost::Name for MsgAddLiquidity {
 pub struct MsgAddLiquidityResponse {}
 impl ::prost::Name for MsgAddLiquidityResponse {
     const NAME: &'static str = "MsgAddLiquidityResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1270,13 +1356,13 @@ pub struct MsgRemoveLiquidity {
     #[prost(string, tag = "1")]
     pub lender: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
-    pub stokens: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    pub ytokens: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
 }
 impl ::prost::Name for MsgRemoveLiquidity {
     const NAME: &'static str = "MsgRemoveLiquidity";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1284,9 +1370,9 @@ impl ::prost::Name for MsgRemoveLiquidity {
 pub struct MsgRemoveLiquidityResponse {}
 impl ::prost::Name for MsgRemoveLiquidityResponse {
     const NAME: &'static str = "MsgRemoveLiquidityResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1307,13 +1393,13 @@ pub struct MsgApply {
     #[prost(uint64, tag = "7")]
     pub dcm_id: u64,
     #[prost(string, tag = "8")]
-    pub referrer: ::prost::alloc::string::String,
+    pub referral_code: ::prost::alloc::string::String,
 }
 impl ::prost::Name for MsgApply {
     const NAME: &'static str = "MsgApply";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1321,9 +1407,9 @@ impl ::prost::Name for MsgApply {
 pub struct MsgApplyResponse {}
 impl ::prost::Name for MsgApplyResponse {
     const NAME: &'static str = "MsgApplyResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1349,9 +1435,9 @@ pub struct MsgSubmitCets {
 }
 impl ::prost::Name for MsgSubmitCets {
     const NAME: &'static str = "MsgSubmitCets";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1359,9 +1445,9 @@ impl ::prost::Name for MsgSubmitCets {
 pub struct MsgSubmitCetsResponse {}
 impl ::prost::Name for MsgSubmitCetsResponse {
     const NAME: &'static str = "MsgSubmitCetsResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1380,9 +1466,9 @@ pub struct MsgSubmitDepositTransaction {
 }
 impl ::prost::Name for MsgSubmitDepositTransaction {
     const NAME: &'static str = "MsgSubmitDepositTransaction";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1390,9 +1476,9 @@ impl ::prost::Name for MsgSubmitDepositTransaction {
 pub struct MsgSubmitDepositTransactionResponse {}
 impl ::prost::Name for MsgSubmitDepositTransactionResponse {
     const NAME: &'static str = "MsgSubmitDepositTransactionResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1409,9 +1495,9 @@ pub struct MsgRedeem {
 }
 impl ::prost::Name for MsgRedeem {
     const NAME: &'static str = "MsgRedeem";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1419,9 +1505,85 @@ impl ::prost::Name for MsgRedeem {
 pub struct MsgRedeemResponse {}
 impl ::prost::Name for MsgRedeemResponse {
     const NAME: &'static str = "MsgRedeemResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// MsgRegisterReferrer is the Msg/RegisterReferrer request type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterReferrer {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// Optional referrer name
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// Unique referral code with 8 alphanumeric characters
+    #[prost(string, tag = "3")]
+    pub referral_code: ::prost::alloc::string::String,
+    /// Referrer address
+    #[prost(string, tag = "4")]
+    pub address: ::prost::alloc::string::String,
+    /// Referral fee factor
+    #[prost(string, tag = "5")]
+    pub referral_fee_factor: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgRegisterReferrer {
+    const NAME: &'static str = "MsgRegisterReferrer";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// MsgRegisterReferrerResponse defines the Msg/RegisterReferrer response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterReferrerResponse {}
+impl ::prost::Name for MsgRegisterReferrerResponse {
+    const NAME: &'static str = "MsgRegisterReferrerResponse";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// MsgUpdateReferrer is the Msg/UpdateReferrer request type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateReferrer {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// new referrer name
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// Unique referral code with 8 alphanumeric characters
+    #[prost(string, tag = "3")]
+    pub referral_code: ::prost::alloc::string::String,
+    /// new referrer address
+    #[prost(string, tag = "4")]
+    pub address: ::prost::alloc::string::String,
+    /// new referral fee factor
+    #[prost(string, tag = "5")]
+    pub referral_fee_factor: ::prost::alloc::string::String,
+}
+impl ::prost::Name for MsgUpdateReferrer {
+    const NAME: &'static str = "MsgUpdateReferrer";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+/// MsgUpdateReferrerResponse defines the Msg/UpdateReferrer response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateReferrerResponse {}
+impl ::prost::Name for MsgUpdateReferrerResponse {
+    const NAME: &'static str = "MsgUpdateReferrerResponse";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -1441,9 +1603,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -1454,11 +1616,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.lending";
+    const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.lending.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
     }
 }
-include!("side.lending.serde.rs");
-include!("side.lending.tonic.rs");
+include!("bitway.lending.serde.rs");
+include!("bitway.lending.tonic.rs");
 // @@protoc_insertion_point(module)

@@ -23,7 +23,7 @@ impl serde::Serialize for DkgCompletion {
         if !self.signature.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.DKGCompletion", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.DKGCompletion", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -112,7 +112,7 @@ impl<'de> serde::Deserialize<'de> for DkgCompletion {
             type Value = DkgCompletion;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.DKGCompletion")
+                formatter.write_str("struct bitway.tss.DKGCompletion")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DkgCompletion, V::Error>
@@ -170,7 +170,7 @@ impl<'de> serde::Deserialize<'de> for DkgCompletion {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.DKGCompletion", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.DKGCompletion", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -188,7 +188,7 @@ impl serde::Serialize for DkgParticipant {
         if !self.consensus_pubkey.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.DKGParticipant", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.DKGParticipant", len)?;
         if !self.moniker.is_empty() {
             struct_ser.serialize_field("moniker", &self.moniker)?;
         }
@@ -252,7 +252,7 @@ impl<'de> serde::Deserialize<'de> for DkgParticipant {
             type Value = DkgParticipant;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.DKGParticipant")
+                formatter.write_str("struct bitway.tss.DKGParticipant")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DkgParticipant, V::Error>
@@ -283,7 +283,7 @@ impl<'de> serde::Deserialize<'de> for DkgParticipant {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.DKGParticipant", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.DKGParticipant", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -322,7 +322,7 @@ impl serde::Serialize for DkgRequest {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.DKGRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.DKGRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -438,7 +438,7 @@ impl<'de> serde::Deserialize<'de> for DkgRequest {
             type Value = DkgRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.DKGRequest")
+                formatter.write_str("struct bitway.tss.DKGRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DkgRequest, V::Error>
@@ -537,7 +537,7 @@ impl<'de> serde::Deserialize<'de> for DkgRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.DKGRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.DKGRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -640,7 +640,7 @@ impl serde::Serialize for GenesisState {
         if !self.signing_requests.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -715,7 +715,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.GenesisState")
+                formatter.write_str("struct bitway.tss.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -754,7 +754,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -781,7 +781,7 @@ impl serde::Serialize for MsgCompleteDkg {
         if !self.signature.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.MsgCompleteDKG", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.MsgCompleteDKG", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -870,7 +870,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkg {
             type Value = MsgCompleteDkg;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgCompleteDKG")
+                formatter.write_str("struct bitway.tss.MsgCompleteDKG")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgCompleteDkg, V::Error>
@@ -928,7 +928,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkg {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgCompleteDKG", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.MsgCompleteDKG", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -940,7 +940,7 @@ impl serde::Serialize for MsgCompleteDkgResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.tss.MsgCompleteDKGResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.tss.MsgCompleteDKGResponse", len)?;
         struct_ser.end()
     }
 }
@@ -989,7 +989,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkgResponse {
             type Value = MsgCompleteDkgResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgCompleteDKGResponse")
+                formatter.write_str("struct bitway.tss.MsgCompleteDKGResponse")
             }
 
             fn visit_map<V>(
@@ -1005,7 +1005,11 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkgResponse {
                 Ok(MsgCompleteDkgResponse {})
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgCompleteDKGResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.tss.MsgCompleteDKGResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -1029,7 +1033,8 @@ impl serde::Serialize for MsgCompleteRefreshing {
         if !self.signature.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.MsgCompleteRefreshing", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.tss.MsgCompleteRefreshing", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -1111,7 +1116,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshing {
             type Value = MsgCompleteRefreshing;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgCompleteRefreshing")
+                formatter.write_str("struct bitway.tss.MsgCompleteRefreshing")
             }
 
             fn visit_map<V>(
@@ -1164,7 +1169,11 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshing {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgCompleteRefreshing", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.tss.MsgCompleteRefreshing",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -1177,7 +1186,7 @@ impl serde::Serialize for MsgCompleteRefreshingResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.tss.MsgCompleteRefreshingResponse", len)?;
+            serializer.serialize_struct("bitway.tss.MsgCompleteRefreshingResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1226,7 +1235,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshingResponse {
             type Value = MsgCompleteRefreshingResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgCompleteRefreshingResponse")
+                formatter.write_str("struct bitway.tss.MsgCompleteRefreshingResponse")
             }
 
             fn visit_map<V>(
@@ -1243,7 +1252,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshingResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.MsgCompleteRefreshingResponse",
+            "bitway.tss.MsgCompleteRefreshingResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1273,7 +1282,7 @@ impl serde::Serialize for MsgRefresh {
         if self.timeout_duration.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.MsgRefresh", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.MsgRefresh", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -1370,7 +1379,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefresh {
             type Value = MsgRefresh;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgRefresh")
+                formatter.write_str("struct bitway.tss.MsgRefresh")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRefresh, V::Error>
@@ -1433,7 +1442,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefresh {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgRefresh", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.MsgRefresh", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1445,7 +1454,7 @@ impl serde::Serialize for MsgRefreshResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.tss.MsgRefreshResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.tss.MsgRefreshResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1494,7 +1503,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefreshResponse {
             type Value = MsgRefreshResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgRefreshResponse")
+                formatter.write_str("struct bitway.tss.MsgRefreshResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRefreshResponse, V::Error>
@@ -1507,7 +1516,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefreshResponse {
                 Ok(MsgRefreshResponse {})
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgRefreshResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.MsgRefreshResponse", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1528,7 +1537,7 @@ impl serde::Serialize for MsgSubmitSignatures {
         if !self.signatures.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.MsgSubmitSignatures", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.MsgSubmitSignatures", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -1597,7 +1606,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignatures {
             type Value = MsgSubmitSignatures;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgSubmitSignatures")
+                formatter.write_str("struct bitway.tss.MsgSubmitSignatures")
             }
 
             fn visit_map<V>(
@@ -1642,7 +1651,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignatures {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgSubmitSignatures", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.MsgSubmitSignatures", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1655,7 +1664,7 @@ impl serde::Serialize for MsgSubmitSignaturesResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.tss.MsgSubmitSignaturesResponse", len)?;
+            serializer.serialize_struct("bitway.tss.MsgSubmitSignaturesResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1704,7 +1713,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignaturesResponse {
             type Value = MsgSubmitSignaturesResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgSubmitSignaturesResponse")
+                formatter.write_str("struct bitway.tss.MsgSubmitSignaturesResponse")
             }
 
             fn visit_map<V>(
@@ -1721,7 +1730,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignaturesResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.MsgSubmitSignaturesResponse",
+            "bitway.tss.MsgSubmitSignaturesResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1742,7 +1751,7 @@ impl serde::Serialize for MsgUpdateParams {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.MsgUpdateParams", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -1804,7 +1813,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgUpdateParams")
+                formatter.write_str("struct bitway.tss.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -1835,7 +1844,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.MsgUpdateParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.MsgUpdateParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1847,7 +1856,7 @@ impl serde::Serialize for MsgUpdateParamsResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.tss.MsgUpdateParamsResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.tss.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -1896,7 +1905,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.tss.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -1913,7 +1922,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.MsgUpdateParamsResponse",
+            "bitway.tss.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1934,7 +1943,7 @@ impl serde::Serialize for Params {
         if self.dkg_timeout_duration.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.Params", len)?;
         if !self.allowed_dkg_participants.is_empty() {
             struct_ser.serialize_field("allowedDkgParticipants", &self.allowed_dkg_participants)?;
         }
@@ -2005,7 +2014,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.Params")
+                formatter.write_str("struct bitway.tss.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -2040,7 +2049,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2059,7 +2068,7 @@ impl serde::Serialize for QueryDkgCompletionsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryDKGCompletionsRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QueryDKGCompletionsRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -2123,7 +2132,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionsRequest {
             type Value = QueryDkgCompletionsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGCompletionsRequest")
+                formatter.write_str("struct bitway.tss.QueryDKGCompletionsRequest")
             }
 
             fn visit_map<V>(
@@ -2161,7 +2170,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryDKGCompletionsRequest",
+            "bitway.tss.QueryDKGCompletionsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2183,7 +2192,7 @@ impl serde::Serialize for QueryDkgCompletionsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryDKGCompletionsResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryDKGCompletionsResponse", len)?;
         if !self.completions.is_empty() {
             struct_ser.serialize_field("completions", &self.completions)?;
         }
@@ -2245,7 +2254,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionsResponse {
             type Value = QueryDkgCompletionsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGCompletionsResponse")
+                formatter.write_str("struct bitway.tss.QueryDKGCompletionsResponse")
             }
 
             fn visit_map<V>(
@@ -2280,7 +2289,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryDKGCompletionsResponse",
+            "bitway.tss.QueryDKGCompletionsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2298,7 +2307,8 @@ impl serde::Serialize for QueryDkgRequestRequest {
         if self.id != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.QueryDKGRequestRequest", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.tss.QueryDKGRequestRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -2357,7 +2367,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestRequest {
             type Value = QueryDkgRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGRequestRequest")
+                formatter.write_str("struct bitway.tss.QueryDKGRequestRequest")
             }
 
             fn visit_map<V>(
@@ -2386,7 +2396,11 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.QueryDKGRequestRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.tss.QueryDKGRequestRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -2402,7 +2416,7 @@ impl serde::Serialize for QueryDkgRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryDKGRequestResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryDKGRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -2459,7 +2473,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestResponse {
             type Value = QueryDkgRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGRequestResponse")
+                formatter.write_str("struct bitway.tss.QueryDKGRequestResponse")
             }
 
             fn visit_map<V>(
@@ -2484,7 +2498,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryDKGRequestResponse",
+            "bitway.tss.QueryDKGRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2509,7 +2523,7 @@ impl serde::Serialize for QueryDkgRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryDKGRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QueryDKGRequestsRequest", len)?;
         if !self.module.is_empty() {
             struct_ser.serialize_field("module", &self.module)?;
         }
@@ -2579,7 +2593,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
             type Value = QueryDkgRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGRequestsRequest")
+                formatter.write_str("struct bitway.tss.QueryDKGRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -2622,7 +2636,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryDKGRequestsRequest",
+            "bitway.tss.QueryDKGRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2644,7 +2658,7 @@ impl serde::Serialize for QueryDkgRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryDKGRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryDKGRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -2706,7 +2720,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsResponse {
             type Value = QueryDkgRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryDKGRequestsResponse")
+                formatter.write_str("struct bitway.tss.QueryDKGRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -2741,7 +2755,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryDKGRequestsResponse",
+            "bitway.tss.QueryDKGRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2756,7 +2770,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.tss.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.tss.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -2805,7 +2819,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryParamsRequest")
+                formatter.write_str("struct bitway.tss.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -2818,7 +2832,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 Ok(QueryParamsRequest {})
             }
         }
-        deserializer.deserialize_struct("side.tss.QueryParamsRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.QueryParamsRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2833,7 +2847,7 @@ impl serde::Serialize for QueryParamsResponse {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.QueryParamsResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -2890,7 +2904,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryParamsResponse")
+                formatter.write_str("struct bitway.tss.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -2914,7 +2928,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 Ok(QueryParamsResponse { params: params__ })
             }
         }
-        deserializer.deserialize_struct("side.tss.QueryParamsResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.QueryParamsResponse", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2933,7 +2947,7 @@ impl serde::Serialize for QueryRefreshingCompletionsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingCompletionsRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingCompletionsRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -2997,7 +3011,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsRequest {
             type Value = QueryRefreshingCompletionsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingCompletionsRequest")
+                formatter.write_str("struct bitway.tss.QueryRefreshingCompletionsRequest")
             }
 
             fn visit_map<V>(
@@ -3035,7 +3049,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingCompletionsRequest",
+            "bitway.tss.QueryRefreshingCompletionsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3057,7 +3071,7 @@ impl serde::Serialize for QueryRefreshingCompletionsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingCompletionsResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingCompletionsResponse", len)?;
         if !self.completions.is_empty() {
             struct_ser.serialize_field("completions", &self.completions)?;
         }
@@ -3119,7 +3133,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsResponse {
             type Value = QueryRefreshingCompletionsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingCompletionsResponse")
+                formatter.write_str("struct bitway.tss.QueryRefreshingCompletionsResponse")
             }
 
             fn visit_map<V>(
@@ -3154,7 +3168,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingCompletionsResponse",
+            "bitway.tss.QueryRefreshingCompletionsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3173,7 +3187,7 @@ impl serde::Serialize for QueryRefreshingRequestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingRequestRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingRequestRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -3232,7 +3246,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestRequest {
             type Value = QueryRefreshingRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingRequestRequest")
+                formatter.write_str("struct bitway.tss.QueryRefreshingRequestRequest")
             }
 
             fn visit_map<V>(
@@ -3262,7 +3276,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingRequestRequest",
+            "bitway.tss.QueryRefreshingRequestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3281,7 +3295,7 @@ impl serde::Serialize for QueryRefreshingRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingRequestResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -3338,7 +3352,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestResponse {
             type Value = QueryRefreshingRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingRequestResponse")
+                formatter.write_str("struct bitway.tss.QueryRefreshingRequestResponse")
             }
 
             fn visit_map<V>(
@@ -3363,7 +3377,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingRequestResponse",
+            "bitway.tss.QueryRefreshingRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3385,7 +3399,7 @@ impl serde::Serialize for QueryRefreshingRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingRequestsRequest", len)?;
         if self.status != 0 {
             let v = RefreshingStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -3450,7 +3464,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsRequest {
             type Value = QueryRefreshingRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingRequestsRequest")
+                formatter.write_str("struct bitway.tss.QueryRefreshingRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -3485,7 +3499,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingRequestsRequest",
+            "bitway.tss.QueryRefreshingRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3507,7 +3521,7 @@ impl serde::Serialize for QueryRefreshingRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QueryRefreshingRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QueryRefreshingRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -3569,7 +3583,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsResponse {
             type Value = QueryRefreshingRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QueryRefreshingRequestsResponse")
+                formatter.write_str("struct bitway.tss.QueryRefreshingRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -3604,7 +3618,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QueryRefreshingRequestsResponse",
+            "bitway.tss.QueryRefreshingRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3623,7 +3637,7 @@ impl serde::Serialize for QuerySigningRequestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QuerySigningRequestRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QuerySigningRequestRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -3682,7 +3696,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestRequest {
             type Value = QuerySigningRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QuerySigningRequestRequest")
+                formatter.write_str("struct bitway.tss.QuerySigningRequestRequest")
             }
 
             fn visit_map<V>(
@@ -3712,7 +3726,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QuerySigningRequestRequest",
+            "bitway.tss.QuerySigningRequestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3731,7 +3745,7 @@ impl serde::Serialize for QuerySigningRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QuerySigningRequestResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QuerySigningRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -3788,7 +3802,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestResponse {
             type Value = QuerySigningRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QuerySigningRequestResponse")
+                formatter.write_str("struct bitway.tss.QuerySigningRequestResponse")
             }
 
             fn visit_map<V>(
@@ -3813,7 +3827,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QuerySigningRequestResponse",
+            "bitway.tss.QuerySigningRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3838,7 +3852,7 @@ impl serde::Serialize for QuerySigningRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QuerySigningRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.tss.QuerySigningRequestsRequest", len)?;
         if !self.module.is_empty() {
             struct_ser.serialize_field("module", &self.module)?;
         }
@@ -3908,7 +3922,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
             type Value = QuerySigningRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QuerySigningRequestsRequest")
+                formatter.write_str("struct bitway.tss.QuerySigningRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -3951,7 +3965,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QuerySigningRequestsRequest",
+            "bitway.tss.QuerySigningRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3973,7 +3987,7 @@ impl serde::Serialize for QuerySigningRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.tss.QuerySigningRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.tss.QuerySigningRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -4035,7 +4049,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsResponse {
             type Value = QuerySigningRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.QuerySigningRequestsResponse")
+                formatter.write_str("struct bitway.tss.QuerySigningRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -4070,7 +4084,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.tss.QuerySigningRequestsResponse",
+            "bitway.tss.QuerySigningRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4097,7 +4111,7 @@ impl serde::Serialize for RefreshingCompletion {
         if !self.signature.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.RefreshingCompletion", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.RefreshingCompletion", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -4179,7 +4193,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingCompletion {
             type Value = RefreshingCompletion;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.RefreshingCompletion")
+                formatter.write_str("struct bitway.tss.RefreshingCompletion")
             }
 
             fn visit_map<V>(
@@ -4232,7 +4246,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingCompletion {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.RefreshingCompletion", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.RefreshingCompletion", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -4262,7 +4276,7 @@ impl serde::Serialize for RefreshingRequest {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.RefreshingRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.RefreshingRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -4367,7 +4381,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingRequest {
             type Value = RefreshingRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.RefreshingRequest")
+                formatter.write_str("struct bitway.tss.RefreshingRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RefreshingRequest, V::Error>
@@ -4441,7 +4455,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.RefreshingRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.RefreshingRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -4541,7 +4555,7 @@ impl serde::Serialize for SigningOptions {
         if !self.adaptor_point.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.SigningOptions", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.SigningOptions", len)?;
         if !self.tweak.is_empty() {
             struct_ser.serialize_field("tweak", &self.tweak)?;
         }
@@ -4608,7 +4622,7 @@ impl<'de> serde::Deserialize<'de> for SigningOptions {
             type Value = SigningOptions;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.SigningOptions")
+                formatter.write_str("struct bitway.tss.SigningOptions")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<SigningOptions, V::Error>
@@ -4647,7 +4661,7 @@ impl<'de> serde::Deserialize<'de> for SigningOptions {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.SigningOptions", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.SigningOptions", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -4689,7 +4703,7 @@ impl serde::Serialize for SigningRequest {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.tss.SigningRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.tss.SigningRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -4814,7 +4828,7 @@ impl<'de> serde::Deserialize<'de> for SigningRequest {
             type Value = SigningRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.tss.SigningRequest")
+                formatter.write_str("struct bitway.tss.SigningRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<SigningRequest, V::Error>
@@ -4915,7 +4929,7 @@ impl<'de> serde::Deserialize<'de> for SigningRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.tss.SigningRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.tss.SigningRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]

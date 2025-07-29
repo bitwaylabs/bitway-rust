@@ -187,6 +187,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5c8214115b7bf84099f1309324e63141d4c5d7cc26862f97a0a857dbefe165bd"
 
 [[package]]
+name = "bitway-proto"
+version = "2.0.0"
+dependencies = [
+ "cosmos-sdk-proto",
+ "cosmrs",
+ "informalsystems-pbjson",
+ "prost",
+ "prost-types",
+ "serde",
+ "tendermint-proto",
+ "tonic 0.12.3",
+]
+
+[[package]]
 name = "block-buffer"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1322,20 +1336,6 @@ name = "shlex"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
-
-[[package]]
-name = "side-proto"
-version = "2.0.0-alpha.18"
-dependencies = [
- "cosmos-sdk-proto",
- "cosmrs",
- "informalsystems-pbjson",
- "prost",
- "prost-types",
- "serde",
- "tendermint-proto",
- "tonic 0.12.3",
-]
 
 [[package]]
 name = "signature"

@@ -17,7 +17,8 @@ impl serde::Serialize for AddressRateLimit {
         if self.quota != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.AddressRateLimit", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.AddressRateLimit", len)?;
         if let Some(v) = self.start_time.as_ref() {
             struct_ser.serialize_field("startTime", v)?;
         }
@@ -88,7 +89,7 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimit {
             type Value = AddressRateLimit;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.AddressRateLimit")
+                formatter.write_str("struct bitway.btcbridge.AddressRateLimit")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<AddressRateLimit, V::Error>
@@ -130,7 +131,11 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimit {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.AddressRateLimit", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.AddressRateLimit",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -149,7 +154,7 @@ impl serde::Serialize for AddressRateLimitDetails {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.AddressRateLimitDetails", len)?;
+            serializer.serialize_struct("bitway.btcbridge.AddressRateLimitDetails", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -215,7 +220,7 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimitDetails {
             type Value = AddressRateLimitDetails;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.AddressRateLimitDetails")
+                formatter.write_str("struct bitway.btcbridge.AddressRateLimitDetails")
             }
 
             fn visit_map<V>(
@@ -253,7 +258,7 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimitDetails {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.AddressRateLimitDetails",
+            "bitway.btcbridge.AddressRateLimitDetails",
             FIELDS,
             GeneratedVisitor,
         )
@@ -275,7 +280,7 @@ impl serde::Serialize for AddressRateLimitParams {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.AddressRateLimitParams", len)?;
+            serializer.serialize_struct("bitway.btcbridge.AddressRateLimitParams", len)?;
         if let Some(v) = self.period.as_ref() {
             struct_ser.serialize_field("period", v)?;
         }
@@ -341,7 +346,7 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimitParams {
             type Value = AddressRateLimitParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.AddressRateLimitParams")
+                formatter.write_str("struct bitway.btcbridge.AddressRateLimitParams")
             }
 
             fn visit_map<V>(
@@ -379,7 +384,7 @@ impl<'de> serde::Deserialize<'de> for AddressRateLimitParams {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.AddressRateLimitParams",
+            "bitway.btcbridge.AddressRateLimitParams",
             FIELDS,
             GeneratedVisitor,
         )
@@ -479,7 +484,8 @@ impl serde::Serialize for BtcConsolidation {
         if self.max_num != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.BtcConsolidation", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.BtcConsolidation", len)?;
         if self.target_threshold != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -547,7 +553,7 @@ impl<'de> serde::Deserialize<'de> for BtcConsolidation {
             type Value = BtcConsolidation;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.BtcConsolidation")
+                formatter.write_str("struct bitway.btcbridge.BtcConsolidation")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<BtcConsolidation, V::Error>
@@ -584,7 +590,11 @@ impl<'de> serde::Deserialize<'de> for BtcConsolidation {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.BtcConsolidation", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.BtcConsolidation",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -621,7 +631,7 @@ impl serde::Serialize for CompactSigningRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.CompactSigningRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.CompactSigningRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -734,7 +744,7 @@ impl<'de> serde::Deserialize<'de> for CompactSigningRequest {
             type Value = CompactSigningRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.CompactSigningRequest")
+                formatter.write_str("struct bitway.btcbridge.CompactSigningRequest")
             }
 
             fn visit_map<V>(
@@ -820,7 +830,7 @@ impl<'de> serde::Deserialize<'de> for CompactSigningRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.CompactSigningRequest",
+            "bitway.btcbridge.CompactSigningRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -851,7 +861,7 @@ impl serde::Serialize for DkgCompletionRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.DKGCompletionRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.DKGCompletionRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -939,7 +949,7 @@ impl<'de> serde::Deserialize<'de> for DkgCompletionRequest {
             type Value = DkgCompletionRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.DKGCompletionRequest")
+                formatter.write_str("struct bitway.btcbridge.DKGCompletionRequest")
             }
 
             fn visit_map<V>(
@@ -1001,7 +1011,7 @@ impl<'de> serde::Deserialize<'de> for DkgCompletionRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.DKGCompletionRequest",
+            "bitway.btcbridge.DKGCompletionRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -1025,7 +1035,7 @@ impl serde::Serialize for DkgParticipant {
         if !self.consensus_pubkey.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.DKGParticipant", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.DKGParticipant", len)?;
         if !self.moniker.is_empty() {
             struct_ser.serialize_field("moniker", &self.moniker)?;
         }
@@ -1102,7 +1112,7 @@ impl<'de> serde::Deserialize<'de> for DkgParticipant {
             type Value = DkgParticipant;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.DKGParticipant")
+                formatter.write_str("struct bitway.btcbridge.DKGParticipant")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DkgParticipant, V::Error>
@@ -1141,7 +1151,7 @@ impl<'de> serde::Deserialize<'de> for DkgParticipant {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.DKGParticipant", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.DKGParticipant", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1177,7 +1187,7 @@ impl serde::Serialize for DkgRequest {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.DKGRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.DKGRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -1300,7 +1310,7 @@ impl<'de> serde::Deserialize<'de> for DkgRequest {
             type Value = DkgRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.DKGRequest")
+                formatter.write_str("struct bitway.btcbridge.DKGRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DkgRequest, V::Error>
@@ -1393,7 +1403,7 @@ impl<'de> serde::Deserialize<'de> for DkgRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.DKGRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.DKGRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1496,7 +1506,7 @@ impl serde::Serialize for Edict {
         if self.output != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.Edict", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.Edict", len)?;
         if let Some(v) = self.id.as_ref() {
             struct_ser.serialize_field("id", v)?;
         }
@@ -1563,7 +1573,7 @@ impl<'de> serde::Deserialize<'de> for Edict {
             type Value = Edict;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.Edict")
+                formatter.write_str("struct bitway.btcbridge.Edict")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Edict, V::Error>
@@ -1605,7 +1615,7 @@ impl<'de> serde::Deserialize<'de> for Edict {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.Edict", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.Edict", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1623,7 +1633,7 @@ impl serde::Serialize for FeeRate {
         if self.height != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.FeeRate", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.FeeRate", len)?;
         if self.value != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -1693,7 +1703,7 @@ impl<'de> serde::Deserialize<'de> for FeeRate {
             type Value = FeeRate;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.FeeRate")
+                formatter.write_str("struct bitway.btcbridge.FeeRate")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<FeeRate, V::Error>
@@ -1730,7 +1740,7 @@ impl<'de> serde::Deserialize<'de> for FeeRate {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.FeeRate", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.FeeRate", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1751,7 +1761,7 @@ impl serde::Serialize for GenesisState {
         if self.dkg_request.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -1818,7 +1828,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.GenesisState")
+                formatter.write_str("struct bitway.btcbridge.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -1857,7 +1867,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1881,7 +1891,8 @@ impl serde::Serialize for GlobalRateLimit {
         if self.used != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.GlobalRateLimit", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.GlobalRateLimit", len)?;
         if let Some(v) = self.start_time.as_ref() {
             struct_ser.serialize_field("startTime", v)?;
         }
@@ -1968,7 +1979,7 @@ impl<'de> serde::Deserialize<'de> for GlobalRateLimit {
             type Value = GlobalRateLimit;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.GlobalRateLimit")
+                formatter.write_str("struct bitway.btcbridge.GlobalRateLimit")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GlobalRateLimit, V::Error>
@@ -2021,7 +2032,11 @@ impl<'de> serde::Deserialize<'de> for GlobalRateLimit {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.GlobalRateLimit", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.GlobalRateLimit",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -2040,7 +2055,7 @@ impl serde::Serialize for GlobalRateLimitParams {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.GlobalRateLimitParams", len)?;
+            serializer.serialize_struct("bitway.btcbridge.GlobalRateLimitParams", len)?;
         if let Some(v) = self.period.as_ref() {
             struct_ser.serialize_field("period", v)?;
         }
@@ -2104,7 +2119,7 @@ impl<'de> serde::Deserialize<'de> for GlobalRateLimitParams {
             type Value = GlobalRateLimitParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.GlobalRateLimitParams")
+                formatter.write_str("struct bitway.btcbridge.GlobalRateLimitParams")
             }
 
             fn visit_map<V>(
@@ -2144,7 +2159,7 @@ impl<'de> serde::Deserialize<'de> for GlobalRateLimitParams {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.GlobalRateLimitParams",
+            "bitway.btcbridge.GlobalRateLimitParams",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2159,19 +2174,13 @@ impl serde::Serialize for IbcParams {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
-        if !self.port_id.is_empty() {
-            len += 1;
-        }
         if self.timeout_height_offset != 0 {
             len += 1;
         }
         if self.timeout_duration.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.IBCParams", len)?;
-        if !self.port_id.is_empty() {
-            struct_ser.serialize_field("portId", &self.port_id)?;
-        }
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.IBCParams", len)?;
         if self.timeout_height_offset != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -2193,8 +2202,6 @@ impl<'de> serde::Deserialize<'de> for IbcParams {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
-            "port_id",
-            "portId",
             "timeout_height_offset",
             "timeoutHeightOffset",
             "timeout_duration",
@@ -2203,7 +2210,6 @@ impl<'de> serde::Deserialize<'de> for IbcParams {
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
-            PortId,
             TimeoutHeightOffset,
             TimeoutDuration,
         }
@@ -2231,7 +2237,6 @@ impl<'de> serde::Deserialize<'de> for IbcParams {
                         E: serde::de::Error,
                     {
                         match value {
-                            "portId" | "port_id" => Ok(GeneratedField::PortId),
                             "timeoutHeightOffset" | "timeout_height_offset" => {
                                 Ok(GeneratedField::TimeoutHeightOffset)
                             }
@@ -2250,24 +2255,17 @@ impl<'de> serde::Deserialize<'de> for IbcParams {
             type Value = IbcParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.IBCParams")
+                formatter.write_str("struct bitway.btcbridge.IBCParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<IbcParams, V::Error>
             where
                 V: serde::de::MapAccess<'de>,
             {
-                let mut port_id__ = None;
                 let mut timeout_height_offset__ = None;
                 let mut timeout_duration__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
-                        GeneratedField::PortId => {
-                            if port_id__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("portId"));
-                            }
-                            port_id__ = Some(map_.next_value()?);
-                        }
                         GeneratedField::TimeoutHeightOffset => {
                             if timeout_height_offset__.is_some() {
                                 return Err(serde::de::Error::duplicate_field(
@@ -2288,13 +2286,12 @@ impl<'de> serde::Deserialize<'de> for IbcParams {
                     }
                 }
                 Ok(IbcParams {
-                    port_id: port_id__.unwrap_or_default(),
                     timeout_height_offset: timeout_height_offset__.unwrap_or_default(),
                     timeout_duration: timeout_duration__,
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.IBCParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.IBCParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2319,7 +2316,7 @@ impl serde::Serialize for IbcWithdrawRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.IBCWithdrawRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.IBCWithdrawRequest", len)?;
         if !self.channel_id.is_empty() {
             struct_ser.serialize_field("channelId", &self.channel_id)?;
         }
@@ -2395,7 +2392,7 @@ impl<'de> serde::Deserialize<'de> for IbcWithdrawRequest {
             type Value = IbcWithdrawRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.IBCWithdrawRequest")
+                formatter.write_str("struct bitway.btcbridge.IBCWithdrawRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<IbcWithdrawRequest, V::Error>
@@ -2446,7 +2443,7 @@ impl<'de> serde::Deserialize<'de> for IbcWithdrawRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.IBCWithdrawRequest",
+            "bitway.btcbridge.IBCWithdrawRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2476,7 +2473,7 @@ impl serde::Serialize for MsgCompleteDkg {
         if !self.signature.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgCompleteDKG", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.MsgCompleteDKG", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -2564,7 +2561,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkg {
             type Value = MsgCompleteDkg;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgCompleteDKG")
+                formatter.write_str("struct bitway.btcbridge.MsgCompleteDKG")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgCompleteDkg, V::Error>
@@ -2622,7 +2619,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkg {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgCompleteDKG", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.MsgCompleteDKG", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2635,7 +2632,7 @@ impl serde::Serialize for MsgCompleteDkgResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgCompleteDKGResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgCompleteDKGResponse", len)?;
         struct_ser.end()
     }
 }
@@ -2684,7 +2681,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkgResponse {
             type Value = MsgCompleteDkgResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgCompleteDKGResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgCompleteDKGResponse")
             }
 
             fn visit_map<V>(
@@ -2701,7 +2698,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteDkgResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgCompleteDKGResponse",
+            "bitway.btcbridge.MsgCompleteDKGResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2729,7 +2726,7 @@ impl serde::Serialize for MsgCompleteRefreshing {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgCompleteRefreshing", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgCompleteRefreshing", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -2811,7 +2808,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshing {
             type Value = MsgCompleteRefreshing;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgCompleteRefreshing")
+                formatter.write_str("struct bitway.btcbridge.MsgCompleteRefreshing")
             }
 
             fn visit_map<V>(
@@ -2865,7 +2862,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshing {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgCompleteRefreshing",
+            "bitway.btcbridge.MsgCompleteRefreshing",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2881,7 +2878,7 @@ impl serde::Serialize for MsgCompleteRefreshingResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgCompleteRefreshingResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgCompleteRefreshingResponse", len)?;
         struct_ser.end()
     }
 }
@@ -2930,7 +2927,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshingResponse {
             type Value = MsgCompleteRefreshingResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgCompleteRefreshingResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgCompleteRefreshingResponse")
             }
 
             fn visit_map<V>(
@@ -2947,7 +2944,7 @@ impl<'de> serde::Deserialize<'de> for MsgCompleteRefreshingResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgCompleteRefreshingResponse",
+            "bitway.btcbridge.MsgCompleteRefreshingResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2975,7 +2972,7 @@ impl serde::Serialize for MsgConsolidateVaults {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgConsolidateVaults", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgConsolidateVaults", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -3063,7 +3060,7 @@ impl<'de> serde::Deserialize<'de> for MsgConsolidateVaults {
             type Value = MsgConsolidateVaults;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgConsolidateVaults")
+                formatter.write_str("struct bitway.btcbridge.MsgConsolidateVaults")
             }
 
             fn visit_map<V>(
@@ -3119,7 +3116,7 @@ impl<'de> serde::Deserialize<'de> for MsgConsolidateVaults {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgConsolidateVaults",
+            "bitway.btcbridge.MsgConsolidateVaults",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3135,7 +3132,7 @@ impl serde::Serialize for MsgConsolidateVaultsResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgConsolidateVaultsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgConsolidateVaultsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3184,7 +3181,7 @@ impl<'de> serde::Deserialize<'de> for MsgConsolidateVaultsResponse {
             type Value = MsgConsolidateVaultsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgConsolidateVaultsResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgConsolidateVaultsResponse")
             }
 
             fn visit_map<V>(
@@ -3201,7 +3198,7 @@ impl<'de> serde::Deserialize<'de> for MsgConsolidateVaultsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgConsolidateVaultsResponse",
+            "bitway.btcbridge.MsgConsolidateVaultsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3234,7 +3231,7 @@ impl serde::Serialize for MsgInitiateDkg {
         if self.target_utxo_num != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgInitiateDKG", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.MsgInitiateDKG", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -3340,7 +3337,7 @@ impl<'de> serde::Deserialize<'de> for MsgInitiateDkg {
             type Value = MsgInitiateDkg;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgInitiateDKG")
+                formatter.write_str("struct bitway.btcbridge.MsgInitiateDKG")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgInitiateDkg, V::Error>
@@ -3414,7 +3411,7 @@ impl<'de> serde::Deserialize<'de> for MsgInitiateDkg {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgInitiateDKG", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.MsgInitiateDKG", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3427,7 +3424,7 @@ impl serde::Serialize for MsgInitiateDkgResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgInitiateDKGResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgInitiateDKGResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3476,7 +3473,7 @@ impl<'de> serde::Deserialize<'de> for MsgInitiateDkgResponse {
             type Value = MsgInitiateDkgResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgInitiateDKGResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgInitiateDKGResponse")
             }
 
             fn visit_map<V>(
@@ -3493,7 +3490,7 @@ impl<'de> serde::Deserialize<'de> for MsgInitiateDkgResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgInitiateDKGResponse",
+            "bitway.btcbridge.MsgInitiateDKGResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3523,7 +3520,7 @@ impl serde::Serialize for MsgRefresh {
         if self.timeout_duration.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgRefresh", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.MsgRefresh", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -3620,7 +3617,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefresh {
             type Value = MsgRefresh;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgRefresh")
+                formatter.write_str("struct bitway.btcbridge.MsgRefresh")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRefresh, V::Error>
@@ -3683,7 +3680,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefresh {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgRefresh", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.MsgRefresh", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3695,7 +3692,7 @@ impl serde::Serialize for MsgRefreshResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.btcbridge.MsgRefreshResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.btcbridge.MsgRefreshResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3744,7 +3741,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefreshResponse {
             type Value = MsgRefreshResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgRefreshResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgRefreshResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRefreshResponse, V::Error>
@@ -3758,7 +3755,7 @@ impl<'de> serde::Deserialize<'de> for MsgRefreshResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgRefreshResponse",
+            "bitway.btcbridge.MsgRefreshResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3789,7 +3786,7 @@ impl serde::Serialize for MsgSubmitDepositTransaction {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgSubmitDepositTransaction", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitDepositTransaction", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -3874,7 +3871,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransaction {
             type Value = MsgSubmitDepositTransaction;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitDepositTransaction")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitDepositTransaction")
             }
 
             fn visit_map<V>(
@@ -3933,7 +3930,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransaction {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitDepositTransaction",
+            "bitway.btcbridge.MsgSubmitDepositTransaction",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3949,7 +3946,7 @@ impl serde::Serialize for MsgSubmitDepositTransactionResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser = serializer
-            .serialize_struct("side.btcbridge.MsgSubmitDepositTransactionResponse", len)?;
+            .serialize_struct("bitway.btcbridge.MsgSubmitDepositTransactionResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3998,7 +3995,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransactionResponse {
             type Value = MsgSubmitDepositTransactionResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitDepositTransactionResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitDepositTransactionResponse")
             }
 
             fn visit_map<V>(
@@ -4015,7 +4012,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransactionResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitDepositTransactionResponse",
+            "bitway.btcbridge.MsgSubmitDepositTransactionResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4036,7 +4033,8 @@ impl serde::Serialize for MsgSubmitFeeRate {
         if self.fee_rate != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgSubmitFeeRate", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitFeeRate", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -4102,7 +4100,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitFeeRate {
             type Value = MsgSubmitFeeRate;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitFeeRate")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitFeeRate")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgSubmitFeeRate, V::Error>
@@ -4136,7 +4134,11 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitFeeRate {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgSubmitFeeRate", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.MsgSubmitFeeRate",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -4149,7 +4151,7 @@ impl serde::Serialize for MsgSubmitFeeRateResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgSubmitFeeRateResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitFeeRateResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4198,7 +4200,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitFeeRateResponse {
             type Value = MsgSubmitFeeRateResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitFeeRateResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitFeeRateResponse")
             }
 
             fn visit_map<V>(
@@ -4215,7 +4217,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitFeeRateResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitFeeRateResponse",
+            "bitway.btcbridge.MsgSubmitFeeRateResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4240,7 +4242,7 @@ impl serde::Serialize for MsgSubmitSignatures {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgSubmitSignatures", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitSignatures", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -4307,7 +4309,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignatures {
             type Value = MsgSubmitSignatures;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitSignatures")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitSignatures")
             }
 
             fn visit_map<V>(
@@ -4350,7 +4352,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignatures {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitSignatures",
+            "bitway.btcbridge.MsgSubmitSignatures",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4366,7 +4368,7 @@ impl serde::Serialize for MsgSubmitSignaturesResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgSubmitSignaturesResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitSignaturesResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4415,7 +4417,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignaturesResponse {
             type Value = MsgSubmitSignaturesResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitSignaturesResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitSignaturesResponse")
             }
 
             fn visit_map<V>(
@@ -4432,7 +4434,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitSignaturesResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitSignaturesResponse",
+            "bitway.btcbridge.MsgSubmitSignaturesResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4460,7 +4462,7 @@ impl serde::Serialize for MsgSubmitWithdrawTransaction {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgSubmitWithdrawTransaction", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgSubmitWithdrawTransaction", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -4532,7 +4534,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitWithdrawTransaction {
             type Value = MsgSubmitWithdrawTransaction;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitWithdrawTransaction")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitWithdrawTransaction")
             }
 
             fn visit_map<V>(
@@ -4583,7 +4585,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitWithdrawTransaction {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitWithdrawTransaction",
+            "bitway.btcbridge.MsgSubmitWithdrawTransaction",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4599,7 +4601,7 @@ impl serde::Serialize for MsgSubmitWithdrawTransactionResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser = serializer
-            .serialize_struct("side.btcbridge.MsgSubmitWithdrawTransactionResponse", len)?;
+            .serialize_struct("bitway.btcbridge.MsgSubmitWithdrawTransactionResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4648,7 +4650,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitWithdrawTransactionResponse {
             type Value = MsgSubmitWithdrawTransactionResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgSubmitWithdrawTransactionResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgSubmitWithdrawTransactionResponse")
             }
 
             fn visit_map<V>(
@@ -4665,7 +4667,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitWithdrawTransactionResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgSubmitWithdrawTransactionResponse",
+            "bitway.btcbridge.MsgSubmitWithdrawTransactionResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4698,7 +4700,8 @@ impl serde::Serialize for MsgTransferVault {
         if self.target_utxo_num != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgTransferVault", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.MsgTransferVault", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -4804,7 +4807,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferVault {
             type Value = MsgTransferVault;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgTransferVault")
+                formatter.write_str("struct bitway.btcbridge.MsgTransferVault")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgTransferVault, V::Error>
@@ -4876,7 +4879,11 @@ impl<'de> serde::Deserialize<'de> for MsgTransferVault {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgTransferVault", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.MsgTransferVault",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -4889,7 +4896,7 @@ impl serde::Serialize for MsgTransferVaultResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgTransferVaultResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgTransferVaultResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4938,7 +4945,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferVaultResponse {
             type Value = MsgTransferVaultResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgTransferVaultResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgTransferVaultResponse")
             }
 
             fn visit_map<V>(
@@ -4955,7 +4962,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferVaultResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgTransferVaultResponse",
+            "bitway.btcbridge.MsgTransferVaultResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4976,7 +4983,8 @@ impl serde::Serialize for MsgUpdateParams {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.MsgUpdateParams", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -5038,7 +5046,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateParams")
+                formatter.write_str("struct bitway.btcbridge.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -5069,7 +5077,11 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.MsgUpdateParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.MsgUpdateParams",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -5082,7 +5094,7 @@ impl serde::Serialize for MsgUpdateParamsResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgUpdateParamsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -5131,7 +5143,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -5148,7 +5160,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgUpdateParamsResponse",
+            "bitway.btcbridge.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5170,7 +5182,7 @@ impl serde::Serialize for MsgUpdateTrustedFeeProviders {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgUpdateTrustedFeeProviders", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgUpdateTrustedFeeProviders", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -5232,7 +5244,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedFeeProviders {
             type Value = MsgUpdateTrustedFeeProviders;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateTrustedFeeProviders")
+                formatter.write_str("struct bitway.btcbridge.MsgUpdateTrustedFeeProviders")
             }
 
             fn visit_map<V>(
@@ -5267,7 +5279,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedFeeProviders {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgUpdateTrustedFeeProviders",
+            "bitway.btcbridge.MsgUpdateTrustedFeeProviders",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5283,7 +5295,7 @@ impl serde::Serialize for MsgUpdateTrustedFeeProvidersResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser = serializer
-            .serialize_struct("side.btcbridge.MsgUpdateTrustedFeeProvidersResponse", len)?;
+            .serialize_struct("bitway.btcbridge.MsgUpdateTrustedFeeProvidersResponse", len)?;
         struct_ser.end()
     }
 }
@@ -5332,7 +5344,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedFeeProvidersResponse {
             type Value = MsgUpdateTrustedFeeProvidersResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateTrustedFeeProvidersResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgUpdateTrustedFeeProvidersResponse")
             }
 
             fn visit_map<V>(
@@ -5349,7 +5361,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedFeeProvidersResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgUpdateTrustedFeeProvidersResponse",
+            "bitway.btcbridge.MsgUpdateTrustedFeeProvidersResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5371,7 +5383,7 @@ impl serde::Serialize for MsgUpdateTrustedNonBtcRelayers {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgUpdateTrustedNonBtcRelayers", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgUpdateTrustedNonBtcRelayers", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -5433,7 +5445,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedNonBtcRelayers {
             type Value = MsgUpdateTrustedNonBtcRelayers;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateTrustedNonBtcRelayers")
+                formatter.write_str("struct bitway.btcbridge.MsgUpdateTrustedNonBtcRelayers")
             }
 
             fn visit_map<V>(
@@ -5468,7 +5480,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedNonBtcRelayers {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgUpdateTrustedNonBtcRelayers",
+            "bitway.btcbridge.MsgUpdateTrustedNonBtcRelayers",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5483,8 +5495,10 @@ impl serde::Serialize for MsgUpdateTrustedNonBtcRelayersResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer
-            .serialize_struct("side.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse", len)?;
+        let struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse",
+            len,
+        )?;
         struct_ser.end()
     }
 }
@@ -5533,7 +5547,8 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedNonBtcRelayersResponse {
             type Value = MsgUpdateTrustedNonBtcRelayersResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse")
+                formatter
+                    .write_str("struct bitway.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse")
             }
 
             fn visit_map<V>(
@@ -5550,7 +5565,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateTrustedNonBtcRelayersResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse",
+            "bitway.btcbridge.MsgUpdateTrustedNonBtcRelayersResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5572,7 +5587,7 @@ impl serde::Serialize for MsgWithdrawToBitcoin {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgWithdrawToBitcoin", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgWithdrawToBitcoin", len)?;
         if !self.sender.is_empty() {
             struct_ser.serialize_field("sender", &self.sender)?;
         }
@@ -5634,7 +5649,7 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawToBitcoin {
             type Value = MsgWithdrawToBitcoin;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgWithdrawToBitcoin")
+                formatter.write_str("struct bitway.btcbridge.MsgWithdrawToBitcoin")
             }
 
             fn visit_map<V>(
@@ -5669,7 +5684,7 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawToBitcoin {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgWithdrawToBitcoin",
+            "bitway.btcbridge.MsgWithdrawToBitcoin",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5685,7 +5700,7 @@ impl serde::Serialize for MsgWithdrawToBitcoinResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.MsgWithdrawToBitcoinResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.MsgWithdrawToBitcoinResponse", len)?;
         struct_ser.end()
     }
 }
@@ -5734,7 +5749,7 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawToBitcoinResponse {
             type Value = MsgWithdrawToBitcoinResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.MsgWithdrawToBitcoinResponse")
+                formatter.write_str("struct bitway.btcbridge.MsgWithdrawToBitcoinResponse")
             }
 
             fn visit_map<V>(
@@ -5751,7 +5766,7 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawToBitcoinResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.MsgWithdrawToBitcoinResponse",
+            "bitway.btcbridge.MsgWithdrawToBitcoinResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5814,7 +5829,7 @@ impl serde::Serialize for Params {
         if self.rate_limit_params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.Params", len)?;
         if self.deposit_confirmation_depth != 0 {
             struct_ser
                 .serialize_field("depositConfirmationDepth", &self.deposit_confirmation_depth)?;
@@ -6014,7 +6029,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.Params")
+                formatter.write_str("struct bitway.btcbridge.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -6181,441 +6196,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.Params", FIELDS, GeneratedVisitor)
-    }
-}
-#[cfg(feature = "serde")]
-impl serde::Serialize for ParamsV1 {
-    #[allow(deprecated)]
-    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        use serde::ser::SerializeStruct;
-        let mut len = 0;
-        if self.deposit_confirmation_depth != 0 {
-            len += 1;
-        }
-        if self.withdraw_confirmation_depth != 0 {
-            len += 1;
-        }
-        if self.max_reorg_depth != 0 {
-            len += 1;
-        }
-        if self.max_acceptable_block_depth != 0 {
-            len += 1;
-        }
-        if !self.btc_voucher_denom.is_empty() {
-            len += 1;
-        }
-        if self.deposit_enabled {
-            len += 1;
-        }
-        if self.withdraw_enabled {
-            len += 1;
-        }
-        if !self.trusted_btc_relayers.is_empty() {
-            len += 1;
-        }
-        if !self.trusted_non_btc_relayers.is_empty() {
-            len += 1;
-        }
-        if !self.trusted_fee_providers.is_empty() {
-            len += 1;
-        }
-        if self.fee_rate_validity_period != 0 {
-            len += 1;
-        }
-        if !self.vaults.is_empty() {
-            len += 1;
-        }
-        if self.withdraw_params.is_some() {
-            len += 1;
-        }
-        if self.protocol_limits.is_some() {
-            len += 1;
-        }
-        if self.protocol_fees.is_some() {
-            len += 1;
-        }
-        if self.tss_params.is_some() {
-            len += 1;
-        }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.ParamsV1", len)?;
-        if self.deposit_confirmation_depth != 0 {
-            struct_ser
-                .serialize_field("depositConfirmationDepth", &self.deposit_confirmation_depth)?;
-        }
-        if self.withdraw_confirmation_depth != 0 {
-            struct_ser.serialize_field(
-                "withdrawConfirmationDepth",
-                &self.withdraw_confirmation_depth,
-            )?;
-        }
-        if self.max_reorg_depth != 0 {
-            struct_ser.serialize_field("maxReorgDepth", &self.max_reorg_depth)?;
-        }
-        if self.max_acceptable_block_depth != 0 {
-            #[allow(clippy::needless_borrow)]
-            struct_ser.serialize_field(
-                "maxAcceptableBlockDepth",
-                alloc::string::ToString::to_string(&self.max_acceptable_block_depth).as_str(),
-            )?;
-        }
-        if !self.btc_voucher_denom.is_empty() {
-            struct_ser.serialize_field("btcVoucherDenom", &self.btc_voucher_denom)?;
-        }
-        if self.deposit_enabled {
-            struct_ser.serialize_field("depositEnabled", &self.deposit_enabled)?;
-        }
-        if self.withdraw_enabled {
-            struct_ser.serialize_field("withdrawEnabled", &self.withdraw_enabled)?;
-        }
-        if !self.trusted_btc_relayers.is_empty() {
-            struct_ser.serialize_field("trustedBtcRelayers", &self.trusted_btc_relayers)?;
-        }
-        if !self.trusted_non_btc_relayers.is_empty() {
-            struct_ser.serialize_field("trustedNonBtcRelayers", &self.trusted_non_btc_relayers)?;
-        }
-        if !self.trusted_fee_providers.is_empty() {
-            struct_ser.serialize_field("trustedFeeProviders", &self.trusted_fee_providers)?;
-        }
-        if self.fee_rate_validity_period != 0 {
-            #[allow(clippy::needless_borrow)]
-            struct_ser.serialize_field(
-                "feeRateValidityPeriod",
-                alloc::string::ToString::to_string(&self.fee_rate_validity_period).as_str(),
-            )?;
-        }
-        if !self.vaults.is_empty() {
-            struct_ser.serialize_field("vaults", &self.vaults)?;
-        }
-        if let Some(v) = self.withdraw_params.as_ref() {
-            struct_ser.serialize_field("withdrawParams", v)?;
-        }
-        if let Some(v) = self.protocol_limits.as_ref() {
-            struct_ser.serialize_field("protocolLimits", v)?;
-        }
-        if let Some(v) = self.protocol_fees.as_ref() {
-            struct_ser.serialize_field("protocolFees", v)?;
-        }
-        if let Some(v) = self.tss_params.as_ref() {
-            struct_ser.serialize_field("tssParams", v)?;
-        }
-        struct_ser.end()
-    }
-}
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for ParamsV1 {
-    #[allow(deprecated)]
-    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        const FIELDS: &[&str] = &[
-            "deposit_confirmation_depth",
-            "depositConfirmationDepth",
-            "withdraw_confirmation_depth",
-            "withdrawConfirmationDepth",
-            "max_reorg_depth",
-            "maxReorgDepth",
-            "max_acceptable_block_depth",
-            "maxAcceptableBlockDepth",
-            "btc_voucher_denom",
-            "btcVoucherDenom",
-            "deposit_enabled",
-            "depositEnabled",
-            "withdraw_enabled",
-            "withdrawEnabled",
-            "trusted_btc_relayers",
-            "trustedBtcRelayers",
-            "trusted_non_btc_relayers",
-            "trustedNonBtcRelayers",
-            "trusted_fee_providers",
-            "trustedFeeProviders",
-            "fee_rate_validity_period",
-            "feeRateValidityPeriod",
-            "vaults",
-            "withdraw_params",
-            "withdrawParams",
-            "protocol_limits",
-            "protocolLimits",
-            "protocol_fees",
-            "protocolFees",
-            "tss_params",
-            "tssParams",
-        ];
-
-        #[allow(clippy::enum_variant_names)]
-        enum GeneratedField {
-            DepositConfirmationDepth,
-            WithdrawConfirmationDepth,
-            MaxReorgDepth,
-            MaxAcceptableBlockDepth,
-            BtcVoucherDenom,
-            DepositEnabled,
-            WithdrawEnabled,
-            TrustedBtcRelayers,
-            TrustedNonBtcRelayers,
-            TrustedFeeProviders,
-            FeeRateValidityPeriod,
-            Vaults,
-            WithdrawParams,
-            ProtocolLimits,
-            ProtocolFees,
-            TssParams,
-        }
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for GeneratedField {
-            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                struct GeneratedVisitor;
-
-                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-                    type Value = GeneratedField;
-
-                    fn expecting(
-                        &self,
-                        formatter: &mut core::fmt::Formatter<'_>,
-                    ) -> core::fmt::Result {
-                        write!(formatter, "expected one of: {:?}", &FIELDS)
-                    }
-
-                    #[allow(unused_variables)]
-                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
-                    where
-                        E: serde::de::Error,
-                    {
-                        match value {
-                            "depositConfirmationDepth" | "deposit_confirmation_depth" => {
-                                Ok(GeneratedField::DepositConfirmationDepth)
-                            }
-                            "withdrawConfirmationDepth" | "withdraw_confirmation_depth" => {
-                                Ok(GeneratedField::WithdrawConfirmationDepth)
-                            }
-                            "maxReorgDepth" | "max_reorg_depth" => {
-                                Ok(GeneratedField::MaxReorgDepth)
-                            }
-                            "maxAcceptableBlockDepth" | "max_acceptable_block_depth" => {
-                                Ok(GeneratedField::MaxAcceptableBlockDepth)
-                            }
-                            "btcVoucherDenom" | "btc_voucher_denom" => {
-                                Ok(GeneratedField::BtcVoucherDenom)
-                            }
-                            "depositEnabled" | "deposit_enabled" => {
-                                Ok(GeneratedField::DepositEnabled)
-                            }
-                            "withdrawEnabled" | "withdraw_enabled" => {
-                                Ok(GeneratedField::WithdrawEnabled)
-                            }
-                            "trustedBtcRelayers" | "trusted_btc_relayers" => {
-                                Ok(GeneratedField::TrustedBtcRelayers)
-                            }
-                            "trustedNonBtcRelayers" | "trusted_non_btc_relayers" => {
-                                Ok(GeneratedField::TrustedNonBtcRelayers)
-                            }
-                            "trustedFeeProviders" | "trusted_fee_providers" => {
-                                Ok(GeneratedField::TrustedFeeProviders)
-                            }
-                            "feeRateValidityPeriod" | "fee_rate_validity_period" => {
-                                Ok(GeneratedField::FeeRateValidityPeriod)
-                            }
-                            "vaults" => Ok(GeneratedField::Vaults),
-                            "withdrawParams" | "withdraw_params" => {
-                                Ok(GeneratedField::WithdrawParams)
-                            }
-                            "protocolLimits" | "protocol_limits" => {
-                                Ok(GeneratedField::ProtocolLimits)
-                            }
-                            "protocolFees" | "protocol_fees" => Ok(GeneratedField::ProtocolFees),
-                            "tssParams" | "tss_params" => Ok(GeneratedField::TssParams),
-                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
-                        }
-                    }
-                }
-                deserializer.deserialize_identifier(GeneratedVisitor)
-            }
-        }
-        struct GeneratedVisitor;
-        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = ParamsV1;
-
-            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.ParamsV1")
-            }
-
-            fn visit_map<V>(self, mut map_: V) -> core::result::Result<ParamsV1, V::Error>
-            where
-                V: serde::de::MapAccess<'de>,
-            {
-                let mut deposit_confirmation_depth__ = None;
-                let mut withdraw_confirmation_depth__ = None;
-                let mut max_reorg_depth__ = None;
-                let mut max_acceptable_block_depth__ = None;
-                let mut btc_voucher_denom__ = None;
-                let mut deposit_enabled__ = None;
-                let mut withdraw_enabled__ = None;
-                let mut trusted_btc_relayers__ = None;
-                let mut trusted_non_btc_relayers__ = None;
-                let mut trusted_fee_providers__ = None;
-                let mut fee_rate_validity_period__ = None;
-                let mut vaults__ = None;
-                let mut withdraw_params__ = None;
-                let mut protocol_limits__ = None;
-                let mut protocol_fees__ = None;
-                let mut tss_params__ = None;
-                while let Some(k) = map_.next_key()? {
-                    match k {
-                        GeneratedField::DepositConfirmationDepth => {
-                            if deposit_confirmation_depth__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "depositConfirmationDepth",
-                                ));
-                            }
-                            deposit_confirmation_depth__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::WithdrawConfirmationDepth => {
-                            if withdraw_confirmation_depth__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "withdrawConfirmationDepth",
-                                ));
-                            }
-                            withdraw_confirmation_depth__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::MaxReorgDepth => {
-                            if max_reorg_depth__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("maxReorgDepth"));
-                            }
-                            max_reorg_depth__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::MaxAcceptableBlockDepth => {
-                            if max_acceptable_block_depth__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "maxAcceptableBlockDepth",
-                                ));
-                            }
-                            max_acceptable_block_depth__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::BtcVoucherDenom => {
-                            if btc_voucher_denom__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("btcVoucherDenom"));
-                            }
-                            btc_voucher_denom__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::DepositEnabled => {
-                            if deposit_enabled__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("depositEnabled"));
-                            }
-                            deposit_enabled__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::WithdrawEnabled => {
-                            if withdraw_enabled__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("withdrawEnabled"));
-                            }
-                            withdraw_enabled__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::TrustedBtcRelayers => {
-                            if trusted_btc_relayers__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "trustedBtcRelayers",
-                                ));
-                            }
-                            trusted_btc_relayers__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::TrustedNonBtcRelayers => {
-                            if trusted_non_btc_relayers__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "trustedNonBtcRelayers",
-                                ));
-                            }
-                            trusted_non_btc_relayers__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::TrustedFeeProviders => {
-                            if trusted_fee_providers__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "trustedFeeProviders",
-                                ));
-                            }
-                            trusted_fee_providers__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::FeeRateValidityPeriod => {
-                            if fee_rate_validity_period__.is_some() {
-                                return Err(serde::de::Error::duplicate_field(
-                                    "feeRateValidityPeriod",
-                                ));
-                            }
-                            fee_rate_validity_period__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::Vaults => {
-                            if vaults__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("vaults"));
-                            }
-                            vaults__ = Some(map_.next_value()?);
-                        }
-                        GeneratedField::WithdrawParams => {
-                            if withdraw_params__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("withdrawParams"));
-                            }
-                            withdraw_params__ = map_.next_value()?;
-                        }
-                        GeneratedField::ProtocolLimits => {
-                            if protocol_limits__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("protocolLimits"));
-                            }
-                            protocol_limits__ = map_.next_value()?;
-                        }
-                        GeneratedField::ProtocolFees => {
-                            if protocol_fees__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("protocolFees"));
-                            }
-                            protocol_fees__ = map_.next_value()?;
-                        }
-                        GeneratedField::TssParams => {
-                            if tss_params__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("tssParams"));
-                            }
-                            tss_params__ = map_.next_value()?;
-                        }
-                    }
-                }
-                Ok(ParamsV1 {
-                    deposit_confirmation_depth: deposit_confirmation_depth__.unwrap_or_default(),
-                    withdraw_confirmation_depth: withdraw_confirmation_depth__.unwrap_or_default(),
-                    max_reorg_depth: max_reorg_depth__.unwrap_or_default(),
-                    max_acceptable_block_depth: max_acceptable_block_depth__.unwrap_or_default(),
-                    btc_voucher_denom: btc_voucher_denom__.unwrap_or_default(),
-                    deposit_enabled: deposit_enabled__.unwrap_or_default(),
-                    withdraw_enabled: withdraw_enabled__.unwrap_or_default(),
-                    trusted_btc_relayers: trusted_btc_relayers__.unwrap_or_default(),
-                    trusted_non_btc_relayers: trusted_non_btc_relayers__.unwrap_or_default(),
-                    trusted_fee_providers: trusted_fee_providers__.unwrap_or_default(),
-                    fee_rate_validity_period: fee_rate_validity_period__.unwrap_or_default(),
-                    vaults: vaults__.unwrap_or_default(),
-                    withdraw_params: withdraw_params__,
-                    protocol_limits: protocol_limits__,
-                    protocol_fees: protocol_fees__,
-                    tss_params: tss_params__,
-                })
-            }
-        }
-        deserializer.deserialize_struct("side.btcbridge.ParamsV1", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -6636,7 +6217,7 @@ impl serde::Serialize for ProtocolFees {
         if !self.collector.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.ProtocolFees", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.ProtocolFees", len)?;
         if self.deposit_fee != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -6717,7 +6298,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolFees {
             type Value = ProtocolFees;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.ProtocolFees")
+                formatter.write_str("struct bitway.btcbridge.ProtocolFees")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<ProtocolFees, V::Error>
@@ -6762,7 +6343,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolFees {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.ProtocolFees", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.ProtocolFees", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -6783,7 +6364,7 @@ impl serde::Serialize for ProtocolLimits {
         if self.btc_max_withdraw != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.ProtocolLimits", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.ProtocolLimits", len)?;
         if self.btc_min_deposit != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -6875,7 +6456,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolLimits {
             type Value = ProtocolLimits;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.ProtocolLimits")
+                formatter.write_str("struct bitway.btcbridge.ProtocolLimits")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<ProtocolLimits, V::Error>
@@ -6923,7 +6504,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolLimits {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.ProtocolLimits", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.ProtocolLimits", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -6936,7 +6517,7 @@ impl serde::Serialize for QueryAllDkgRequestsRequest {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryAllDKGRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryAllDKGRequestsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -6985,7 +6566,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllDkgRequestsRequest {
             type Value = QueryAllDkgRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryAllDKGRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryAllDKGRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -7002,7 +6583,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllDkgRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryAllDKGRequestsRequest",
+            "bitway.btcbridge.QueryAllDKGRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7021,7 +6602,7 @@ impl serde::Serialize for QueryAllDkgRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryAllDKGRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryAllDKGRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -7078,7 +6659,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllDkgRequestsResponse {
             type Value = QueryAllDkgRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryAllDKGRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryAllDKGRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -7105,7 +6686,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllDkgRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryAllDKGRequestsResponse",
+            "bitway.btcbridge.QueryAllDKGRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7123,8 +6704,8 @@ impl serde::Serialize for QueryDkgCompletionRequestsRequest {
         if self.id != 0 {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryDKGCompletionRequestsRequest", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.btcbridge.QueryDKGCompletionRequestsRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -7183,7 +6764,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionRequestsRequest {
             type Value = QueryDkgCompletionRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGCompletionRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGCompletionRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -7213,7 +6794,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGCompletionRequestsRequest",
+            "bitway.btcbridge.QueryDKGCompletionRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7232,7 +6813,7 @@ impl serde::Serialize for QueryDkgCompletionRequestsResponse {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryDKGCompletionRequestsResponse", len)?;
+            .serialize_struct("bitway.btcbridge.QueryDKGCompletionRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -7289,7 +6870,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionRequestsResponse {
             type Value = QueryDkgCompletionRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGCompletionRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGCompletionRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -7316,7 +6897,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgCompletionRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGCompletionRequestsResponse",
+            "bitway.btcbridge.QueryDKGCompletionRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7335,7 +6916,7 @@ impl serde::Serialize for QueryDkgRequestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryDKGRequestRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryDKGRequestRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -7394,7 +6975,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestRequest {
             type Value = QueryDkgRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGRequestRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGRequestRequest")
             }
 
             fn visit_map<V>(
@@ -7424,7 +7005,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGRequestRequest",
+            "bitway.btcbridge.QueryDKGRequestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7443,7 +7024,7 @@ impl serde::Serialize for QueryDkgRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryDKGRequestResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryDKGRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -7500,7 +7081,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestResponse {
             type Value = QueryDkgRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGRequestResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGRequestResponse")
             }
 
             fn visit_map<V>(
@@ -7525,7 +7106,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGRequestResponse",
+            "bitway.btcbridge.QueryDKGRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7544,7 +7125,7 @@ impl serde::Serialize for QueryDkgRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryDKGRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryDKGRequestsRequest", len)?;
         if self.status != 0 {
             let v = DkgRequestStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -7604,7 +7185,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
             type Value = QueryDkgRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -7631,7 +7212,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGRequestsRequest",
+            "bitway.btcbridge.QueryDKGRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7650,7 +7231,7 @@ impl serde::Serialize for QueryDkgRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryDKGRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryDKGRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -7707,7 +7288,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsResponse {
             type Value = QueryDkgRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryDKGRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryDKGRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -7734,7 +7315,7 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryDKGRequestsResponse",
+            "bitway.btcbridge.QueryDKGRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7749,7 +7330,8 @@ impl serde::Serialize for QueryFeeRateRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.btcbridge.QueryFeeRateRequest", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.QueryFeeRateRequest", len)?;
         struct_ser.end()
     }
 }
@@ -7798,7 +7380,7 @@ impl<'de> serde::Deserialize<'de> for QueryFeeRateRequest {
             type Value = QueryFeeRateRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryFeeRateRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryFeeRateRequest")
             }
 
             fn visit_map<V>(
@@ -7815,7 +7397,7 @@ impl<'de> serde::Deserialize<'de> for QueryFeeRateRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryFeeRateRequest",
+            "bitway.btcbridge.QueryFeeRateRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7834,7 +7416,7 @@ impl serde::Serialize for QueryFeeRateResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryFeeRateResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryFeeRateResponse", len)?;
         if let Some(v) = self.fee_rate.as_ref() {
             struct_ser.serialize_field("feeRate", v)?;
         }
@@ -7891,7 +7473,7 @@ impl<'de> serde::Deserialize<'de> for QueryFeeRateResponse {
             type Value = QueryFeeRateResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryFeeRateResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryFeeRateResponse")
             }
 
             fn visit_map<V>(
@@ -7918,7 +7500,7 @@ impl<'de> serde::Deserialize<'de> for QueryFeeRateResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryFeeRateResponse",
+            "bitway.btcbridge.QueryFeeRateResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7940,7 +7522,7 @@ impl serde::Serialize for QueryIbcDepositScriptRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryIBCDepositScriptRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryIBCDepositScriptRequest", len)?;
         if !self.channel_id.is_empty() {
             struct_ser.serialize_field("channelId", &self.channel_id)?;
         }
@@ -8009,7 +7591,7 @@ impl<'de> serde::Deserialize<'de> for QueryIbcDepositScriptRequest {
             type Value = QueryIbcDepositScriptRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryIBCDepositScriptRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryIBCDepositScriptRequest")
             }
 
             fn visit_map<V>(
@@ -8044,7 +7626,7 @@ impl<'de> serde::Deserialize<'de> for QueryIbcDepositScriptRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryIBCDepositScriptRequest",
+            "bitway.btcbridge.QueryIBCDepositScriptRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8063,7 +7645,7 @@ impl serde::Serialize for QueryIbcDepositScriptResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryIBCDepositScriptResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryIBCDepositScriptResponse", len)?;
         if !self.script.is_empty() {
             struct_ser.serialize_field("script", &self.script)?;
         }
@@ -8120,7 +7702,7 @@ impl<'de> serde::Deserialize<'de> for QueryIbcDepositScriptResponse {
             type Value = QueryIbcDepositScriptResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryIBCDepositScriptResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryIBCDepositScriptResponse")
             }
 
             fn visit_map<V>(
@@ -8147,7 +7729,7 @@ impl<'de> serde::Deserialize<'de> for QueryIbcDepositScriptResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryIBCDepositScriptResponse",
+            "bitway.btcbridge.QueryIBCDepositScriptResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8162,7 +7744,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.btcbridge.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.btcbridge.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -8211,7 +7793,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryParamsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -8225,7 +7807,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryParamsRequest",
+            "bitway.btcbridge.QueryParamsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8244,7 +7826,7 @@ impl serde::Serialize for QueryParamsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryParamsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -8301,7 +7883,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryParamsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -8326,7 +7908,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryParamsResponse",
+            "bitway.btcbridge.QueryParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8344,8 +7926,10 @@ impl serde::Serialize for QueryPendingBtcWithdrawRequestsRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryPendingBtcWithdrawRequestsRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.QueryPendingBtcWithdrawRequestsRequest",
+            len,
+        )?;
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
         }
@@ -8402,7 +7986,8 @@ impl<'de> serde::Deserialize<'de> for QueryPendingBtcWithdrawRequestsRequest {
             type Value = QueryPendingBtcWithdrawRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryPendingBtcWithdrawRequestsRequest")
+                formatter
+                    .write_str("struct bitway.btcbridge.QueryPendingBtcWithdrawRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -8429,7 +8014,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingBtcWithdrawRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryPendingBtcWithdrawRequestsRequest",
+            "bitway.btcbridge.QueryPendingBtcWithdrawRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8451,7 +8036,7 @@ impl serde::Serialize for QueryPendingBtcWithdrawRequestsResponse {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct(
-            "side.btcbridge.QueryPendingBtcWithdrawRequestsResponse",
+            "bitway.btcbridge.QueryPendingBtcWithdrawRequestsResponse",
             len,
         )?;
         if !self.requests.is_empty() {
@@ -8515,7 +8100,8 @@ impl<'de> serde::Deserialize<'de> for QueryPendingBtcWithdrawRequestsResponse {
             type Value = QueryPendingBtcWithdrawRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryPendingBtcWithdrawRequestsResponse")
+                formatter
+                    .write_str("struct bitway.btcbridge.QueryPendingBtcWithdrawRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -8550,7 +8136,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingBtcWithdrawRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryPendingBtcWithdrawRequestsResponse",
+            "bitway.btcbridge.QueryPendingBtcWithdrawRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8569,7 +8155,7 @@ impl serde::Serialize for QueryPendingSigningRequestsRequest {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryPendingSigningRequestsRequest", len)?;
+            .serialize_struct("bitway.btcbridge.QueryPendingSigningRequestsRequest", len)?;
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
         }
@@ -8626,7 +8212,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingSigningRequestsRequest {
             type Value = QueryPendingSigningRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryPendingSigningRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryPendingSigningRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -8653,7 +8239,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingSigningRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryPendingSigningRequestsRequest",
+            "bitway.btcbridge.QueryPendingSigningRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8675,7 +8261,7 @@ impl serde::Serialize for QueryPendingSigningRequestsResponse {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryPendingSigningRequestsResponse", len)?;
+            .serialize_struct("bitway.btcbridge.QueryPendingSigningRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -8737,7 +8323,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingSigningRequestsResponse {
             type Value = QueryPendingSigningRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryPendingSigningRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryPendingSigningRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -8772,7 +8358,7 @@ impl<'de> serde::Deserialize<'de> for QueryPendingSigningRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryPendingSigningRequestsResponse",
+            "bitway.btcbridge.QueryPendingSigningRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8791,7 +8377,7 @@ impl serde::Serialize for QueryRateLimitByAddressRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRateLimitByAddressRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRateLimitByAddressRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -8848,7 +8434,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitByAddressRequest {
             type Value = QueryRateLimitByAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRateLimitByAddressRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryRateLimitByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -8875,7 +8461,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitByAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRateLimitByAddressRequest",
+            "bitway.btcbridge.QueryRateLimitByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8906,7 +8492,7 @@ impl serde::Serialize for QueryRateLimitByAddressResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRateLimitByAddressResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRateLimitByAddressResponse", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -8999,7 +8585,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitByAddressResponse {
             type Value = QueryRateLimitByAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRateLimitByAddressResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryRateLimitByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -9064,7 +8650,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitByAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRateLimitByAddressResponse",
+            "bitway.btcbridge.QueryRateLimitByAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9080,7 +8666,7 @@ impl serde::Serialize for QueryRateLimitRequest {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRateLimitRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRateLimitRequest", len)?;
         struct_ser.end()
     }
 }
@@ -9129,7 +8715,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitRequest {
             type Value = QueryRateLimitRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRateLimitRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryRateLimitRequest")
             }
 
             fn visit_map<V>(
@@ -9146,7 +8732,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRateLimitRequest",
+            "bitway.btcbridge.QueryRateLimitRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9165,7 +8751,7 @@ impl serde::Serialize for QueryRateLimitResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRateLimitResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRateLimitResponse", len)?;
         if let Some(v) = self.rate_limit.as_ref() {
             struct_ser.serialize_field("rateLimit", v)?;
         }
@@ -9222,7 +8808,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitResponse {
             type Value = QueryRateLimitResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRateLimitResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryRateLimitResponse")
             }
 
             fn visit_map<V>(
@@ -9249,7 +8835,7 @@ impl<'de> serde::Deserialize<'de> for QueryRateLimitResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRateLimitResponse",
+            "bitway.btcbridge.QueryRateLimitResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9270,8 +8856,8 @@ impl serde::Serialize for QueryRefreshingCompletionsRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRefreshingCompletionsRequest", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.btcbridge.QueryRefreshingCompletionsRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -9335,7 +8921,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsRequest {
             type Value = QueryRefreshingCompletionsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingCompletionsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingCompletionsRequest")
             }
 
             fn visit_map<V>(
@@ -9373,7 +8959,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingCompletionsRequest",
+            "bitway.btcbridge.QueryRefreshingCompletionsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9395,7 +8981,7 @@ impl serde::Serialize for QueryRefreshingCompletionsResponse {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryRefreshingCompletionsResponse", len)?;
+            .serialize_struct("bitway.btcbridge.QueryRefreshingCompletionsResponse", len)?;
         if !self.completions.is_empty() {
             struct_ser.serialize_field("completions", &self.completions)?;
         }
@@ -9457,7 +9043,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsResponse {
             type Value = QueryRefreshingCompletionsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingCompletionsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingCompletionsResponse")
             }
 
             fn visit_map<V>(
@@ -9492,7 +9078,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingCompletionsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingCompletionsResponse",
+            "bitway.btcbridge.QueryRefreshingCompletionsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9511,7 +9097,7 @@ impl serde::Serialize for QueryRefreshingRequestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRefreshingRequestRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRefreshingRequestRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -9570,7 +9156,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestRequest {
             type Value = QueryRefreshingRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingRequestRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingRequestRequest")
             }
 
             fn visit_map<V>(
@@ -9600,7 +9186,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingRequestRequest",
+            "bitway.btcbridge.QueryRefreshingRequestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9619,7 +9205,7 @@ impl serde::Serialize for QueryRefreshingRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRefreshingRequestResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRefreshingRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -9676,7 +9262,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestResponse {
             type Value = QueryRefreshingRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingRequestResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingRequestResponse")
             }
 
             fn visit_map<V>(
@@ -9701,7 +9287,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingRequestResponse",
+            "bitway.btcbridge.QueryRefreshingRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9723,7 +9309,7 @@ impl serde::Serialize for QueryRefreshingRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRefreshingRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRefreshingRequestsRequest", len)?;
         if self.status != 0 {
             let v = RefreshingStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -9788,7 +9374,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsRequest {
             type Value = QueryRefreshingRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -9823,7 +9409,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingRequestsRequest",
+            "bitway.btcbridge.QueryRefreshingRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9845,7 +9431,7 @@ impl serde::Serialize for QueryRefreshingRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryRefreshingRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryRefreshingRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -9907,7 +9493,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsResponse {
             type Value = QueryRefreshingRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryRefreshingRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryRefreshingRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -9942,7 +9528,7 @@ impl<'de> serde::Deserialize<'de> for QueryRefreshingRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryRefreshingRequestsResponse",
+            "bitway.btcbridge.QueryRefreshingRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9961,7 +9547,7 @@ impl serde::Serialize for QuerySigningRequestByTxHashRequest {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QuerySigningRequestByTxHashRequest", len)?;
+            .serialize_struct("bitway.btcbridge.QuerySigningRequestByTxHashRequest", len)?;
         if !self.txid.is_empty() {
             struct_ser.serialize_field("txid", &self.txid)?;
         }
@@ -10018,7 +9604,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestByTxHashRequest {
             type Value = QuerySigningRequestByTxHashRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestByTxHashRequest")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestByTxHashRequest")
             }
 
             fn visit_map<V>(
@@ -10045,7 +9631,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestByTxHashRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestByTxHashRequest",
+            "bitway.btcbridge.QuerySigningRequestByTxHashRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10064,7 +9650,7 @@ impl serde::Serialize for QuerySigningRequestByTxHashResponse {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QuerySigningRequestByTxHashResponse", len)?;
+            .serialize_struct("bitway.btcbridge.QuerySigningRequestByTxHashResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -10121,7 +9707,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestByTxHashResponse {
             type Value = QuerySigningRequestByTxHashResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestByTxHashResponse")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestByTxHashResponse")
             }
 
             fn visit_map<V>(
@@ -10146,7 +9732,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestByTxHashResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestByTxHashResponse",
+            "bitway.btcbridge.QuerySigningRequestByTxHashResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10165,7 +9751,7 @@ impl serde::Serialize for QuerySigningRequestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QuerySigningRequestRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QuerySigningRequestRequest", len)?;
         if self.sequence != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -10226,7 +9812,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestRequest {
             type Value = QuerySigningRequestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestRequest")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestRequest")
             }
 
             fn visit_map<V>(
@@ -10256,7 +9842,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestRequest",
+            "bitway.btcbridge.QuerySigningRequestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10275,7 +9861,7 @@ impl serde::Serialize for QuerySigningRequestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QuerySigningRequestResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QuerySigningRequestResponse", len)?;
         if let Some(v) = self.request.as_ref() {
             struct_ser.serialize_field("request", v)?;
         }
@@ -10332,7 +9918,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestResponse {
             type Value = QuerySigningRequestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestResponse")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestResponse")
             }
 
             fn visit_map<V>(
@@ -10357,7 +9943,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestResponse",
+            "bitway.btcbridge.QuerySigningRequestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10379,7 +9965,7 @@ impl serde::Serialize for QuerySigningRequestsByAddressRequest {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QuerySigningRequestsByAddressRequest", len)?;
+            .serialize_struct("bitway.btcbridge.QuerySigningRequestsByAddressRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -10441,7 +10027,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsByAddressRequest {
             type Value = QuerySigningRequestsByAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestsByAddressRequest")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestsByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -10476,7 +10062,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsByAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestsByAddressRequest",
+            "bitway.btcbridge.QuerySigningRequestsByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10497,8 +10083,10 @@ impl serde::Serialize for QuerySigningRequestsByAddressResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QuerySigningRequestsByAddressResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.QuerySigningRequestsByAddressResponse",
+            len,
+        )?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -10560,7 +10148,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsByAddressResponse {
             type Value = QuerySigningRequestsByAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestsByAddressResponse")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestsByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -10595,7 +10183,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsByAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestsByAddressResponse",
+            "bitway.btcbridge.QuerySigningRequestsByAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10617,7 +10205,7 @@ impl serde::Serialize for QuerySigningRequestsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QuerySigningRequestsRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QuerySigningRequestsRequest", len)?;
         if self.status != 0 {
             let v = SigningStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -10682,7 +10270,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
             type Value = QuerySigningRequestsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestsRequest")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestsRequest")
             }
 
             fn visit_map<V>(
@@ -10717,7 +10305,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestsRequest",
+            "bitway.btcbridge.QuerySigningRequestsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10739,7 +10327,7 @@ impl serde::Serialize for QuerySigningRequestsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QuerySigningRequestsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QuerySigningRequestsResponse", len)?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -10801,7 +10389,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsResponse {
             type Value = QuerySigningRequestsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QuerySigningRequestsResponse")
+                formatter.write_str("struct bitway.btcbridge.QuerySigningRequestsResponse")
             }
 
             fn visit_map<V>(
@@ -10836,7 +10424,7 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QuerySigningRequestsResponse",
+            "bitway.btcbridge.QuerySigningRequestsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10855,7 +10443,7 @@ impl serde::Serialize for QueryUtxoCountAndBalancesByAddressRequest {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct(
-            "side.btcbridge.QueryUTXOCountAndBalancesByAddressRequest",
+            "bitway.btcbridge.QueryUTXOCountAndBalancesByAddressRequest",
             len,
         )?;
         if !self.address.is_empty() {
@@ -10915,7 +10503,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxoCountAndBalancesByAddressRequest 
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
                 formatter
-                    .write_str("struct side.btcbridge.QueryUTXOCountAndBalancesByAddressRequest")
+                    .write_str("struct bitway.btcbridge.QueryUTXOCountAndBalancesByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -10942,7 +10530,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxoCountAndBalancesByAddressRequest 
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOCountAndBalancesByAddressRequest",
+            "bitway.btcbridge.QueryUTXOCountAndBalancesByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -10967,7 +10555,7 @@ impl serde::Serialize for QueryUtxoCountAndBalancesByAddressResponse {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct(
-            "side.btcbridge.QueryUTXOCountAndBalancesByAddressResponse",
+            "bitway.btcbridge.QueryUTXOCountAndBalancesByAddressResponse",
             len,
         )?;
         if self.count != 0 {
@@ -11041,7 +10629,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxoCountAndBalancesByAddressResponse
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
                 formatter
-                    .write_str("struct side.btcbridge.QueryUTXOCountAndBalancesByAddressResponse")
+                    .write_str("struct bitway.btcbridge.QueryUTXOCountAndBalancesByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -11090,7 +10678,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxoCountAndBalancesByAddressResponse
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOCountAndBalancesByAddressResponse",
+            "bitway.btcbridge.QueryUTXOCountAndBalancesByAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11109,7 +10697,7 @@ impl serde::Serialize for QueryUtxOsByAddressRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryUTXOsByAddressRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryUTXOsByAddressRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -11166,7 +10754,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsByAddressRequest {
             type Value = QueryUtxOsByAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryUTXOsByAddressRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryUTXOsByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -11193,7 +10781,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsByAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOsByAddressRequest",
+            "bitway.btcbridge.QueryUTXOsByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11212,7 +10800,7 @@ impl serde::Serialize for QueryUtxOsByAddressResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryUTXOsByAddressResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryUTXOsByAddressResponse", len)?;
         if !self.utxos.is_empty() {
             struct_ser.serialize_field("utxos", &self.utxos)?;
         }
@@ -11269,7 +10857,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsByAddressResponse {
             type Value = QueryUtxOsByAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryUTXOsByAddressResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryUTXOsByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -11296,7 +10884,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsByAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOsByAddressResponse",
+            "bitway.btcbridge.QueryUTXOsByAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11311,7 +10899,7 @@ impl serde::Serialize for QueryUtxOsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.btcbridge.QueryUTXOsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.btcbridge.QueryUTXOsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -11360,7 +10948,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsRequest {
             type Value = QueryUtxOsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryUTXOsRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryUTXOsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryUtxOsRequest, V::Error>
@@ -11374,7 +10962,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOsRequest",
+            "bitway.btcbridge.QueryUTXOsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11393,7 +10981,7 @@ impl serde::Serialize for QueryUtxOsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryUTXOsResponse", len)?;
+            serializer.serialize_struct("bitway.btcbridge.QueryUTXOsResponse", len)?;
         if !self.utxos.is_empty() {
             struct_ser.serialize_field("utxos", &self.utxos)?;
         }
@@ -11450,7 +11038,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsResponse {
             type Value = QueryUtxOsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryUTXOsResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryUTXOsResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryUtxOsResponse, V::Error>
@@ -11474,7 +11062,7 @@ impl<'de> serde::Deserialize<'de> for QueryUtxOsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryUTXOsResponse",
+            "bitway.btcbridge.QueryUTXOsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11495,8 +11083,10 @@ impl serde::Serialize for QueryWithdrawRequestsByAddressRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryWithdrawRequestsByAddressRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.QueryWithdrawRequestsByAddressRequest",
+            len,
+        )?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -11558,7 +11148,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByAddressRequest {
             type Value = QueryWithdrawRequestsByAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawRequestsByAddressRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryWithdrawRequestsByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -11593,7 +11183,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawRequestsByAddressRequest",
+            "bitway.btcbridge.QueryWithdrawRequestsByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11614,8 +11204,10 @@ impl serde::Serialize for QueryWithdrawRequestsByAddressResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryWithdrawRequestsByAddressResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.QueryWithdrawRequestsByAddressResponse",
+            len,
+        )?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -11677,7 +11269,8 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByAddressResponse {
             type Value = QueryWithdrawRequestsByAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawRequestsByAddressResponse")
+                formatter
+                    .write_str("struct bitway.btcbridge.QueryWithdrawRequestsByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -11712,7 +11305,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawRequestsByAddressResponse",
+            "bitway.btcbridge.QueryWithdrawRequestsByAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11731,7 +11324,7 @@ impl serde::Serialize for QueryWithdrawRequestsByTxHashRequest {
             len += 1;
         }
         let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryWithdrawRequestsByTxHashRequest", len)?;
+            .serialize_struct("bitway.btcbridge.QueryWithdrawRequestsByTxHashRequest", len)?;
         if !self.txid.is_empty() {
             struct_ser.serialize_field("txid", &self.txid)?;
         }
@@ -11788,7 +11381,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByTxHashRequest {
             type Value = QueryWithdrawRequestsByTxHashRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawRequestsByTxHashRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryWithdrawRequestsByTxHashRequest")
             }
 
             fn visit_map<V>(
@@ -11815,7 +11408,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByTxHashRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawRequestsByTxHashRequest",
+            "bitway.btcbridge.QueryWithdrawRequestsByTxHashRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11833,8 +11426,10 @@ impl serde::Serialize for QueryWithdrawRequestsByTxHashResponse {
         if !self.requests.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer
-            .serialize_struct("side.btcbridge.QueryWithdrawRequestsByTxHashResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct(
+            "bitway.btcbridge.QueryWithdrawRequestsByTxHashResponse",
+            len,
+        )?;
         if !self.requests.is_empty() {
             struct_ser.serialize_field("requests", &self.requests)?;
         }
@@ -11891,7 +11486,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByTxHashResponse {
             type Value = QueryWithdrawRequestsByTxHashResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawRequestsByTxHashResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryWithdrawRequestsByTxHashResponse")
             }
 
             fn visit_map<V>(
@@ -11918,7 +11513,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawRequestsByTxHashResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawRequestsByTxHashResponse",
+            "bitway.btcbridge.QueryWithdrawRequestsByTxHashResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -11942,8 +11537,8 @@ impl serde::Serialize for QueryWithdrawalNetworkFeeRequest {
         if self.fee_rate != 0 {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryWithdrawalNetworkFeeRequest", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.btcbridge.QueryWithdrawalNetworkFeeRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -12014,7 +11609,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawalNetworkFeeRequest {
             type Value = QueryWithdrawalNetworkFeeRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawalNetworkFeeRequest")
+                formatter.write_str("struct bitway.btcbridge.QueryWithdrawalNetworkFeeRequest")
             }
 
             fn visit_map<V>(
@@ -12060,7 +11655,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawalNetworkFeeRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawalNetworkFeeRequest",
+            "bitway.btcbridge.QueryWithdrawalNetworkFeeRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -12081,8 +11676,8 @@ impl serde::Serialize for QueryWithdrawalNetworkFeeResponse {
         if !self.fee.is_empty() {
             len += 1;
         }
-        let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.QueryWithdrawalNetworkFeeResponse", len)?;
+        let mut struct_ser = serializer
+            .serialize_struct("bitway.btcbridge.QueryWithdrawalNetworkFeeResponse", len)?;
         if self.fee_rate != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -12148,7 +11743,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawalNetworkFeeResponse {
             type Value = QueryWithdrawalNetworkFeeResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.QueryWithdrawalNetworkFeeResponse")
+                formatter.write_str("struct bitway.btcbridge.QueryWithdrawalNetworkFeeResponse")
             }
 
             fn visit_map<V>(
@@ -12186,7 +11781,7 @@ impl<'de> serde::Deserialize<'de> for QueryWithdrawalNetworkFeeResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.QueryWithdrawalNetworkFeeResponse",
+            "bitway.btcbridge.QueryWithdrawalNetworkFeeResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -12207,7 +11802,7 @@ impl serde::Serialize for RateLimit {
         if self.address_rate_limit.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.RateLimit", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.RateLimit", len)?;
         if let Some(v) = self.global_rate_limit.as_ref() {
             struct_ser.serialize_field("globalRateLimit", v)?;
         }
@@ -12278,7 +11873,7 @@ impl<'de> serde::Deserialize<'de> for RateLimit {
             type Value = RateLimit;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RateLimit")
+                formatter.write_str("struct bitway.btcbridge.RateLimit")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RateLimit, V::Error>
@@ -12309,7 +11904,7 @@ impl<'de> serde::Deserialize<'de> for RateLimit {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.RateLimit", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.RateLimit", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -12327,7 +11922,8 @@ impl serde::Serialize for RateLimitParams {
         if self.address_rate_limit_params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.RateLimitParams", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.RateLimitParams", len)?;
         if let Some(v) = self.global_rate_limit_params.as_ref() {
             struct_ser.serialize_field("globalRateLimitParams", v)?;
         }
@@ -12398,7 +11994,7 @@ impl<'de> serde::Deserialize<'de> for RateLimitParams {
             type Value = RateLimitParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RateLimitParams")
+                formatter.write_str("struct bitway.btcbridge.RateLimitParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RateLimitParams, V::Error>
@@ -12433,7 +12029,11 @@ impl<'de> serde::Deserialize<'de> for RateLimitParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.RateLimitParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.RateLimitParams",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -12458,7 +12058,7 @@ impl serde::Serialize for RefreshingCompletion {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.RefreshingCompletion", len)?;
+            serializer.serialize_struct("bitway.btcbridge.RefreshingCompletion", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -12540,7 +12140,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingCompletion {
             type Value = RefreshingCompletion;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RefreshingCompletion")
+                formatter.write_str("struct bitway.btcbridge.RefreshingCompletion")
             }
 
             fn visit_map<V>(
@@ -12594,7 +12194,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingCompletion {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.RefreshingCompletion",
+            "bitway.btcbridge.RefreshingCompletion",
             FIELDS,
             GeneratedVisitor,
         )
@@ -12628,7 +12228,7 @@ impl serde::Serialize for RefreshingRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.RefreshingRequest", len)?;
+            serializer.serialize_struct("bitway.btcbridge.RefreshingRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -12733,7 +12333,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingRequest {
             type Value = RefreshingRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RefreshingRequest")
+                formatter.write_str("struct bitway.btcbridge.RefreshingRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RefreshingRequest, V::Error>
@@ -12808,7 +12408,7 @@ impl<'de> serde::Deserialize<'de> for RefreshingRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.RefreshingRequest",
+            "bitway.btcbridge.RefreshingRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -12908,7 +12508,7 @@ impl serde::Serialize for RuneBalance {
         if !self.amount.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.RuneBalance", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.RuneBalance", len)?;
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
@@ -12970,7 +12570,7 @@ impl<'de> serde::Deserialize<'de> for RuneBalance {
             type Value = RuneBalance;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RuneBalance")
+                formatter.write_str("struct bitway.btcbridge.RuneBalance")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RuneBalance, V::Error>
@@ -13001,7 +12601,7 @@ impl<'de> serde::Deserialize<'de> for RuneBalance {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.RuneBalance", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.RuneBalance", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -13019,7 +12619,7 @@ impl serde::Serialize for RuneId {
         if self.tx != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.RuneId", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.RuneId", len)?;
         if self.block != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -13085,7 +12685,7 @@ impl<'de> serde::Deserialize<'de> for RuneId {
             type Value = RuneId;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RuneId")
+                formatter.write_str("struct bitway.btcbridge.RuneId")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RuneId, V::Error>
@@ -13122,7 +12722,7 @@ impl<'de> serde::Deserialize<'de> for RuneId {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.RuneId", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.RuneId", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -13144,7 +12744,7 @@ impl serde::Serialize for RunesConsolidation {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.btcbridge.RunesConsolidation", len)?;
+            serializer.serialize_struct("bitway.btcbridge.RunesConsolidation", len)?;
         if !self.rune_id.is_empty() {
             struct_ser.serialize_field("runeId", &self.rune_id)?;
         }
@@ -13220,7 +12820,7 @@ impl<'de> serde::Deserialize<'de> for RunesConsolidation {
             type Value = RunesConsolidation;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.RunesConsolidation")
+                formatter.write_str("struct bitway.btcbridge.RunesConsolidation")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RunesConsolidation, V::Error>
@@ -13263,7 +12863,7 @@ impl<'de> serde::Deserialize<'de> for RunesConsolidation {
             }
         }
         deserializer.deserialize_struct(
-            "side.btcbridge.RunesConsolidation",
+            "bitway.btcbridge.RunesConsolidation",
             FIELDS,
             GeneratedVisitor,
         )
@@ -13299,7 +12899,7 @@ impl serde::Serialize for SigningRequest {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.SigningRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.SigningRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -13405,7 +13005,7 @@ impl<'de> serde::Deserialize<'de> for SigningRequest {
             type Value = SigningRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.SigningRequest")
+                formatter.write_str("struct bitway.btcbridge.SigningRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<SigningRequest, V::Error>
@@ -13479,7 +13079,7 @@ impl<'de> serde::Deserialize<'de> for SigningRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.SigningRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.SigningRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -13579,7 +13179,7 @@ impl serde::Serialize for TssParams {
         if self.participant_update_transition_period.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.TSSParams", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.TSSParams", len)?;
         if let Some(v) = self.dkg_timeout_period.as_ref() {
             struct_ser.serialize_field("dkgTimeoutPeriod", v)?;
         }
@@ -13651,7 +13251,7 @@ impl<'de> serde::Deserialize<'de> for TssParams {
             type Value = TssParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.TSSParams")
+                formatter.write_str("struct bitway.btcbridge.TSSParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<TssParams, V::Error>
@@ -13684,7 +13284,7 @@ impl<'de> serde::Deserialize<'de> for TssParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.TSSParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.TSSParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -13720,7 +13320,7 @@ impl serde::Serialize for Utxo {
         if !self.runes.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.UTXO", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.UTXO", len)?;
         if !self.txid.is_empty() {
             struct_ser.serialize_field("txid", &self.txid)?;
         }
@@ -13839,7 +13439,7 @@ impl<'de> serde::Deserialize<'de> for Utxo {
             type Value = Utxo;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.UTXO")
+                formatter.write_str("struct bitway.btcbridge.UTXO")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Utxo, V::Error>
@@ -13930,7 +13530,7 @@ impl<'de> serde::Deserialize<'de> for Utxo {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.UTXO", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.UTXO", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -13954,7 +13554,7 @@ impl serde::Serialize for Vault {
         if self.version != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.Vault", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.Vault", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -14040,7 +13640,7 @@ impl<'de> serde::Deserialize<'de> for Vault {
             type Value = Vault;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.Vault")
+                formatter.write_str("struct bitway.btcbridge.Vault")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Vault, V::Error>
@@ -14090,7 +13690,7 @@ impl<'de> serde::Deserialize<'de> for Vault {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.Vault", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.Vault", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -14111,7 +13711,7 @@ impl serde::Serialize for WithdrawParams {
         if self.max_btc_batch_withdraw_num != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.WithdrawParams", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.WithdrawParams", len)?;
         if self.max_utxo_num != 0 {
             struct_ser.serialize_field("maxUtxoNum", &self.max_utxo_num)?;
         }
@@ -14194,7 +13794,7 @@ impl<'de> serde::Deserialize<'de> for WithdrawParams {
             type Value = WithdrawParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.WithdrawParams")
+                formatter.write_str("struct bitway.btcbridge.WithdrawParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<WithdrawParams, V::Error>
@@ -14246,7 +13846,7 @@ impl<'de> serde::Deserialize<'de> for WithdrawParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.WithdrawParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.btcbridge.WithdrawParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -14270,7 +13870,8 @@ impl serde::Serialize for WithdrawRequest {
         if !self.txid.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.btcbridge.WithdrawRequest", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.WithdrawRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -14346,7 +13947,7 @@ impl<'de> serde::Deserialize<'de> for WithdrawRequest {
             type Value = WithdrawRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.btcbridge.WithdrawRequest")
+                formatter.write_str("struct bitway.btcbridge.WithdrawRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<WithdrawRequest, V::Error>
@@ -14396,6 +13997,10 @@ impl<'de> serde::Deserialize<'de> for WithdrawRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.btcbridge.WithdrawRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.WithdrawRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }

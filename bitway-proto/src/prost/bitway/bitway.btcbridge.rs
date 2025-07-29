@@ -1,64 +1,4 @@
 // @generated
-/// ParamsV1 defines the v1 parameters for the module.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ParamsV1 {
-    /// The minimum number of confirmations required for the deposit transactions
-    #[prost(int32, tag = "1")]
-    pub deposit_confirmation_depth: i32,
-    /// The minimum number of confirmations required for the withdrawal transactions
-    #[prost(int32, tag = "2")]
-    pub withdraw_confirmation_depth: i32,
-    /// The allowed maximum depth for bitcoin block reorganization
-    #[prost(int32, tag = "3")]
-    pub max_reorg_depth: i32,
-    /// Indicates the maximum depth or distance from the latest block up to which transactions are considered for acceptance.
-    #[prost(uint64, tag = "4")]
-    pub max_acceptable_block_depth: u64,
-    /// The denomination of the voucher
-    #[prost(string, tag = "5")]
-    pub btc_voucher_denom: ::prost::alloc::string::String,
-    /// Indicates if deposit is enabled
-    #[prost(bool, tag = "6")]
-    pub deposit_enabled: bool,
-    /// Indicates if withdrawal is enabled
-    #[prost(bool, tag = "7")]
-    pub withdraw_enabled: bool,
-    /// Trusted relayers to submit bitcoin block headers
-    #[prost(string, repeated, tag = "8")]
-    pub trusted_btc_relayers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Trusted relayers for non-btc asset deposit
-    #[prost(string, repeated, tag = "9")]
-    pub trusted_non_btc_relayers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Trusted fee providers to submit bitcoin fee rate
-    #[prost(string, repeated, tag = "10")]
-    pub trusted_fee_providers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Period of validity for the fee rate
-    #[prost(int64, tag = "11")]
-    pub fee_rate_validity_period: i64,
-    /// Asset vaults
-    #[prost(message, repeated, tag = "12")]
-    pub vaults: ::prost::alloc::vec::Vec<Vault>,
-    /// Withdrawal params
-    #[prost(message, optional, tag = "13")]
-    pub withdraw_params: ::core::option::Option<WithdrawParams>,
-    /// Protocol limitations
-    #[prost(message, optional, tag = "14")]
-    pub protocol_limits: ::core::option::Option<ProtocolLimits>,
-    /// Protocol fees
-    #[prost(message, optional, tag = "15")]
-    pub protocol_fees: ::core::option::Option<ProtocolFees>,
-    /// TSS params
-    #[prost(message, optional, tag = "16")]
-    pub tss_params: ::core::option::Option<TssParams>,
-}
-impl ::prost::Name for ParamsV1 {
-    const NAME: &'static str = "ParamsV1";
-    const PACKAGE: &'static str = "side.btcbridge";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
-    }
-}
 /// Params defines the parameters for the module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -114,9 +54,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Vault defines the asset vault
@@ -138,9 +78,9 @@ pub struct Vault {
 }
 impl ::prost::Name for Vault {
     const NAME: &'static str = "Vault";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -158,9 +98,9 @@ pub struct WithdrawParams {
 }
 impl ::prost::Name for WithdrawParams {
     const NAME: &'static str = "WithdrawParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// ProtocolLimits defines the params related to the the protocol limitations
@@ -179,9 +119,9 @@ pub struct ProtocolLimits {
 }
 impl ::prost::Name for ProtocolLimits {
     const NAME: &'static str = "ProtocolLimits";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// ProtocolFees defines the params related to the protocol fees
@@ -200,9 +140,9 @@ pub struct ProtocolFees {
 }
 impl ::prost::Name for ProtocolFees {
     const NAME: &'static str = "ProtocolFees";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// RateLimitParams defines the params related to the rate limit for BTC withdrawal
@@ -218,9 +158,9 @@ pub struct RateLimitParams {
 }
 impl ::prost::Name for RateLimitParams {
     const NAME: &'static str = "RateLimitParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// GlobalRateLimitParams defines the global rate limit params
@@ -236,9 +176,9 @@ pub struct GlobalRateLimitParams {
 }
 impl ::prost::Name for GlobalRateLimitParams {
     const NAME: &'static str = "GlobalRateLimitParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// AddressRateLimitParams defines the per address rate limit params
@@ -254,9 +194,9 @@ pub struct AddressRateLimitParams {
 }
 impl ::prost::Name for AddressRateLimitParams {
     const NAME: &'static str = "AddressRateLimitParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// TSSParams defines the params related to TSS
@@ -273,30 +213,27 @@ pub struct TssParams {
 }
 impl ::prost::Name for TssParams {
     const NAME: &'static str = "TSSParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// IBCParams defines the params related to IBC
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IbcParams {
-    /// Id of the IBC port used to transfer sBTC
-    #[prost(string, tag = "1")]
-    pub port_id: ::prost::alloc::string::String,
     /// Timeout height offset relative to the current client height
-    #[prost(uint64, tag = "2")]
+    #[prost(uint64, tag = "1")]
     pub timeout_height_offset: u64,
     /// Timeout duration relative to the current time
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag = "2")]
     pub timeout_duration: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
 }
 impl ::prost::Name for IbcParams {
     const NAME: &'static str = "IBCParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// AssetType defines the type of asset
@@ -349,9 +286,9 @@ pub struct FeeRate {
 }
 impl ::prost::Name for FeeRate {
     const NAME: &'static str = "FeeRate";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Bitcoin Signing Request
@@ -375,9 +312,9 @@ pub struct SigningRequest {
 }
 impl ::prost::Name for SigningRequest {
     const NAME: &'static str = "SigningRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Compact Signing Request
@@ -403,9 +340,9 @@ pub struct CompactSigningRequest {
 }
 impl ::prost::Name for CompactSigningRequest {
     const NAME: &'static str = "CompactSigningRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Withdrawal Request
@@ -423,9 +360,9 @@ pub struct WithdrawRequest {
 }
 impl ::prost::Name for WithdrawRequest {
     const NAME: &'static str = "WithdrawRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Withdrawal request via IBC
@@ -443,9 +380,9 @@ pub struct IbcWithdrawRequest {
 }
 impl ::prost::Name for IbcWithdrawRequest {
     const NAME: &'static str = "IBCWithdrawRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Rate limit for BTC withdrawal
@@ -459,9 +396,9 @@ pub struct RateLimit {
 }
 impl ::prost::Name for RateLimit {
     const NAME: &'static str = "RateLimit";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Global rate limit for BTC withdrawal
@@ -483,9 +420,9 @@ pub struct GlobalRateLimit {
 }
 impl ::prost::Name for GlobalRateLimit {
     const NAME: &'static str = "GlobalRateLimit";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Per address rate limit for BTC withdrawal
@@ -504,9 +441,9 @@ pub struct AddressRateLimit {
 }
 impl ::prost::Name for AddressRateLimit {
     const NAME: &'static str = "AddressRateLimit";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Per address rate limit details
@@ -522,9 +459,9 @@ pub struct AddressRateLimitDetails {
 }
 impl ::prost::Name for AddressRateLimitDetails {
     const NAME: &'static str = "AddressRateLimitDetails";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Bitcoin UTXO
@@ -551,9 +488,9 @@ pub struct Utxo {
 }
 impl ::prost::Name for Utxo {
     const NAME: &'static str = "UTXO";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Rune Balance
@@ -569,9 +506,9 @@ pub struct RuneBalance {
 }
 impl ::prost::Name for RuneBalance {
     const NAME: &'static str = "RuneBalance";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Rune ID
@@ -587,9 +524,9 @@ pub struct RuneId {
 }
 impl ::prost::Name for RuneId {
     const NAME: &'static str = "RuneId";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Rune Edict
@@ -605,9 +542,9 @@ pub struct Edict {
 }
 impl ::prost::Name for Edict {
     const NAME: &'static str = "Edict";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// BTC UTXO Consolidation
@@ -623,9 +560,9 @@ pub struct BtcConsolidation {
 }
 impl ::prost::Name for BtcConsolidation {
     const NAME: &'static str = "BtcConsolidation";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Runes UTXO Consolidation
@@ -644,9 +581,9 @@ pub struct RunesConsolidation {
 }
 impl ::prost::Name for RunesConsolidation {
     const NAME: &'static str = "RunesConsolidation";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// DKG Participant
@@ -665,9 +602,9 @@ pub struct DkgParticipant {
 }
 impl ::prost::Name for DkgParticipant {
     const NAME: &'static str = "DKGParticipant";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// DKG Request
@@ -701,9 +638,9 @@ pub struct DkgRequest {
 }
 impl ::prost::Name for DkgRequest {
     const NAME: &'static str = "DKGRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// DKG Completion Request
@@ -728,9 +665,9 @@ pub struct DkgCompletionRequest {
 }
 impl ::prost::Name for DkgCompletionRequest {
     const NAME: &'static str = "DKGCompletionRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Refreshing Request
@@ -758,9 +695,9 @@ pub struct RefreshingRequest {
 }
 impl ::prost::Name for RefreshingRequest {
     const NAME: &'static str = "RefreshingRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Refreshing Completion
@@ -782,9 +719,9 @@ pub struct RefreshingCompletion {
 }
 impl ::prost::Name for RefreshingCompletion {
     const NAME: &'static str = "RefreshingCompletion";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// Bitcoin Signing Status
@@ -918,9 +855,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawRequestsByAddressRequest is request type for the Query/WithdrawRequestsByAddress RPC method.
@@ -934,9 +871,9 @@ pub struct QueryWithdrawRequestsByAddressRequest {
 }
 impl ::prost::Name for QueryWithdrawRequestsByAddressRequest {
     const NAME: &'static str = "QueryWithdrawRequestsByAddressRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawRequestsByAddressResponse is response type for the Query/WithdrawRequestsByAddress RPC method.
@@ -951,9 +888,9 @@ pub struct QueryWithdrawRequestsByAddressResponse {
 }
 impl ::prost::Name for QueryWithdrawRequestsByAddressResponse {
     const NAME: &'static str = "QueryWithdrawRequestsByAddressResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawRequestsByTxHashRequest is request type for the Query/WithdrawRequestsByTxHash RPC method.
@@ -965,9 +902,9 @@ pub struct QueryWithdrawRequestsByTxHashRequest {
 }
 impl ::prost::Name for QueryWithdrawRequestsByTxHashRequest {
     const NAME: &'static str = "QueryWithdrawRequestsByTxHashRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawRequestsByTxHashResponse is response type for the Query/WithdrawRequestsByTxHash RPC method.
@@ -979,9 +916,9 @@ pub struct QueryWithdrawRequestsByTxHashResponse {
 }
 impl ::prost::Name for QueryWithdrawRequestsByTxHashResponse {
     const NAME: &'static str = "QueryWithdrawRequestsByTxHashResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryPendingBtcWithdrawRequestsRequest is request type for the Query/PendingBtcWithdrawRequests RPC method.
@@ -993,9 +930,9 @@ pub struct QueryPendingBtcWithdrawRequestsRequest {
 }
 impl ::prost::Name for QueryPendingBtcWithdrawRequestsRequest {
     const NAME: &'static str = "QueryPendingBtcWithdrawRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryPendingBtcWithdrawRequestsResponse is response type for the Query/PendingBtcWithdrawRequests RPC method.
@@ -1010,9 +947,9 @@ pub struct QueryPendingBtcWithdrawRequestsResponse {
 }
 impl ::prost::Name for QueryPendingBtcWithdrawRequestsResponse {
     const NAME: &'static str = "QueryPendingBtcWithdrawRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestRequest is request type for the Query/SigningRequest RPC method.
@@ -1024,9 +961,9 @@ pub struct QuerySigningRequestRequest {
 }
 impl ::prost::Name for QuerySigningRequestRequest {
     const NAME: &'static str = "QuerySigningRequestRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestResponse is response type for the Query/SigningRequest RPC method.
@@ -1038,9 +975,9 @@ pub struct QuerySigningRequestResponse {
 }
 impl ::prost::Name for QuerySigningRequestResponse {
     const NAME: &'static str = "QuerySigningRequestResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestsRequest is request type for the Query/SigningRequests RPC method.
@@ -1054,9 +991,9 @@ pub struct QuerySigningRequestsRequest {
 }
 impl ::prost::Name for QuerySigningRequestsRequest {
     const NAME: &'static str = "QuerySigningRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestsResponse is response type for the Query/SigningRequests RPC method.
@@ -1071,9 +1008,9 @@ pub struct QuerySigningRequestsResponse {
 }
 impl ::prost::Name for QuerySigningRequestsResponse {
     const NAME: &'static str = "QuerySigningRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestsByAddressRequest is request type for the Query/SigningRequestsByAddress RPC method.
@@ -1087,9 +1024,9 @@ pub struct QuerySigningRequestsByAddressRequest {
 }
 impl ::prost::Name for QuerySigningRequestsByAddressRequest {
     const NAME: &'static str = "QuerySigningRequestsByAddressRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestsByAddressResponse is response type for the Query/SigningRequestsByAddress RPC method.
@@ -1104,9 +1041,9 @@ pub struct QuerySigningRequestsByAddressResponse {
 }
 impl ::prost::Name for QuerySigningRequestsByAddressResponse {
     const NAME: &'static str = "QuerySigningRequestsByAddressResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestByTxHashRequest is request type for the Query/SigningRequestByTxHash RPC method.
@@ -1118,9 +1055,9 @@ pub struct QuerySigningRequestByTxHashRequest {
 }
 impl ::prost::Name for QuerySigningRequestByTxHashRequest {
     const NAME: &'static str = "QuerySigningRequestByTxHashRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QuerySigningRequestByTxHashResponse is response type for the Query/SigningRequestByTxHashResponse RPC method.
@@ -1132,9 +1069,9 @@ pub struct QuerySigningRequestByTxHashResponse {
 }
 impl ::prost::Name for QuerySigningRequestByTxHashResponse {
     const NAME: &'static str = "QuerySigningRequestByTxHashResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryPendingSigningRequestsRequest is request type for the Query/PendingSigningRequests RPC method.
@@ -1146,9 +1083,9 @@ pub struct QueryPendingSigningRequestsRequest {
 }
 impl ::prost::Name for QueryPendingSigningRequestsRequest {
     const NAME: &'static str = "QueryPendingSigningRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryPendingSigningRequestsResponse is response type for the Query/PendingSigningRequests RPC method.
@@ -1163,9 +1100,9 @@ pub struct QueryPendingSigningRequestsResponse {
 }
 impl ::prost::Name for QueryPendingSigningRequestsResponse {
     const NAME: &'static str = "QueryPendingSigningRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryFeeRateRequest is request type for the Query/FeeRate RPC method.
@@ -1174,9 +1111,9 @@ impl ::prost::Name for QueryPendingSigningRequestsResponse {
 pub struct QueryFeeRateRequest {}
 impl ::prost::Name for QueryFeeRateRequest {
     const NAME: &'static str = "QueryFeeRateRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryFeeRateResponse is response type for the Query/FeeRate RPC method.
@@ -1188,9 +1125,9 @@ pub struct QueryFeeRateResponse {
 }
 impl ::prost::Name for QueryFeeRateResponse {
     const NAME: &'static str = "QueryFeeRateResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawalNetworkFeeRequest is request type for the Query/WithdrawalNetworkFee RPC method.
@@ -1206,9 +1143,9 @@ pub struct QueryWithdrawalNetworkFeeRequest {
 }
 impl ::prost::Name for QueryWithdrawalNetworkFeeRequest {
     const NAME: &'static str = "QueryWithdrawalNetworkFeeRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryWithdrawalNetworkFeeResponse is response type for the Query/WithdrawalNetworkFee RPC method.
@@ -1222,9 +1159,9 @@ pub struct QueryWithdrawalNetworkFeeResponse {
 }
 impl ::prost::Name for QueryWithdrawalNetworkFeeResponse {
     const NAME: &'static str = "QueryWithdrawalNetworkFeeResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -1233,9 +1170,9 @@ impl ::prost::Name for QueryWithdrawalNetworkFeeResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -1248,9 +1185,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOsRequest is the request type for the Query/UTXOs RPC method.
@@ -1259,9 +1196,9 @@ impl ::prost::Name for QueryParamsResponse {
 pub struct QueryUtxOsRequest {}
 impl ::prost::Name for QueryUtxOsRequest {
     const NAME: &'static str = "QueryUTXOsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOsResponse is the response type for the Query/UTXOs RPC method.
@@ -1273,9 +1210,9 @@ pub struct QueryUtxOsResponse {
 }
 impl ::prost::Name for QueryUtxOsResponse {
     const NAME: &'static str = "QueryUTXOsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOsByAddressRequest is the request type for the Query/UTXOsByAddress RPC method.
@@ -1287,9 +1224,9 @@ pub struct QueryUtxOsByAddressRequest {
 }
 impl ::prost::Name for QueryUtxOsByAddressRequest {
     const NAME: &'static str = "QueryUTXOsByAddressRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOsByAddressResponse is the response type for the Query/UTXOsByAddress RPC method.
@@ -1301,9 +1238,9 @@ pub struct QueryUtxOsByAddressResponse {
 }
 impl ::prost::Name for QueryUtxOsByAddressResponse {
     const NAME: &'static str = "QueryUTXOsByAddressResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOCountAndBalancesByAddressRequest is the request type for the Query/UTXOCountAndBalancesByAddress RPC method.
@@ -1315,9 +1252,9 @@ pub struct QueryUtxoCountAndBalancesByAddressRequest {
 }
 impl ::prost::Name for QueryUtxoCountAndBalancesByAddressRequest {
     const NAME: &'static str = "QueryUTXOCountAndBalancesByAddressRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryUTXOCountAndBalancesByAddressResponse is the response type for the Query/UTXOCountAndBalancesByAddress RPC method.
@@ -1333,9 +1270,9 @@ pub struct QueryUtxoCountAndBalancesByAddressResponse {
 }
 impl ::prost::Name for QueryUtxoCountAndBalancesByAddressResponse {
     const NAME: &'static str = "QueryUTXOCountAndBalancesByAddressResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGRequestRequest is the request type for the Query/DKGRequest RPC method.
@@ -1347,9 +1284,9 @@ pub struct QueryDkgRequestRequest {
 }
 impl ::prost::Name for QueryDkgRequestRequest {
     const NAME: &'static str = "QueryDKGRequestRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGRequestResponse is the response type for the Query/DKGRequest RPC method.
@@ -1361,9 +1298,9 @@ pub struct QueryDkgRequestResponse {
 }
 impl ::prost::Name for QueryDkgRequestResponse {
     const NAME: &'static str = "QueryDKGRequestResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGRequestsRequest is the request type for the Query/DKGRequests RPC method.
@@ -1375,9 +1312,9 @@ pub struct QueryDkgRequestsRequest {
 }
 impl ::prost::Name for QueryDkgRequestsRequest {
     const NAME: &'static str = "QueryDKGRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGRequestsResponse is the response type for the Query/DKGRequests RPC method.
@@ -1389,9 +1326,9 @@ pub struct QueryDkgRequestsResponse {
 }
 impl ::prost::Name for QueryDkgRequestsResponse {
     const NAME: &'static str = "QueryDKGRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryAllDKGRequestsRequest is the request type for the Query/AllDKGRequests RPC method.
@@ -1400,9 +1337,9 @@ impl ::prost::Name for QueryDkgRequestsResponse {
 pub struct QueryAllDkgRequestsRequest {}
 impl ::prost::Name for QueryAllDkgRequestsRequest {
     const NAME: &'static str = "QueryAllDKGRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryAllDKGRequestsResponse is the response type for the Query/AllDKGRequests RPC method.
@@ -1414,9 +1351,9 @@ pub struct QueryAllDkgRequestsResponse {
 }
 impl ::prost::Name for QueryAllDkgRequestsResponse {
     const NAME: &'static str = "QueryAllDKGRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGCompletionRequestsRequest is the request type for the Query/DKGCompletionRequests RPC method.
@@ -1428,9 +1365,9 @@ pub struct QueryDkgCompletionRequestsRequest {
 }
 impl ::prost::Name for QueryDkgCompletionRequestsRequest {
     const NAME: &'static str = "QueryDKGCompletionRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryDKGCompletionRequestsResponse is the response type for the Query/DKGCompletionRequests RPC method.
@@ -1442,9 +1379,9 @@ pub struct QueryDkgCompletionRequestsResponse {
 }
 impl ::prost::Name for QueryDkgCompletionRequestsResponse {
     const NAME: &'static str = "QueryDKGCompletionRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1455,9 +1392,9 @@ pub struct QueryRefreshingRequestRequest {
 }
 impl ::prost::Name for QueryRefreshingRequestRequest {
     const NAME: &'static str = "QueryRefreshingRequestRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1468,9 +1405,9 @@ pub struct QueryRefreshingRequestResponse {
 }
 impl ::prost::Name for QueryRefreshingRequestResponse {
     const NAME: &'static str = "QueryRefreshingRequestResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1483,9 +1420,9 @@ pub struct QueryRefreshingRequestsRequest {
 }
 impl ::prost::Name for QueryRefreshingRequestsRequest {
     const NAME: &'static str = "QueryRefreshingRequestsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1499,9 +1436,9 @@ pub struct QueryRefreshingRequestsResponse {
 }
 impl ::prost::Name for QueryRefreshingRequestsResponse {
     const NAME: &'static str = "QueryRefreshingRequestsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1514,9 +1451,9 @@ pub struct QueryRefreshingCompletionsRequest {
 }
 impl ::prost::Name for QueryRefreshingCompletionsRequest {
     const NAME: &'static str = "QueryRefreshingCompletionsRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1530,9 +1467,9 @@ pub struct QueryRefreshingCompletionsResponse {
 }
 impl ::prost::Name for QueryRefreshingCompletionsResponse {
     const NAME: &'static str = "QueryRefreshingCompletionsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryIBCDepositScriptRequest is the request type for the Query/IBCDepositScript RPC method.
@@ -1546,9 +1483,9 @@ pub struct QueryIbcDepositScriptRequest {
 }
 impl ::prost::Name for QueryIbcDepositScriptRequest {
     const NAME: &'static str = "QueryIBCDepositScriptRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryIBCDepositScriptResponse is the response type for the Query/IBCDepositScript RPC method.
@@ -1560,9 +1497,9 @@ pub struct QueryIbcDepositScriptResponse {
 }
 impl ::prost::Name for QueryIbcDepositScriptResponse {
     const NAME: &'static str = "QueryIBCDepositScriptResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryRateLimitRequest is the request type for the Query/RateLimit RPC method.
@@ -1571,9 +1508,9 @@ impl ::prost::Name for QueryIbcDepositScriptResponse {
 pub struct QueryRateLimitRequest {}
 impl ::prost::Name for QueryRateLimitRequest {
     const NAME: &'static str = "QueryRateLimitRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryRateLimitResponse is the response type for the Query/RateLimit RPC method.
@@ -1585,9 +1522,9 @@ pub struct QueryRateLimitResponse {
 }
 impl ::prost::Name for QueryRateLimitResponse {
     const NAME: &'static str = "QueryRateLimitResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryRateLimitByAddressRequest is the request type for the Query/RateLimitByAddress RPC method.
@@ -1599,9 +1536,9 @@ pub struct QueryRateLimitByAddressRequest {
 }
 impl ::prost::Name for QueryRateLimitByAddressRequest {
     const NAME: &'static str = "QueryRateLimitByAddressRequest";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// QueryRateLimitByAddressResponse is the response type for the Query/RateLimitByAddress RPC method.
@@ -1626,16 +1563,16 @@ pub struct QueryRateLimitByAddressResponse {
 }
 impl ::prost::Name for QueryRateLimitByAddressResponse {
     const NAME: &'static str = "QueryRateLimitByAddressResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitDepositTransaction defines the Msg/SubmitDepositTransaction request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSubmitDepositTransaction {
-    /// this is the relayer address who submits the bitcoin transaction to the side chain
+    /// this is the relayer address who submits the bitcoin transaction to the bitway chain
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -1652,9 +1589,9 @@ pub struct MsgSubmitDepositTransaction {
 }
 impl ::prost::Name for MsgSubmitDepositTransaction {
     const NAME: &'static str = "MsgSubmitDepositTransaction";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitDepositTransactionResponse defines the Msg/SubmitDepositTransaction response type.
@@ -1663,16 +1600,16 @@ impl ::prost::Name for MsgSubmitDepositTransaction {
 pub struct MsgSubmitDepositTransactionResponse {}
 impl ::prost::Name for MsgSubmitDepositTransactionResponse {
     const NAME: &'static str = "MsgSubmitDepositTransactionResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitWithdrawTransaction defines the Msg/SubmitWithdrawTransaction request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSubmitWithdrawTransaction {
-    /// this is the relayer address who submits the bitcoin transaction to the side chain
+    /// this is the relayer address who submits the bitcoin transaction to the bitway chain
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -1685,9 +1622,9 @@ pub struct MsgSubmitWithdrawTransaction {
 }
 impl ::prost::Name for MsgSubmitWithdrawTransaction {
     const NAME: &'static str = "MsgSubmitWithdrawTransaction";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitWithdrawTransactionResponse defines the Msg/SubmitWithdrawTransaction response type.
@@ -1696,9 +1633,9 @@ impl ::prost::Name for MsgSubmitWithdrawTransaction {
 pub struct MsgSubmitWithdrawTransactionResponse {}
 impl ::prost::Name for MsgSubmitWithdrawTransactionResponse {
     const NAME: &'static str = "MsgSubmitWithdrawTransactionResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitFeeRate defines the Msg/SubmitFeeRate request type.
@@ -1712,9 +1649,9 @@ pub struct MsgSubmitFeeRate {
 }
 impl ::prost::Name for MsgSubmitFeeRate {
     const NAME: &'static str = "MsgSubmitFeeRate";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitFeeRateResponse defines the Msg/SubmitFeeRate response type.
@@ -1723,9 +1660,9 @@ impl ::prost::Name for MsgSubmitFeeRate {
 pub struct MsgSubmitFeeRateResponse {}
 impl ::prost::Name for MsgSubmitFeeRateResponse {
     const NAME: &'static str = "MsgSubmitFeeRateResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateTrustedNonBtcRelayers defines the Msg/UpdateTrustedNonBtcRelayers request type.
@@ -1739,9 +1676,9 @@ pub struct MsgUpdateTrustedNonBtcRelayers {
 }
 impl ::prost::Name for MsgUpdateTrustedNonBtcRelayers {
     const NAME: &'static str = "MsgUpdateTrustedNonBtcRelayers";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateTrustedNonBtcRelayersResponse defines the Msg/UpdateTrustedNonBtcRelayers response type.
@@ -1750,9 +1687,9 @@ impl ::prost::Name for MsgUpdateTrustedNonBtcRelayers {
 pub struct MsgUpdateTrustedNonBtcRelayersResponse {}
 impl ::prost::Name for MsgUpdateTrustedNonBtcRelayersResponse {
     const NAME: &'static str = "MsgUpdateTrustedNonBtcRelayersResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateTrustedFeeProviders defines the Msg/UpdateTrustedFeeProviders request type.
@@ -1766,9 +1703,9 @@ pub struct MsgUpdateTrustedFeeProviders {
 }
 impl ::prost::Name for MsgUpdateTrustedFeeProviders {
     const NAME: &'static str = "MsgUpdateTrustedFeeProviders";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateTrustedFeeProvidersResponse defines the Msg/UpdateTrustedFeeProviders response type.
@@ -1777,9 +1714,9 @@ impl ::prost::Name for MsgUpdateTrustedFeeProviders {
 pub struct MsgUpdateTrustedFeeProvidersResponse {}
 impl ::prost::Name for MsgUpdateTrustedFeeProvidersResponse {
     const NAME: &'static str = "MsgUpdateTrustedFeeProvidersResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgWithdrawToBitcoin defines the Msg/WithdrawToBitcoin request type.
@@ -1794,9 +1731,9 @@ pub struct MsgWithdrawToBitcoin {
 }
 impl ::prost::Name for MsgWithdrawToBitcoin {
     const NAME: &'static str = "MsgWithdrawToBitcoin";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgWithdrawToBitcoinResponse defines the Msg/WithdrawToBitcoin response type.
@@ -1805,9 +1742,9 @@ impl ::prost::Name for MsgWithdrawToBitcoin {
 pub struct MsgWithdrawToBitcoinResponse {}
 impl ::prost::Name for MsgWithdrawToBitcoinResponse {
     const NAME: &'static str = "MsgWithdrawToBitcoinResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitSignatures defines the Msg/SubmitSignatures request type.
@@ -1823,9 +1760,9 @@ pub struct MsgSubmitSignatures {
 }
 impl ::prost::Name for MsgSubmitSignatures {
     const NAME: &'static str = "MsgSubmitSignatures";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgSubmitSignaturesResponse defines the Msg/SubmitSignatures response type.
@@ -1834,9 +1771,9 @@ impl ::prost::Name for MsgSubmitSignatures {
 pub struct MsgSubmitSignaturesResponse {}
 impl ::prost::Name for MsgSubmitSignaturesResponse {
     const NAME: &'static str = "MsgSubmitSignaturesResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgConsolidateVaults is the Msg/ConsolidateVaults request type.
@@ -1858,9 +1795,9 @@ pub struct MsgConsolidateVaults {
 }
 impl ::prost::Name for MsgConsolidateVaults {
     const NAME: &'static str = "MsgConsolidateVaults";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgConsolidateVaultsResponse defines the Msg/ConsolidateVaults response type.
@@ -1869,9 +1806,9 @@ impl ::prost::Name for MsgConsolidateVaults {
 pub struct MsgConsolidateVaultsResponse {}
 impl ::prost::Name for MsgConsolidateVaultsResponse {
     const NAME: &'static str = "MsgConsolidateVaultsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgInitiateDKG is the Msg/InitiateDKG request type.
@@ -1899,9 +1836,9 @@ pub struct MsgInitiateDkg {
 }
 impl ::prost::Name for MsgInitiateDkg {
     const NAME: &'static str = "MsgInitiateDKG";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgInitiateDKGResponse defines the Msg/InitiateDKG response type.
@@ -1910,9 +1847,9 @@ impl ::prost::Name for MsgInitiateDkg {
 pub struct MsgInitiateDkgResponse {}
 impl ::prost::Name for MsgInitiateDkgResponse {
     const NAME: &'static str = "MsgInitiateDKGResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgCompleteDKG is the Msg/CompleteDKG request type.
@@ -1937,9 +1874,9 @@ pub struct MsgCompleteDkg {
 }
 impl ::prost::Name for MsgCompleteDkg {
     const NAME: &'static str = "MsgCompleteDKG";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgCompleteDKGResponse defines the Msg/CompleteDKG response type.
@@ -1948,9 +1885,9 @@ impl ::prost::Name for MsgCompleteDkg {
 pub struct MsgCompleteDkgResponse {}
 impl ::prost::Name for MsgCompleteDkgResponse {
     const NAME: &'static str = "MsgCompleteDKGResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgRefresh defines the Msg/Refresh request type.
@@ -1975,9 +1912,9 @@ pub struct MsgRefresh {
 }
 impl ::prost::Name for MsgRefresh {
     const NAME: &'static str = "MsgRefresh";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgRefreshResponse defines the Msg/Refresh response type.
@@ -1986,9 +1923,9 @@ impl ::prost::Name for MsgRefresh {
 pub struct MsgRefreshResponse {}
 impl ::prost::Name for MsgRefreshResponse {
     const NAME: &'static str = "MsgRefreshResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgCompleteRefreshing defines the Msg/CompleteRefreshing request type.
@@ -2010,9 +1947,9 @@ pub struct MsgCompleteRefreshing {
 }
 impl ::prost::Name for MsgCompleteRefreshing {
     const NAME: &'static str = "MsgCompleteRefreshing";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgCompleteRefreshingResponse defines the Msg/CompleteRefreshing response type.
@@ -2021,9 +1958,9 @@ impl ::prost::Name for MsgCompleteRefreshing {
 pub struct MsgCompleteRefreshingResponse {}
 impl ::prost::Name for MsgCompleteRefreshingResponse {
     const NAME: &'static str = "MsgCompleteRefreshingResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgTransferVault is the Msg/TransferVault request type.
@@ -2051,9 +1988,9 @@ pub struct MsgTransferVault {
 }
 impl ::prost::Name for MsgTransferVault {
     const NAME: &'static str = "MsgTransferVault";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgTransferVaultResponse defines the Msg/TransferVault response type.
@@ -2062,9 +1999,9 @@ impl ::prost::Name for MsgTransferVault {
 pub struct MsgTransferVaultResponse {}
 impl ::prost::Name for MsgTransferVaultResponse {
     const NAME: &'static str = "MsgTransferVaultResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -2084,9 +2021,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -2097,11 +2034,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.btcbridge";
+    const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.btcbridge.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
-include!("side.btcbridge.serde.rs");
-include!("side.btcbridge.tonic.rs");
+include!("bitway.btcbridge.serde.rs");
+include!("bitway.btcbridge.tonic.rs");
 // @@protoc_insertion_point(module)

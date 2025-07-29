@@ -15,9 +15,9 @@ pub struct AssetMetadata {
 }
 impl ::prost::Name for AssetMetadata {
     const NAME: &'static str = "AssetMetadata";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -68,9 +68,9 @@ pub struct Liquidation {
 }
 impl ::prost::Name for Liquidation {
     const NAME: &'static str = "Liquidation";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -93,9 +93,9 @@ pub struct LiquidationRecord {
 }
 impl ::prost::Name for LiquidationRecord {
     const NAME: &'static str = "LiquidationRecord";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -176,9 +176,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// GenesisState defines the liquidation module's genesis state.
@@ -194,9 +194,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -205,9 +205,9 @@ impl ::prost::Name for GenesisState {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -219,9 +219,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationRequest is request type for the Query/Liquidation RPC method.
@@ -233,9 +233,9 @@ pub struct QueryLiquidationRequest {
 }
 impl ::prost::Name for QueryLiquidationRequest {
     const NAME: &'static str = "QueryLiquidationRequest";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationResponse is response type for the Query/Liquidation RPC method.
@@ -247,9 +247,9 @@ pub struct QueryLiquidationResponse {
 }
 impl ::prost::Name for QueryLiquidationResponse {
     const NAME: &'static str = "QueryLiquidationResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationsRequest is request type for the Query/Liquidations RPC method.
@@ -263,9 +263,9 @@ pub struct QueryLiquidationsRequest {
 }
 impl ::prost::Name for QueryLiquidationsRequest {
     const NAME: &'static str = "QueryLiquidationsRequest";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationsResponse is response type for the Query/Liquidations RPC method.
@@ -280,9 +280,9 @@ pub struct QueryLiquidationsResponse {
 }
 impl ::prost::Name for QueryLiquidationsResponse {
     const NAME: &'static str = "QueryLiquidationsResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationRecordRequest is request type for the Query/LiquidationRecord RPC method.
@@ -294,9 +294,9 @@ pub struct QueryLiquidationRecordRequest {
 }
 impl ::prost::Name for QueryLiquidationRecordRequest {
     const NAME: &'static str = "QueryLiquidationRecordRequest";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationRecordResponse is response type for the Query/LiquidationRecord RPC method.
@@ -308,9 +308,9 @@ pub struct QueryLiquidationRecordResponse {
 }
 impl ::prost::Name for QueryLiquidationRecordResponse {
     const NAME: &'static str = "QueryLiquidationRecordResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationRecordsRequest is request type for the Query/LiquidationRecords RPC method.
@@ -324,9 +324,9 @@ pub struct QueryLiquidationRecordsRequest {
 }
 impl ::prost::Name for QueryLiquidationRecordsRequest {
     const NAME: &'static str = "QueryLiquidationRecordsRequest";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// QueryLiquidationRecordsResponse is response type for the Query/LiquidationRecords RPC method.
@@ -341,9 +341,9 @@ pub struct QueryLiquidationRecordsResponse {
 }
 impl ::prost::Name for QueryLiquidationRecordsResponse {
     const NAME: &'static str = "QueryLiquidationRecordsResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// MsgLiquidate defines the Msg/Liquidate request type.
@@ -359,9 +359,9 @@ pub struct MsgLiquidate {
 }
 impl ::prost::Name for MsgLiquidate {
     const NAME: &'static str = "MsgLiquidate";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// MsgLiquidateResponse defines the Msg/Liquidate response type.
@@ -370,9 +370,9 @@ impl ::prost::Name for MsgLiquidate {
 pub struct MsgLiquidateResponse {}
 impl ::prost::Name for MsgLiquidateResponse {
     const NAME: &'static str = "MsgLiquidateResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -392,9 +392,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -405,11 +405,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.liquidation";
+    const PACKAGE: &'static str = "bitway.liquidation";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.liquidation.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.liquidation.{}", Self::NAME)
     }
 }
-include!("side.liquidation.serde.rs");
-include!("side.liquidation.tonic.rs");
+include!("bitway.liquidation.serde.rs");
+include!("bitway.liquidation.tonic.rs");
 // @@protoc_insertion_point(module)

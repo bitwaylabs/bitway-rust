@@ -4,22 +4,24 @@
 pub struct DlcOracle {
     #[prost(uint64, tag = "1")]
     pub id: u64,
-    #[prost(string, tag = "2")]
-    pub desc: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub dkg_id: u64,
     #[prost(string, tag = "3")]
+    pub desc: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "4")]
+    #[prost(uint64, tag = "5")]
     pub nonce_index: u64,
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag = "6")]
     pub time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
-    #[prost(enumeration = "DlcOracleStatus", tag = "6")]
+    #[prost(enumeration = "DlcOracleStatus", tag = "7")]
     pub status: i32,
 }
 impl ::prost::Name for DlcOracle {
     const NAME: &'static str = "DLCOracle";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -27,20 +29,22 @@ impl ::prost::Name for DlcOracle {
 pub struct Dcm {
     #[prost(uint64, tag = "1")]
     pub id: u64,
-    #[prost(string, tag = "2")]
-    pub desc: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub dkg_id: u64,
     #[prost(string, tag = "3")]
+    pub desc: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "5")]
     pub time: ::core::option::Option<::tendermint_proto::google::protobuf::Timestamp>,
-    #[prost(enumeration = "DcmStatus", tag = "5")]
+    #[prost(enumeration = "DcmStatus", tag = "6")]
     pub status: i32,
 }
 impl ::prost::Name for Dcm {
     const NAME: &'static str = "DCM";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -57,9 +61,9 @@ pub struct DlcNonce {
 }
 impl ::prost::Name for DlcNonce {
     const NAME: &'static str = "DLCNonce";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -88,9 +92,9 @@ pub struct DlcEvent {
 }
 impl ::prost::Name for DlcEvent {
     const NAME: &'static str = "DLCEvent";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -111,9 +115,33 @@ pub struct DlcAttestation {
 }
 impl ::prost::Name for DlcAttestation {
     const NAME: &'static str = "DLCAttestation";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+/// Oracle participant liveness
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OracleParticipantLiveness {
+    /// consensus pub key
+    #[prost(string, tag = "1")]
+    pub consensus_pubkey: ::prost::alloc::string::String,
+    /// Indicates if the participant is alive
+    #[prost(bool, tag = "2")]
+    pub is_alive: bool,
+    /// Id of the last participating DKG
+    #[prost(uint64, tag = "3")]
+    pub last_dkg_id: u64,
+    /// last block height at which the participant was active
+    #[prost(int64, tag = "4")]
+    pub last_block_height: i64,
+}
+impl ::prost::Name for OracleParticipantLiveness {
+    const NAME: &'static str = "OracleParticipantLiveness";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -276,9 +304,9 @@ pub struct Params {
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// GenesisState defines the dlc module's genesis state.
@@ -294,9 +322,9 @@ pub struct GenesisState {
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -307,9 +335,9 @@ pub struct QueryAttestationRequest {
 }
 impl ::prost::Name for QueryAttestationRequest {
     const NAME: &'static str = "QueryAttestationRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -320,9 +348,9 @@ pub struct QueryAttestationResponse {
 }
 impl ::prost::Name for QueryAttestationResponse {
     const NAME: &'static str = "QueryAttestationResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -333,9 +361,9 @@ pub struct QueryAttestationByEventRequest {
 }
 impl ::prost::Name for QueryAttestationByEventRequest {
     const NAME: &'static str = "QueryAttestationByEventRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -346,9 +374,9 @@ pub struct QueryAttestationByEventResponse {
 }
 impl ::prost::Name for QueryAttestationByEventResponse {
     const NAME: &'static str = "QueryAttestationByEventResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -359,9 +387,9 @@ pub struct QueryAttestationsRequest {
 }
 impl ::prost::Name for QueryAttestationsRequest {
     const NAME: &'static str = "QueryAttestationsRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -375,9 +403,39 @@ pub struct QueryAttestationsResponse {
 }
 impl ::prost::Name for QueryAttestationsResponse {
     const NAME: &'static str = "QueryAttestationsResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDcmRequest {
+    #[prost(uint64, tag = "1")]
+    pub id: u64,
+    #[prost(string, tag = "2")]
+    pub pub_key: ::prost::alloc::string::String,
+}
+impl ::prost::Name for QueryDcmRequest {
+    const NAME: &'static str = "QueryDCMRequest";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDcmResponse {
+    #[prost(message, optional, tag = "1")]
+    pub dcm: ::core::option::Option<Dcm>,
+    #[prost(string, repeated, tag = "2")]
+    pub participants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+impl ::prost::Name for QueryDcmResponse {
+    const NAME: &'static str = "QueryDCMResponse";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -390,9 +448,9 @@ pub struct QueryDcMsRequest {
 }
 impl ::prost::Name for QueryDcMsRequest {
     const NAME: &'static str = "QueryDCMsRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -406,9 +464,39 @@ pub struct QueryDcMsResponse {
 }
 impl ::prost::Name for QueryDcMsResponse {
     const NAME: &'static str = "QueryDCMsResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryOracleRequest {
+    #[prost(uint64, tag = "1")]
+    pub id: u64,
+    #[prost(string, tag = "2")]
+    pub pub_key: ::prost::alloc::string::String,
+}
+impl ::prost::Name for QueryOracleRequest {
+    const NAME: &'static str = "QueryOracleRequest";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryOracleResponse {
+    #[prost(message, optional, tag = "1")]
+    pub oracle: ::core::option::Option<DlcOracle>,
+    #[prost(string, repeated, tag = "2")]
+    pub participants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+impl ::prost::Name for QueryOracleResponse {
+    const NAME: &'static str = "QueryOracleResponse";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -421,9 +509,9 @@ pub struct QueryOraclesRequest {
 }
 impl ::prost::Name for QueryOraclesRequest {
     const NAME: &'static str = "QueryOraclesRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -437,9 +525,9 @@ pub struct QueryOraclesResponse {
 }
 impl ::prost::Name for QueryOraclesResponse {
     const NAME: &'static str = "QueryOraclesResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -447,9 +535,9 @@ impl ::prost::Name for QueryOraclesResponse {
 pub struct QueryCountNoncesRequest {}
 impl ::prost::Name for QueryCountNoncesRequest {
     const NAME: &'static str = "QueryCountNoncesRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryCountNoncesResponse is response type for the Query/CountNonces RPC method.
@@ -463,9 +551,9 @@ pub struct QueryCountNoncesResponse {
 }
 impl ::prost::Name for QueryCountNoncesResponse {
     const NAME: &'static str = "QueryCountNoncesResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -478,9 +566,9 @@ pub struct QueryNonceRequest {
 }
 impl ::prost::Name for QueryNonceRequest {
     const NAME: &'static str = "QueryNonceRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -491,9 +579,9 @@ pub struct QueryNonceResponse {
 }
 impl ::prost::Name for QueryNonceResponse {
     const NAME: &'static str = "QueryNonceResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -506,9 +594,9 @@ pub struct QueryNoncesRequest {
 }
 impl ::prost::Name for QueryNoncesRequest {
     const NAME: &'static str = "QueryNoncesRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -522,9 +610,9 @@ pub struct QueryNoncesResponse {
 }
 impl ::prost::Name for QueryNoncesResponse {
     const NAME: &'static str = "QueryNoncesResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryEventRequest is request type for the Query/Event RPC method.
@@ -536,9 +624,9 @@ pub struct QueryEventRequest {
 }
 impl ::prost::Name for QueryEventRequest {
     const NAME: &'static str = "QueryEventRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryEventResponse is response type for the Query/Event RPC method.
@@ -550,9 +638,9 @@ pub struct QueryEventResponse {
 }
 impl ::prost::Name for QueryEventResponse {
     const NAME: &'static str = "QueryEventResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryEventsRequest is request type for the Query/Events RPC method.
@@ -566,9 +654,9 @@ pub struct QueryEventsRequest {
 }
 impl ::prost::Name for QueryEventsRequest {
     const NAME: &'static str = "QueryEventsRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryEventsResponse is response type for the Query/Events RPC method.
@@ -583,9 +671,37 @@ pub struct QueryEventsResponse {
 }
 impl ::prost::Name for QueryEventsResponse {
     const NAME: &'static str = "QueryEventsResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryOracleParticipantLivenessRequest {
+    #[prost(string, tag = "1")]
+    pub consensus_pubkey: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub alive: bool,
+}
+impl ::prost::Name for QueryOracleParticipantLivenessRequest {
+    const NAME: &'static str = "QueryOracleParticipantLivenessRequest";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryOracleParticipantLivenessResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub participant_livenesses: ::prost::alloc::vec::Vec<OracleParticipantLiveness>,
+}
+impl ::prost::Name for QueryOracleParticipantLivenessResponse {
+    const NAME: &'static str = "QueryOracleParticipantLivenessResponse";
+    const PACKAGE: &'static str = "bitway.dlc";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
@@ -594,9 +710,9 @@ impl ::prost::Name for QueryEventsResponse {
 pub struct QueryParamsRequest {}
 impl ::prost::Name for QueryParamsRequest {
     const NAME: &'static str = "QueryParamsRequest";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// QueryParamsResponse is response type for the Query/Params RPC method.
@@ -608,9 +724,9 @@ pub struct QueryParamsResponse {
 }
 impl ::prost::Name for QueryParamsResponse {
     const NAME: &'static str = "QueryParamsResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -626,9 +742,9 @@ pub struct MsgCreateDcm {
 }
 impl ::prost::Name for MsgCreateDcm {
     const NAME: &'static str = "MsgCreateDCM";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -636,9 +752,9 @@ impl ::prost::Name for MsgCreateDcm {
 pub struct MsgCreateDcmResponse {}
 impl ::prost::Name for MsgCreateDcmResponse {
     const NAME: &'static str = "MsgCreateDCMResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -658,9 +774,9 @@ pub struct MsgUpdateParams {
 }
 impl ::prost::Name for MsgUpdateParams {
     const NAME: &'static str = "MsgUpdateParams";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
 /// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
@@ -671,11 +787,11 @@ impl ::prost::Name for MsgUpdateParams {
 pub struct MsgUpdateParamsResponse {}
 impl ::prost::Name for MsgUpdateParamsResponse {
     const NAME: &'static str = "MsgUpdateParamsResponse";
-    const PACKAGE: &'static str = "side.dlc";
+    const PACKAGE: &'static str = "bitway.dlc";
     fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("side.dlc.{}", Self::NAME)
+        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
     }
 }
-include!("side.dlc.serde.rs");
-include!("side.dlc.tonic.rs");
+include!("bitway.dlc.serde.rs");
+include!("bitway.dlc.tonic.rs");
 // @@protoc_insertion_point(module)

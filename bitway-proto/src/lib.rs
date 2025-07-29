@@ -22,25 +22,28 @@ pub use tendermint_proto::google::protobuf::{Any, Timestamp};
 pub use cosmos_sdk_proto::cosmos;
 
 /// The version (commit hash) of the Cosmos SDK used when generating this library.
-pub const VERSION: &str = include_str!("prost/side/GIT_COMMIT");
+pub const VERSION: &str = include_str!("prost/bitway/GIT_COMMIT");
 
-pub mod side {
+pub mod bitway {
     pub mod btcbridge {
-        include!("prost/side/side.btcbridge.rs");
+        include!("prost/bitway/bitway.btcbridge.rs");
     }
     pub mod liquidation {
-        include!("prost/side/side.liquidation.rs");
+        include!("prost/bitway/bitway.liquidation.rs");
     }
     pub mod dlc {
-        include!("prost/side/side.dlc.rs");
+        include!("prost/bitway/bitway.dlc.rs");
     }
     pub mod lending {
-        include!("prost/side/side.lending.rs");
+        include!("prost/bitway/bitway.lending.rs");
     }
     pub mod oracle {
-        include!("prost/side/side.oracle.rs");
+        include!("prost/bitway/bitway.oracle.rs");
     }
     pub mod tss {
-        include!("prost/side/side.tss.rs");
+        include!("prost/bitway/bitway.tss.rs");
+    }
+    pub mod farming {
+        include!("prost/bitway/bitway.farming.rs");
     }
 }

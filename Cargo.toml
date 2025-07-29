@@ -2,7 +2,7 @@
 resolver = "2"
 members = [
     "proto-build",
-    "side-proto",
+    "bitway-proto",
 ]
 
 [workspace.dependencies]

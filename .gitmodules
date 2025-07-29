@@ -1,4 +1,4 @@
-[submodule "side"]
-	path = side
-	url = https://github.com/sideprotocol/side.git
-	branch = lending
+[submodule "bitway"]
+	path = bitway
+	url = https://github.com/bitwaylabs/bitway.git
+	branch = release/v2.0.x

@@ -23,7 +23,7 @@ impl serde::Serialize for AssetMetadata {
         if self.is_base_price_asset {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.AssetMetadata", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.AssetMetadata", len)?;
         if !self.denom.is_empty() {
             struct_ser.serialize_field("denom", &self.denom)?;
         }
@@ -110,7 +110,7 @@ impl<'de> serde::Deserialize<'de> for AssetMetadata {
             type Value = AssetMetadata;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.AssetMetadata")
+                formatter.write_str("struct bitway.lending.AssetMetadata")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<AssetMetadata, V::Error>
@@ -168,7 +168,7 @@ impl<'de> serde::Deserialize<'de> for AssetMetadata {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.AssetMetadata", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.AssetMetadata", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -189,7 +189,7 @@ impl serde::Serialize for Authorization {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.Authorization", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Authorization", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -261,7 +261,7 @@ impl<'de> serde::Deserialize<'de> for Authorization {
             type Value = Authorization;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.Authorization")
+                formatter.write_str("struct bitway.lending.Authorization")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Authorization, V::Error>
@@ -303,7 +303,7 @@ impl<'de> serde::Deserialize<'de> for Authorization {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.Authorization", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.Authorization", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -403,7 +403,10 @@ impl serde::Serialize for CetInfo {
         if self.script.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.CetInfo", len)?;
+        if self.sighash_type != 0 {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.CetInfo", len)?;
         if self.event_id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -419,6 +422,9 @@ impl serde::Serialize for CetInfo {
         }
         if let Some(v) = self.script.as_ref() {
             struct_ser.serialize_field("script", v)?;
+        }
+        if self.sighash_type != 0 {
+            struct_ser.serialize_field("sighashType", &self.sighash_type)?;
         }
         struct_ser.end()
     }
@@ -438,6 +444,8 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
             "signature_point",
             "signaturePoint",
             "script",
+            "sighash_type",
+            "sighashType",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -446,6 +454,7 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
             OutcomeIndex,
             SignaturePoint,
             Script,
+            SighashType,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -477,6 +486,7 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
                                 Ok(GeneratedField::SignaturePoint)
                             }
                             "script" => Ok(GeneratedField::Script),
+                            "sighashType" | "sighash_type" => Ok(GeneratedField::SighashType),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -489,7 +499,7 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
             type Value = CetInfo;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.CetInfo")
+                formatter.write_str("struct bitway.lending.CetInfo")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<CetInfo, V::Error>
@@ -500,6 +510,7 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
                 let mut outcome_index__ = None;
                 let mut signature_point__ = None;
                 let mut script__ = None;
+                let mut sighash_type__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::EventId => {
@@ -532,6 +543,15 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
                             }
                             script__ = map_.next_value()?;
                         }
+                        GeneratedField::SighashType => {
+                            if sighash_type__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("sighashType"));
+                            }
+                            sighash_type__ = Some(
+                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
+                                    .0,
+                            );
+                        }
                     }
                 }
                 Ok(CetInfo {
@@ -539,10 +559,11 @@ impl<'de> serde::Deserialize<'de> for CetInfo {
                     outcome_index: outcome_index__.unwrap_or_default(),
                     signature_point: signature_point__.unwrap_or_default(),
                     script: script__,
+                    sighash_type: sighash_type__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.CetInfo", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.CetInfo", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -653,7 +674,7 @@ impl serde::Serialize for DlcMeta {
         if self.timeout_refund_script.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.DLCMeta", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.DLCMeta", len)?;
         if let Some(v) = self.liquidation_cet.as_ref() {
             struct_ser.serialize_field("liquidationCet", v)?;
         }
@@ -781,7 +802,7 @@ impl<'de> serde::Deserialize<'de> for DlcMeta {
             type Value = DlcMeta;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.DLCMeta")
+                formatter.write_str("struct bitway.lending.DLCMeta")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DlcMeta, V::Error>
@@ -872,7 +893,7 @@ impl<'de> serde::Deserialize<'de> for DlcMeta {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.DLCMeta", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.DLCMeta", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -899,7 +920,7 @@ impl serde::Serialize for DepositLog {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.DepositLog", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.DepositLog", len)?;
         if !self.txid.is_empty() {
             struct_ser.serialize_field("txid", &self.txid)?;
         }
@@ -994,7 +1015,7 @@ impl<'de> serde::Deserialize<'de> for DepositLog {
             type Value = DepositLog;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.DepositLog")
+                formatter.write_str("struct bitway.lending.DepositLog")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<DepositLog, V::Error>
@@ -1052,7 +1073,7 @@ impl<'de> serde::Deserialize<'de> for DepositLog {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.DepositLog", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.DepositLog", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1149,7 +1170,7 @@ impl serde::Serialize for GenesisState {
         if !self.pools.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -1211,7 +1232,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.GenesisState")
+                formatter.write_str("struct bitway.lending.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<GenesisState, V::Error>
@@ -1242,7 +1263,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1260,7 +1281,7 @@ impl serde::Serialize for LeafScript {
         if !self.control_block.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.LeafScript", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.LeafScript", len)?;
         if !self.script.is_empty() {
             struct_ser.serialize_field("script", &self.script)?;
         }
@@ -1322,7 +1343,7 @@ impl<'de> serde::Deserialize<'de> for LeafScript {
             type Value = LeafScript;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.LeafScript")
+                formatter.write_str("struct bitway.lending.LeafScript")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<LeafScript, V::Error>
@@ -1353,7 +1374,7 @@ impl<'de> serde::Deserialize<'de> for LeafScript {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.LeafScript", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.LeafScript", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1386,7 +1407,7 @@ impl serde::Serialize for LendingPool {
         if !self.total_reserve.is_empty() {
             len += 1;
         }
-        if self.total_stokens.is_some() {
+        if self.total_ytokens.is_some() {
             len += 1;
         }
         if !self.tranches.is_empty() {
@@ -1398,7 +1419,7 @@ impl serde::Serialize for LendingPool {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.LendingPool", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.LendingPool", len)?;
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
@@ -1420,8 +1441,8 @@ impl serde::Serialize for LendingPool {
         if !self.total_reserve.is_empty() {
             struct_ser.serialize_field("totalReserve", &self.total_reserve)?;
         }
-        if let Some(v) = self.total_stokens.as_ref() {
-            struct_ser.serialize_field("totalStokens", v)?;
+        if let Some(v) = self.total_ytokens.as_ref() {
+            struct_ser.serialize_field("totalYtokens", v)?;
         }
         if !self.tranches.is_empty() {
             struct_ser.serialize_field("tranches", &self.tranches)?;
@@ -1458,8 +1479,8 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
             "reserveAmount",
             "total_reserve",
             "totalReserve",
-            "total_stokens",
-            "totalStokens",
+            "total_ytokens",
+            "totalYtokens",
             "tranches",
             "config",
             "status",
@@ -1474,7 +1495,7 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
             TotalBorrowed,
             ReserveAmount,
             TotalReserve,
-            TotalStokens,
+            TotalYtokens,
             Tranches,
             Config,
             Status,
@@ -1514,7 +1535,7 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
                             "totalBorrowed" | "total_borrowed" => Ok(GeneratedField::TotalBorrowed),
                             "reserveAmount" | "reserve_amount" => Ok(GeneratedField::ReserveAmount),
                             "totalReserve" | "total_reserve" => Ok(GeneratedField::TotalReserve),
-                            "totalStokens" | "total_stokens" => Ok(GeneratedField::TotalStokens),
+                            "totalYtokens" | "total_ytokens" => Ok(GeneratedField::TotalYtokens),
                             "tranches" => Ok(GeneratedField::Tranches),
                             "config" => Ok(GeneratedField::Config),
                             "status" => Ok(GeneratedField::Status),
@@ -1530,7 +1551,7 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
             type Value = LendingPool;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.LendingPool")
+                formatter.write_str("struct bitway.lending.LendingPool")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<LendingPool, V::Error>
@@ -1544,7 +1565,7 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
                 let mut total_borrowed__ = None;
                 let mut reserve_amount__ = None;
                 let mut total_reserve__ = None;
-                let mut total_stokens__ = None;
+                let mut total_ytokens__ = None;
                 let mut tranches__ = None;
                 let mut config__ = None;
                 let mut status__ = None;
@@ -1592,11 +1613,11 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
                             }
                             total_reserve__ = Some(map_.next_value()?);
                         }
-                        GeneratedField::TotalStokens => {
-                            if total_stokens__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("totalStokens"));
+                        GeneratedField::TotalYtokens => {
+                            if total_ytokens__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("totalYtokens"));
                             }
-                            total_stokens__ = map_.next_value()?;
+                            total_ytokens__ = map_.next_value()?;
                         }
                         GeneratedField::Tranches => {
                             if tranches__.is_some() {
@@ -1626,14 +1647,14 @@ impl<'de> serde::Deserialize<'de> for LendingPool {
                     total_borrowed: total_borrowed__.unwrap_or_default(),
                     reserve_amount: reserve_amount__.unwrap_or_default(),
                     total_reserve: total_reserve__.unwrap_or_default(),
-                    total_stokens: total_stokens__,
+                    total_ytokens: total_ytokens__,
                     tranches: tranches__.unwrap_or_default(),
                     config: config__,
                     status: status__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.LendingPool", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.LendingPool", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1660,7 +1681,7 @@ impl serde::Serialize for LiquidationCet {
         if !self.signed_tx_hex.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.LiquidationCet", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.LiquidationCet", len)?;
         if !self.tx.is_empty() {
             struct_ser.serialize_field("tx", &self.tx)?;
         }
@@ -1757,7 +1778,7 @@ impl<'de> serde::Deserialize<'de> for LiquidationCet {
             type Value = LiquidationCet;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.LiquidationCet")
+                formatter.write_str("struct bitway.lending.LiquidationCet")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<LiquidationCet, V::Error>
@@ -1816,7 +1837,7 @@ impl<'de> serde::Deserialize<'de> for LiquidationCet {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.LiquidationCet", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.LiquidationCet", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -1873,9 +1894,6 @@ impl serde::Serialize for Loan {
         if self.borrow_apr != 0 {
             len += 1;
         }
-        if self.min_maturity != 0 {
-            len += 1;
-        }
         if !self.start_borrow_index.is_empty() {
             len += 1;
         }
@@ -1894,7 +1912,7 @@ impl serde::Serialize for Loan {
         if self.liquidation_id != 0 {
             len += 1;
         }
-        if !self.referrer.is_empty() {
+        if self.referrer.is_some() {
             len += 1;
         }
         if self.create_at.is_some() {
@@ -1906,7 +1924,7 @@ impl serde::Serialize for Loan {
         if self.status != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.Loan", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Loan", len)?;
         if !self.vault_address.is_empty() {
             struct_ser.serialize_field("vaultAddress", &self.vault_address)?;
         }
@@ -1964,13 +1982,6 @@ impl serde::Serialize for Loan {
         if self.borrow_apr != 0 {
             struct_ser.serialize_field("borrowApr", &self.borrow_apr)?;
         }
-        if self.min_maturity != 0 {
-            #[allow(clippy::needless_borrow)]
-            struct_ser.serialize_field(
-                "minMaturity",
-                alloc::string::ToString::to_string(&self.min_maturity).as_str(),
-            )?;
-        }
         if !self.start_borrow_index.is_empty() {
             struct_ser.serialize_field("startBorrowIndex", &self.start_borrow_index)?;
         }
@@ -1997,8 +2008,8 @@ impl serde::Serialize for Loan {
                 alloc::string::ToString::to_string(&self.liquidation_id).as_str(),
             )?;
         }
-        if !self.referrer.is_empty() {
-            struct_ser.serialize_field("referrer", &self.referrer)?;
+        if let Some(v) = self.referrer.as_ref() {
+            struct_ser.serialize_field("referrer", v)?;
         }
         if let Some(v) = self.create_at.as_ref() {
             struct_ser.serialize_field("createAt", v)?;
@@ -2047,8 +2058,6 @@ impl<'de> serde::Deserialize<'de> for Loan {
             "maturity",
             "borrow_apr",
             "borrowApr",
-            "min_maturity",
-            "minMaturity",
             "start_borrow_index",
             "startBorrowIndex",
             "liquidation_price",
@@ -2085,7 +2094,6 @@ impl<'de> serde::Deserialize<'de> for Loan {
             ProtocolFee,
             Maturity,
             BorrowApr,
-            MinMaturity,
             StartBorrowIndex,
             LiquidationPrice,
             DlcEventId,
@@ -2138,7 +2146,6 @@ impl<'de> serde::Deserialize<'de> for Loan {
                             "protocolFee" | "protocol_fee" => Ok(GeneratedField::ProtocolFee),
                             "maturity" => Ok(GeneratedField::Maturity),
                             "borrowApr" | "borrow_apr" => Ok(GeneratedField::BorrowApr),
-                            "minMaturity" | "min_maturity" => Ok(GeneratedField::MinMaturity),
                             "startBorrowIndex" | "start_borrow_index" => {
                                 Ok(GeneratedField::StartBorrowIndex)
                             }
@@ -2167,7 +2174,7 @@ impl<'de> serde::Deserialize<'de> for Loan {
             type Value = Loan;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.Loan")
+                formatter.write_str("struct bitway.lending.Loan")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Loan, V::Error>
@@ -2189,7 +2196,6 @@ impl<'de> serde::Deserialize<'de> for Loan {
                 let mut protocol_fee__ = None;
                 let mut maturity__ = None;
                 let mut borrow_apr__ = None;
-                let mut min_maturity__ = None;
                 let mut start_borrow_index__ = None;
                 let mut liquidation_price__ = None;
                 let mut dlc_event_id__ = None;
@@ -2306,15 +2312,6 @@ impl<'de> serde::Deserialize<'de> for Loan {
                                     .0,
                             );
                         }
-                        GeneratedField::MinMaturity => {
-                            if min_maturity__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("minMaturity"));
-                            }
-                            min_maturity__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
                         GeneratedField::StartBorrowIndex => {
                             if start_borrow_index__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startBorrowIndex"));
@@ -2361,7 +2358,7 @@ impl<'de> serde::Deserialize<'de> for Loan {
                             if referrer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referrer"));
                             }
-                            referrer__ = Some(map_.next_value()?);
+                            referrer__ = map_.next_value()?;
                         }
                         GeneratedField::CreateAt => {
                             if create_at__.is_some() {
@@ -2399,21 +2396,20 @@ impl<'de> serde::Deserialize<'de> for Loan {
                     protocol_fee: protocol_fee__.unwrap_or_default(),
                     maturity: maturity__.unwrap_or_default(),
                     borrow_apr: borrow_apr__.unwrap_or_default(),
-                    min_maturity: min_maturity__.unwrap_or_default(),
                     start_borrow_index: start_borrow_index__.unwrap_or_default(),
                     liquidation_price: liquidation_price__.unwrap_or_default(),
                     dlc_event_id: dlc_event_id__.unwrap_or_default(),
                     authorizations: authorizations__.unwrap_or_default(),
                     collateral_amount: collateral_amount__.unwrap_or_default(),
                     liquidation_id: liquidation_id__.unwrap_or_default(),
-                    referrer: referrer__.unwrap_or_default(),
+                    referrer: referrer__,
                     create_at: create_at__,
                     disburse_at: disburse_at__,
                     status: status__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.Loan", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.Loan", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2426,6 +2422,7 @@ impl serde::Serialize for LoanStatus {
         let variant = match self {
             Self::Unspecified => "Unspecified",
             Self::Requested => "Requested",
+            Self::Cancelled => "Cancelled",
             Self::Authorized => "Authorized",
             Self::Rejected => "Rejected",
             Self::Open => "Open",
@@ -2447,6 +2444,7 @@ impl<'de> serde::Deserialize<'de> for LoanStatus {
         const FIELDS: &[&str] = &[
             "Unspecified",
             "Requested",
+            "Cancelled",
             "Authorized",
             "Rejected",
             "Open",
@@ -2496,6 +2494,7 @@ impl<'de> serde::Deserialize<'de> for LoanStatus {
                 match value {
                     "Unspecified" => Ok(LoanStatus::Unspecified),
                     "Requested" => Ok(LoanStatus::Requested),
+                    "Cancelled" => Ok(LoanStatus::Cancelled),
                     "Authorized" => Ok(LoanStatus::Authorized),
                     "Rejected" => Ok(LoanStatus::Rejected),
                     "Open" => Ok(LoanStatus::Open),
@@ -2528,7 +2527,7 @@ impl serde::Serialize for MsgAddLiquidity {
         if self.amount.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgAddLiquidity", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgAddLiquidity", len)?;
         if !self.lender.is_empty() {
             struct_ser.serialize_field("lender", &self.lender)?;
         }
@@ -2595,7 +2594,7 @@ impl<'de> serde::Deserialize<'de> for MsgAddLiquidity {
             type Value = MsgAddLiquidity;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgAddLiquidity")
+                formatter.write_str("struct bitway.lending.MsgAddLiquidity")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgAddLiquidity, V::Error>
@@ -2634,7 +2633,7 @@ impl<'de> serde::Deserialize<'de> for MsgAddLiquidity {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgAddLiquidity", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgAddLiquidity", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2647,7 +2646,7 @@ impl serde::Serialize for MsgAddLiquidityResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.lending.MsgAddLiquidityResponse", len)?;
+            serializer.serialize_struct("bitway.lending.MsgAddLiquidityResponse", len)?;
         struct_ser.end()
     }
 }
@@ -2696,7 +2695,7 @@ impl<'de> serde::Deserialize<'de> for MsgAddLiquidityResponse {
             type Value = MsgAddLiquidityResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgAddLiquidityResponse")
+                formatter.write_str("struct bitway.lending.MsgAddLiquidityResponse")
             }
 
             fn visit_map<V>(
@@ -2713,7 +2712,7 @@ impl<'de> serde::Deserialize<'de> for MsgAddLiquidityResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgAddLiquidityResponse",
+            "bitway.lending.MsgAddLiquidityResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -2749,10 +2748,10 @@ impl serde::Serialize for MsgApply {
         if self.dcm_id != 0 {
             len += 1;
         }
-        if !self.referrer.is_empty() {
+        if !self.referral_code.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgApply", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgApply", len)?;
         if !self.borrower.is_empty() {
             struct_ser.serialize_field("borrower", &self.borrower)?;
         }
@@ -2782,8 +2781,8 @@ impl serde::Serialize for MsgApply {
                 alloc::string::ToString::to_string(&self.dcm_id).as_str(),
             )?;
         }
-        if !self.referrer.is_empty() {
-            struct_ser.serialize_field("referrer", &self.referrer)?;
+        if !self.referral_code.is_empty() {
+            struct_ser.serialize_field("referralCode", &self.referral_code)?;
         }
         struct_ser.end()
     }
@@ -2808,7 +2807,8 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
             "maturity",
             "dcm_id",
             "dcmId",
-            "referrer",
+            "referral_code",
+            "referralCode",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -2820,7 +2820,7 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
             BorrowAmount,
             Maturity,
             DcmId,
-            Referrer,
+            ReferralCode,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -2857,7 +2857,7 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
                             "borrowAmount" | "borrow_amount" => Ok(GeneratedField::BorrowAmount),
                             "maturity" => Ok(GeneratedField::Maturity),
                             "dcmId" | "dcm_id" => Ok(GeneratedField::DcmId),
-                            "referrer" => Ok(GeneratedField::Referrer),
+                            "referralCode" | "referral_code" => Ok(GeneratedField::ReferralCode),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -2870,7 +2870,7 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
             type Value = MsgApply;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgApply")
+                formatter.write_str("struct bitway.lending.MsgApply")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgApply, V::Error>
@@ -2884,7 +2884,7 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
                 let mut borrow_amount__ = None;
                 let mut maturity__ = None;
                 let mut dcm_id__ = None;
-                let mut referrer__ = None;
+                let mut referral_code__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Borrower => {
@@ -2937,11 +2937,11 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
                                     .0,
                             );
                         }
-                        GeneratedField::Referrer => {
-                            if referrer__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("referrer"));
+                        GeneratedField::ReferralCode => {
+                            if referral_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralCode"));
                             }
-                            referrer__ = Some(map_.next_value()?);
+                            referral_code__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2953,11 +2953,11 @@ impl<'de> serde::Deserialize<'de> for MsgApply {
                     borrow_amount: borrow_amount__,
                     maturity: maturity__.unwrap_or_default(),
                     dcm_id: dcm_id__.unwrap_or_default(),
-                    referrer: referrer__.unwrap_or_default(),
+                    referral_code: referral_code__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgApply", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgApply", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -2969,7 +2969,7 @@ impl serde::Serialize for MsgApplyResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.MsgApplyResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.lending.MsgApplyResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3018,7 +3018,7 @@ impl<'de> serde::Deserialize<'de> for MsgApplyResponse {
             type Value = MsgApplyResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgApplyResponse")
+                formatter.write_str("struct bitway.lending.MsgApplyResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgApplyResponse, V::Error>
@@ -3031,7 +3031,7 @@ impl<'de> serde::Deserialize<'de> for MsgApplyResponse {
                 Ok(MsgApplyResponse {})
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgApplyResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgApplyResponse", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3052,7 +3052,7 @@ impl serde::Serialize for MsgCreatePool {
         if self.config.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgCreatePool", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgCreatePool", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -3119,7 +3119,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePool {
             type Value = MsgCreatePool;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgCreatePool")
+                formatter.write_str("struct bitway.lending.MsgCreatePool")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgCreatePool, V::Error>
@@ -3158,7 +3158,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePool {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgCreatePool", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgCreatePool", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3170,7 +3170,8 @@ impl serde::Serialize for MsgCreatePoolResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.MsgCreatePoolResponse", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgCreatePoolResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3219,7 +3220,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePoolResponse {
             type Value = MsgCreatePoolResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgCreatePoolResponse")
+                formatter.write_str("struct bitway.lending.MsgCreatePoolResponse")
             }
 
             fn visit_map<V>(
@@ -3236,7 +3237,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePoolResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgCreatePoolResponse",
+            "bitway.lending.MsgCreatePoolResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3263,7 +3264,7 @@ impl serde::Serialize for MsgRedeem {
         if !self.signatures.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgRedeem", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgRedeem", len)?;
         if !self.borrower.is_empty() {
             struct_ser.serialize_field("borrower", &self.borrower)?;
         }
@@ -3335,7 +3336,7 @@ impl<'de> serde::Deserialize<'de> for MsgRedeem {
             type Value = MsgRedeem;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRedeem")
+                formatter.write_str("struct bitway.lending.MsgRedeem")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRedeem, V::Error>
@@ -3382,7 +3383,7 @@ impl<'de> serde::Deserialize<'de> for MsgRedeem {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgRedeem", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgRedeem", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3394,7 +3395,7 @@ impl serde::Serialize for MsgRedeemResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.MsgRedeemResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.lending.MsgRedeemResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3443,7 +3444,7 @@ impl<'de> serde::Deserialize<'de> for MsgRedeemResponse {
             type Value = MsgRedeemResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRedeemResponse")
+                formatter.write_str("struct bitway.lending.MsgRedeemResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRedeemResponse, V::Error>
@@ -3456,7 +3457,270 @@ impl<'de> serde::Deserialize<'de> for MsgRedeemResponse {
                 Ok(MsgRedeemResponse {})
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgRedeemResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgRedeemResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for MsgRegisterReferrer {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.authority.is_empty() {
+            len += 1;
+        }
+        if !self.name.is_empty() {
+            len += 1;
+        }
+        if !self.referral_code.is_empty() {
+            len += 1;
+        }
+        if !self.address.is_empty() {
+            len += 1;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgRegisterReferrer", len)?;
+        if !self.authority.is_empty() {
+            struct_ser.serialize_field("authority", &self.authority)?;
+        }
+        if !self.name.is_empty() {
+            struct_ser.serialize_field("name", &self.name)?;
+        }
+        if !self.referral_code.is_empty() {
+            struct_ser.serialize_field("referralCode", &self.referral_code)?;
+        }
+        if !self.address.is_empty() {
+            struct_ser.serialize_field("address", &self.address)?;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            struct_ser.serialize_field("referralFeeFactor", &self.referral_fee_factor)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for MsgRegisterReferrer {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "authority",
+            "name",
+            "referral_code",
+            "referralCode",
+            "address",
+            "referral_fee_factor",
+            "referralFeeFactor",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Authority,
+            Name,
+            ReferralCode,
+            Address,
+            ReferralFeeFactor,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "authority" => Ok(GeneratedField::Authority),
+                            "name" => Ok(GeneratedField::Name),
+                            "referralCode" | "referral_code" => Ok(GeneratedField::ReferralCode),
+                            "address" => Ok(GeneratedField::Address),
+                            "referralFeeFactor" | "referral_fee_factor" => {
+                                Ok(GeneratedField::ReferralFeeFactor)
+                            }
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgRegisterReferrer;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.MsgRegisterReferrer")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<MsgRegisterReferrer, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut authority__ = None;
+                let mut name__ = None;
+                let mut referral_code__ = None;
+                let mut address__ = None;
+                let mut referral_fee_factor__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Authority => {
+                            if authority__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("authority"));
+                            }
+                            authority__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Name => {
+                            if name__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("name"));
+                            }
+                            name__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralCode => {
+                            if referral_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralCode"));
+                            }
+                            referral_code__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Address => {
+                            if address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("address"));
+                            }
+                            address__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralFeeFactor => {
+                            if referral_fee_factor__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralFeeFactor"));
+                            }
+                            referral_fee_factor__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(MsgRegisterReferrer {
+                    authority: authority__.unwrap_or_default(),
+                    name: name__.unwrap_or_default(),
+                    referral_code: referral_code__.unwrap_or_default(),
+                    address: address__.unwrap_or_default(),
+                    referral_fee_factor: referral_fee_factor__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgRegisterReferrer",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for MsgRegisterReferrerResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let len = 0;
+        let struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgRegisterReferrerResponse", len)?;
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for MsgRegisterReferrerResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {}
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        Err(serde::de::Error::unknown_field(value, FIELDS))
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgRegisterReferrerResponse;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.MsgRegisterReferrerResponse")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<MsgRegisterReferrerResponse, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                }
+                Ok(MsgRegisterReferrerResponse {})
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgRegisterReferrerResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -3471,15 +3735,16 @@ impl serde::Serialize for MsgRemoveLiquidity {
         if !self.lender.is_empty() {
             len += 1;
         }
-        if self.stokens.is_some() {
+        if self.ytokens.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgRemoveLiquidity", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgRemoveLiquidity", len)?;
         if !self.lender.is_empty() {
             struct_ser.serialize_field("lender", &self.lender)?;
         }
-        if let Some(v) = self.stokens.as_ref() {
-            struct_ser.serialize_field("stokens", v)?;
+        if let Some(v) = self.ytokens.as_ref() {
+            struct_ser.serialize_field("ytokens", v)?;
         }
         struct_ser.end()
     }
@@ -3491,12 +3756,12 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidity {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["lender", "stokens"];
+        const FIELDS: &[&str] = &["lender", "ytokens"];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Lender,
-            Stokens,
+            Ytokens,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -3523,7 +3788,7 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidity {
                     {
                         match value {
                             "lender" => Ok(GeneratedField::Lender),
-                            "stokens" => Ok(GeneratedField::Stokens),
+                            "ytokens" => Ok(GeneratedField::Ytokens),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -3536,7 +3801,7 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidity {
             type Value = MsgRemoveLiquidity;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRemoveLiquidity")
+                formatter.write_str("struct bitway.lending.MsgRemoveLiquidity")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRemoveLiquidity, V::Error>
@@ -3544,7 +3809,7 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidity {
                 V: serde::de::MapAccess<'de>,
             {
                 let mut lender__ = None;
-                let mut stokens__ = None;
+                let mut ytokens__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Lender => {
@@ -3553,21 +3818,25 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidity {
                             }
                             lender__ = Some(map_.next_value()?);
                         }
-                        GeneratedField::Stokens => {
-                            if stokens__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("stokens"));
+                        GeneratedField::Ytokens => {
+                            if ytokens__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("ytokens"));
                             }
-                            stokens__ = map_.next_value()?;
+                            ytokens__ = map_.next_value()?;
                         }
                     }
                 }
                 Ok(MsgRemoveLiquidity {
                     lender: lender__.unwrap_or_default(),
-                    stokens: stokens__,
+                    ytokens: ytokens__,
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgRemoveLiquidity", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgRemoveLiquidity",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -3580,7 +3849,7 @@ impl serde::Serialize for MsgRemoveLiquidityResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.lending.MsgRemoveLiquidityResponse", len)?;
+            serializer.serialize_struct("bitway.lending.MsgRemoveLiquidityResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3629,7 +3898,7 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidityResponse {
             type Value = MsgRemoveLiquidityResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRemoveLiquidityResponse")
+                formatter.write_str("struct bitway.lending.MsgRemoveLiquidityResponse")
             }
 
             fn visit_map<V>(
@@ -3646,7 +3915,7 @@ impl<'de> serde::Deserialize<'de> for MsgRemoveLiquidityResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgRemoveLiquidityResponse",
+            "bitway.lending.MsgRemoveLiquidityResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3667,7 +3936,7 @@ impl serde::Serialize for MsgRepay {
         if !self.loan_id.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgRepay", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgRepay", len)?;
         if !self.borrower.is_empty() {
             struct_ser.serialize_field("borrower", &self.borrower)?;
         }
@@ -3729,7 +3998,7 @@ impl<'de> serde::Deserialize<'de> for MsgRepay {
             type Value = MsgRepay;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRepay")
+                formatter.write_str("struct bitway.lending.MsgRepay")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRepay, V::Error>
@@ -3760,7 +4029,7 @@ impl<'de> serde::Deserialize<'de> for MsgRepay {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgRepay", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgRepay", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3772,7 +4041,7 @@ impl serde::Serialize for MsgRepayResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.MsgRepayResponse", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.lending.MsgRepayResponse", len)?;
         struct_ser.end()
     }
 }
@@ -3821,7 +4090,7 @@ impl<'de> serde::Deserialize<'de> for MsgRepayResponse {
             type Value = MsgRepayResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgRepayResponse")
+                formatter.write_str("struct bitway.lending.MsgRepayResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgRepayResponse, V::Error>
@@ -3834,7 +4103,7 @@ impl<'de> serde::Deserialize<'de> for MsgRepayResponse {
                 Ok(MsgRepayResponse {})
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgRepayResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgRepayResponse", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -3870,7 +4139,7 @@ impl serde::Serialize for MsgSubmitCets {
         if !self.repayment_signatures.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgSubmitCets", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgSubmitCets", len)?;
         if !self.borrower.is_empty() {
             struct_ser.serialize_field("borrower", &self.borrower)?;
         }
@@ -3993,7 +4262,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitCets {
             type Value = MsgSubmitCets;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgSubmitCets")
+                formatter.write_str("struct bitway.lending.MsgSubmitCets")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgSubmitCets, V::Error>
@@ -4080,7 +4349,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitCets {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgSubmitCets", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgSubmitCets", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -4092,7 +4361,8 @@ impl serde::Serialize for MsgSubmitCetsResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.MsgSubmitCetsResponse", len)?;
+        let struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgSubmitCetsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4141,7 +4411,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitCetsResponse {
             type Value = MsgSubmitCetsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgSubmitCetsResponse")
+                formatter.write_str("struct bitway.lending.MsgSubmitCetsResponse")
             }
 
             fn visit_map<V>(
@@ -4158,7 +4428,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitCetsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgSubmitCetsResponse",
+            "bitway.lending.MsgSubmitCetsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4189,7 +4459,7 @@ impl serde::Serialize for MsgSubmitDepositTransaction {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.MsgSubmitDepositTransaction", len)?;
+            serializer.serialize_struct("bitway.lending.MsgSubmitDepositTransaction", len)?;
         if !self.relayer.is_empty() {
             struct_ser.serialize_field("relayer", &self.relayer)?;
         }
@@ -4274,7 +4544,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransaction {
             type Value = MsgSubmitDepositTransaction;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgSubmitDepositTransaction")
+                formatter.write_str("struct bitway.lending.MsgSubmitDepositTransaction")
             }
 
             fn visit_map<V>(
@@ -4333,7 +4603,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransaction {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgSubmitDepositTransaction",
+            "bitway.lending.MsgSubmitDepositTransaction",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4348,8 +4618,8 @@ impl serde::Serialize for MsgSubmitDepositTransactionResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser =
-            serializer.serialize_struct("side.lending.MsgSubmitDepositTransactionResponse", len)?;
+        let struct_ser = serializer
+            .serialize_struct("bitway.lending.MsgSubmitDepositTransactionResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4398,7 +4668,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransactionResponse {
             type Value = MsgSubmitDepositTransactionResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgSubmitDepositTransactionResponse")
+                formatter.write_str("struct bitway.lending.MsgSubmitDepositTransactionResponse")
             }
 
             fn visit_map<V>(
@@ -4415,7 +4685,7 @@ impl<'de> serde::Deserialize<'de> for MsgSubmitDepositTransactionResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgSubmitDepositTransactionResponse",
+            "bitway.lending.MsgSubmitDepositTransactionResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4436,7 +4706,7 @@ impl serde::Serialize for MsgUpdateParams {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.MsgUpdateParams", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.MsgUpdateParams", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -4498,7 +4768,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
             type Value = MsgUpdateParams;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgUpdateParams")
+                formatter.write_str("struct bitway.lending.MsgUpdateParams")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateParams, V::Error>
@@ -4529,7 +4799,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.MsgUpdateParams", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.MsgUpdateParams", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -4542,7 +4812,7 @@ impl serde::Serialize for MsgUpdateParamsResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.lending.MsgUpdateParamsResponse", len)?;
+            serializer.serialize_struct("bitway.lending.MsgUpdateParamsResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4591,7 +4861,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             type Value = MsgUpdateParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgUpdateParamsResponse")
+                formatter.write_str("struct bitway.lending.MsgUpdateParamsResponse")
             }
 
             fn visit_map<V>(
@@ -4608,7 +4878,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgUpdateParamsResponse",
+            "bitway.lending.MsgUpdateParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4633,7 +4903,7 @@ impl serde::Serialize for MsgUpdatePoolConfig {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.MsgUpdatePoolConfig", len)?;
+            serializer.serialize_struct("bitway.lending.MsgUpdatePoolConfig", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
         }
@@ -4700,7 +4970,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdatePoolConfig {
             type Value = MsgUpdatePoolConfig;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgUpdatePoolConfig")
+                formatter.write_str("struct bitway.lending.MsgUpdatePoolConfig")
             }
 
             fn visit_map<V>(
@@ -4743,7 +5013,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdatePoolConfig {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgUpdatePoolConfig",
+            "bitway.lending.MsgUpdatePoolConfig",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4759,7 +5029,7 @@ impl serde::Serialize for MsgUpdatePoolConfigResponse {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.lending.MsgUpdatePoolConfigResponse", len)?;
+            serializer.serialize_struct("bitway.lending.MsgUpdatePoolConfigResponse", len)?;
         struct_ser.end()
     }
 }
@@ -4808,7 +5078,7 @@ impl<'de> serde::Deserialize<'de> for MsgUpdatePoolConfigResponse {
             type Value = MsgUpdatePoolConfigResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.MsgUpdatePoolConfigResponse")
+                formatter.write_str("struct bitway.lending.MsgUpdatePoolConfigResponse")
             }
 
             fn visit_map<V>(
@@ -4825,7 +5095,263 @@ impl<'de> serde::Deserialize<'de> for MsgUpdatePoolConfigResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.MsgUpdatePoolConfigResponse",
+            "bitway.lending.MsgUpdatePoolConfigResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for MsgUpdateReferrer {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.authority.is_empty() {
+            len += 1;
+        }
+        if !self.name.is_empty() {
+            len += 1;
+        }
+        if !self.referral_code.is_empty() {
+            len += 1;
+        }
+        if !self.address.is_empty() {
+            len += 1;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgUpdateReferrer", len)?;
+        if !self.authority.is_empty() {
+            struct_ser.serialize_field("authority", &self.authority)?;
+        }
+        if !self.name.is_empty() {
+            struct_ser.serialize_field("name", &self.name)?;
+        }
+        if !self.referral_code.is_empty() {
+            struct_ser.serialize_field("referralCode", &self.referral_code)?;
+        }
+        if !self.address.is_empty() {
+            struct_ser.serialize_field("address", &self.address)?;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            struct_ser.serialize_field("referralFeeFactor", &self.referral_fee_factor)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for MsgUpdateReferrer {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "authority",
+            "name",
+            "referral_code",
+            "referralCode",
+            "address",
+            "referral_fee_factor",
+            "referralFeeFactor",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Authority,
+            Name,
+            ReferralCode,
+            Address,
+            ReferralFeeFactor,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "authority" => Ok(GeneratedField::Authority),
+                            "name" => Ok(GeneratedField::Name),
+                            "referralCode" | "referral_code" => Ok(GeneratedField::ReferralCode),
+                            "address" => Ok(GeneratedField::Address),
+                            "referralFeeFactor" | "referral_fee_factor" => {
+                                Ok(GeneratedField::ReferralFeeFactor)
+                            }
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateReferrer;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.MsgUpdateReferrer")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> core::result::Result<MsgUpdateReferrer, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut authority__ = None;
+                let mut name__ = None;
+                let mut referral_code__ = None;
+                let mut address__ = None;
+                let mut referral_fee_factor__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Authority => {
+                            if authority__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("authority"));
+                            }
+                            authority__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Name => {
+                            if name__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("name"));
+                            }
+                            name__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralCode => {
+                            if referral_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralCode"));
+                            }
+                            referral_code__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Address => {
+                            if address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("address"));
+                            }
+                            address__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralFeeFactor => {
+                            if referral_fee_factor__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralFeeFactor"));
+                            }
+                            referral_fee_factor__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(MsgUpdateReferrer {
+                    authority: authority__.unwrap_or_default(),
+                    name: name__.unwrap_or_default(),
+                    referral_code: referral_code__.unwrap_or_default(),
+                    address: address__.unwrap_or_default(),
+                    referral_fee_factor: referral_fee_factor__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgUpdateReferrer",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for MsgUpdateReferrerResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let len = 0;
+        let struct_ser =
+            serializer.serialize_struct("bitway.lending.MsgUpdateReferrerResponse", len)?;
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for MsgUpdateReferrerResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {}
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        Err(serde::de::Error::unknown_field(value, FIELDS))
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateReferrerResponse;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.MsgUpdateReferrerResponse")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<MsgUpdateReferrerResponse, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                }
+                Ok(MsgUpdateReferrerResponse {})
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.MsgUpdateReferrerResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -4852,7 +5378,7 @@ impl serde::Serialize for Params {
         if !self.protocol_fee_collector.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Params", len)?;
         if let Some(v) = self.final_timeout_duration.as_ref() {
             struct_ser.serialize_field("finalTimeoutDuration", v)?;
         }
@@ -4942,7 +5468,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.Params")
+                formatter.write_str("struct bitway.lending.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Params, V::Error>
@@ -4997,7 +5523,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.Params", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -5033,13 +5559,10 @@ impl serde::Serialize for PoolConfig {
         if self.request_fee.is_some() {
             len += 1;
         }
-        if !self.origination_fee.is_empty() {
+        if self.origination_fee_factor != 0 {
             len += 1;
         }
         if self.reserve_factor != 0 {
-            len += 1;
-        }
-        if self.referral_fee_factor != 0 {
             len += 1;
         }
         if self.max_ltv != 0 {
@@ -5051,7 +5574,7 @@ impl serde::Serialize for PoolConfig {
         if self.paused {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.PoolConfig", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.PoolConfig", len)?;
         if let Some(v) = self.collateral_asset.as_ref() {
             struct_ser.serialize_field("collateralAsset", v)?;
         }
@@ -5076,14 +5599,11 @@ impl serde::Serialize for PoolConfig {
         if let Some(v) = self.request_fee.as_ref() {
             struct_ser.serialize_field("requestFee", v)?;
         }
-        if !self.origination_fee.is_empty() {
-            struct_ser.serialize_field("originationFee", &self.origination_fee)?;
+        if self.origination_fee_factor != 0 {
+            struct_ser.serialize_field("originationFeeFactor", &self.origination_fee_factor)?;
         }
         if self.reserve_factor != 0 {
             struct_ser.serialize_field("reserveFactor", &self.reserve_factor)?;
-        }
-        if self.referral_fee_factor != 0 {
-            struct_ser.serialize_field("referralFeeFactor", &self.referral_fee_factor)?;
         }
         if self.max_ltv != 0 {
             struct_ser.serialize_field("maxLtv", &self.max_ltv)?;
@@ -5120,12 +5640,10 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
             "tranches",
             "request_fee",
             "requestFee",
-            "origination_fee",
-            "originationFee",
+            "origination_fee_factor",
+            "originationFeeFactor",
             "reserve_factor",
             "reserveFactor",
-            "referral_fee_factor",
-            "referralFeeFactor",
             "max_ltv",
             "maxLtv",
             "liquidation_threshold",
@@ -5143,9 +5661,8 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
             MaxBorrowAmount,
             Tranches,
             RequestFee,
-            OriginationFee,
+            OriginationFeeFactor,
             ReserveFactor,
-            ReferralFeeFactor,
             MaxLtv,
             LiquidationThreshold,
             Paused,
@@ -5188,13 +5705,10 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
                             }
                             "tranches" => Ok(GeneratedField::Tranches),
                             "requestFee" | "request_fee" => Ok(GeneratedField::RequestFee),
-                            "originationFee" | "origination_fee" => {
-                                Ok(GeneratedField::OriginationFee)
+                            "originationFeeFactor" | "origination_fee_factor" => {
+                                Ok(GeneratedField::OriginationFeeFactor)
                             }
                             "reserveFactor" | "reserve_factor" => Ok(GeneratedField::ReserveFactor),
-                            "referralFeeFactor" | "referral_fee_factor" => {
-                                Ok(GeneratedField::ReferralFeeFactor)
-                            }
                             "maxLtv" | "max_ltv" => Ok(GeneratedField::MaxLtv),
                             "liquidationThreshold" | "liquidation_threshold" => {
                                 Ok(GeneratedField::LiquidationThreshold)
@@ -5212,7 +5726,7 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
             type Value = PoolConfig;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.PoolConfig")
+                formatter.write_str("struct bitway.lending.PoolConfig")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<PoolConfig, V::Error>
@@ -5227,9 +5741,8 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
                 let mut max_borrow_amount__ = None;
                 let mut tranches__ = None;
                 let mut request_fee__ = None;
-                let mut origination_fee__ = None;
+                let mut origination_fee_factor__ = None;
                 let mut reserve_factor__ = None;
-                let mut referral_fee_factor__ = None;
                 let mut max_ltv__ = None;
                 let mut liquidation_threshold__ = None;
                 let mut paused__ = None;
@@ -5283,26 +5796,22 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
                             }
                             request_fee__ = map_.next_value()?;
                         }
-                        GeneratedField::OriginationFee => {
-                            if origination_fee__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("originationFee"));
+                        GeneratedField::OriginationFeeFactor => {
+                            if origination_fee_factor__.is_some() {
+                                return Err(serde::de::Error::duplicate_field(
+                                    "originationFeeFactor",
+                                ));
                             }
-                            origination_fee__ = Some(map_.next_value()?);
+                            origination_fee_factor__ = Some(
+                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
+                                    .0,
+                            );
                         }
                         GeneratedField::ReserveFactor => {
                             if reserve_factor__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reserveFactor"));
                             }
                             reserve_factor__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::ReferralFeeFactor => {
-                            if referral_fee_factor__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("referralFeeFactor"));
-                            }
-                            referral_fee_factor__ = Some(
                                 map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
                                     .0,
                             );
@@ -5344,16 +5853,15 @@ impl<'de> serde::Deserialize<'de> for PoolConfig {
                     max_borrow_amount: max_borrow_amount__.unwrap_or_default(),
                     tranches: tranches__.unwrap_or_default(),
                     request_fee: request_fee__,
-                    origination_fee: origination_fee__.unwrap_or_default(),
+                    origination_fee_factor: origination_fee_factor__.unwrap_or_default(),
                     reserve_factor: reserve_factor__.unwrap_or_default(),
-                    referral_fee_factor: referral_fee_factor__.unwrap_or_default(),
                     max_ltv: max_ltv__.unwrap_or_default(),
                     liquidation_threshold: liquidation_threshold__.unwrap_or_default(),
                     paused: paused__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.PoolConfig", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.PoolConfig", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -5449,7 +5957,7 @@ impl serde::Serialize for PoolTranche {
         if !self.total_reserve.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.PoolTranche", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.PoolTranche", len)?;
         if self.maturity != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -5533,7 +6041,7 @@ impl<'de> serde::Deserialize<'de> for PoolTranche {
             type Value = PoolTranche;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.PoolTranche")
+                formatter.write_str("struct bitway.lending.PoolTranche")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<PoolTranche, V::Error>
@@ -5583,7 +6091,7 @@ impl<'de> serde::Deserialize<'de> for PoolTranche {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.PoolTranche", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.PoolTranche", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -5601,10 +6109,8 @@ impl serde::Serialize for PoolTrancheConfig {
         if self.borrow_apr != 0 {
             len += 1;
         }
-        if self.min_maturity_factor != 0 {
-            len += 1;
-        }
-        let mut struct_ser = serializer.serialize_struct("side.lending.PoolTrancheConfig", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.PoolTrancheConfig", len)?;
         if self.maturity != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -5614,9 +6120,6 @@ impl serde::Serialize for PoolTrancheConfig {
         }
         if self.borrow_apr != 0 {
             struct_ser.serialize_field("borrowApr", &self.borrow_apr)?;
-        }
-        if self.min_maturity_factor != 0 {
-            struct_ser.serialize_field("minMaturityFactor", &self.min_maturity_factor)?;
         }
         struct_ser.end()
     }
@@ -5628,19 +6131,12 @@ impl<'de> serde::Deserialize<'de> for PoolTrancheConfig {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &[
-            "maturity",
-            "borrow_apr",
-            "borrowApr",
-            "min_maturity_factor",
-            "minMaturityFactor",
-        ];
+        const FIELDS: &[&str] = &["maturity", "borrow_apr", "borrowApr"];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Maturity,
             BorrowApr,
-            MinMaturityFactor,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -5668,9 +6164,6 @@ impl<'de> serde::Deserialize<'de> for PoolTrancheConfig {
                         match value {
                             "maturity" => Ok(GeneratedField::Maturity),
                             "borrowApr" | "borrow_apr" => Ok(GeneratedField::BorrowApr),
-                            "minMaturityFactor" | "min_maturity_factor" => {
-                                Ok(GeneratedField::MinMaturityFactor)
-                            }
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -5683,7 +6176,7 @@ impl<'de> serde::Deserialize<'de> for PoolTrancheConfig {
             type Value = PoolTrancheConfig;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.PoolTrancheConfig")
+                formatter.write_str("struct bitway.lending.PoolTrancheConfig")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<PoolTrancheConfig, V::Error>
@@ -5692,7 +6185,6 @@ impl<'de> serde::Deserialize<'de> for PoolTrancheConfig {
             {
                 let mut maturity__ = None;
                 let mut borrow_apr__ = None;
-                let mut min_maturity_factor__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Maturity => {
@@ -5713,25 +6205,19 @@ impl<'de> serde::Deserialize<'de> for PoolTrancheConfig {
                                     .0,
                             );
                         }
-                        GeneratedField::MinMaturityFactor => {
-                            if min_maturity_factor__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("minMaturityFactor"));
-                            }
-                            min_maturity_factor__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
                     }
                 }
                 Ok(PoolTrancheConfig {
                     maturity: maturity__.unwrap_or_default(),
                     borrow_apr: borrow_apr__.unwrap_or_default(),
-                    min_maturity_factor: min_maturity_factor__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.PoolTrancheConfig", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.PoolTrancheConfig",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -5756,7 +6242,7 @@ impl serde::Serialize for QueryCollateralAddressRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryCollateralAddressRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryCollateralAddressRequest", len)?;
         if !self.borrower_pubkey.is_empty() {
             struct_ser.serialize_field("borrowerPubkey", &self.borrower_pubkey)?;
         }
@@ -5845,7 +6331,7 @@ impl<'de> serde::Deserialize<'de> for QueryCollateralAddressRequest {
             type Value = QueryCollateralAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryCollateralAddressRequest")
+                formatter.write_str("struct bitway.lending.QueryCollateralAddressRequest")
             }
 
             fn visit_map<V>(
@@ -5901,7 +6387,7 @@ impl<'de> serde::Deserialize<'de> for QueryCollateralAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryCollateralAddressRequest",
+            "bitway.lending.QueryCollateralAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -5920,7 +6406,7 @@ impl serde::Serialize for QueryCollateralAddressResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryCollateralAddressResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryCollateralAddressResponse", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -5977,7 +6463,7 @@ impl<'de> serde::Deserialize<'de> for QueryCollateralAddressResponse {
             type Value = QueryCollateralAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryCollateralAddressResponse")
+                formatter.write_str("struct bitway.lending.QueryCollateralAddressResponse")
             }
 
             fn visit_map<V>(
@@ -6004,7 +6490,7 @@ impl<'de> serde::Deserialize<'de> for QueryCollateralAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryCollateralAddressResponse",
+            "bitway.lending.QueryCollateralAddressResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6023,7 +6509,7 @@ impl serde::Serialize for QueryCurrentInterestRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryCurrentInterestRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryCurrentInterestRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -6080,7 +6566,7 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentInterestRequest {
             type Value = QueryCurrentInterestRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryCurrentInterestRequest")
+                formatter.write_str("struct bitway.lending.QueryCurrentInterestRequest")
             }
 
             fn visit_map<V>(
@@ -6107,7 +6593,7 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentInterestRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryCurrentInterestRequest",
+            "bitway.lending.QueryCurrentInterestRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6126,7 +6612,7 @@ impl serde::Serialize for QueryCurrentInterestResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryCurrentInterestResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryCurrentInterestResponse", len)?;
         if let Some(v) = self.interest.as_ref() {
             struct_ser.serialize_field("interest", v)?;
         }
@@ -6183,7 +6669,7 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentInterestResponse {
             type Value = QueryCurrentInterestResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryCurrentInterestResponse")
+                formatter.write_str("struct bitway.lending.QueryCurrentInterestResponse")
             }
 
             fn visit_map<V>(
@@ -6210,7 +6696,7 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentInterestResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryCurrentInterestResponse",
+            "bitway.lending.QueryCurrentInterestResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6226,7 +6712,7 @@ impl serde::Serialize for QueryDlcEventCountRequest {
         use serde::ser::SerializeStruct;
         let len = 0;
         let struct_ser =
-            serializer.serialize_struct("side.lending.QueryDlcEventCountRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryDlcEventCountRequest", len)?;
         struct_ser.end()
     }
 }
@@ -6275,7 +6761,7 @@ impl<'de> serde::Deserialize<'de> for QueryDlcEventCountRequest {
             type Value = QueryDlcEventCountRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryDlcEventCountRequest")
+                formatter.write_str("struct bitway.lending.QueryDlcEventCountRequest")
             }
 
             fn visit_map<V>(
@@ -6292,7 +6778,7 @@ impl<'de> serde::Deserialize<'de> for QueryDlcEventCountRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryDlcEventCountRequest",
+            "bitway.lending.QueryDlcEventCountRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6311,7 +6797,7 @@ impl serde::Serialize for QueryDlcEventCountResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryDlcEventCountResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryDlcEventCountResponse", len)?;
         if self.count != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field(
@@ -6372,7 +6858,7 @@ impl<'de> serde::Deserialize<'de> for QueryDlcEventCountResponse {
             type Value = QueryDlcEventCountResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryDlcEventCountResponse")
+                formatter.write_str("struct bitway.lending.QueryDlcEventCountResponse")
             }
 
             fn visit_map<V>(
@@ -6402,7 +6888,7 @@ impl<'de> serde::Deserialize<'de> for QueryDlcEventCountResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryDlcEventCountResponse",
+            "bitway.lending.QueryDlcEventCountResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6430,7 +6916,7 @@ impl serde::Serialize for QueryLiquidationPriceRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLiquidationPriceRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLiquidationPriceRequest", len)?;
         if !self.pool_id.is_empty() {
             struct_ser.serialize_field("poolId", &self.pool_id)?;
         }
@@ -6516,7 +7002,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationPriceRequest {
             type Value = QueryLiquidationPriceRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLiquidationPriceRequest")
+                formatter.write_str("struct bitway.lending.QueryLiquidationPriceRequest")
             }
 
             fn visit_map<V>(
@@ -6570,7 +7056,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationPriceRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLiquidationPriceRequest",
+            "bitway.lending.QueryLiquidationPriceRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6592,7 +7078,7 @@ impl serde::Serialize for QueryLiquidationPriceResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLiquidationPriceResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLiquidationPriceResponse", len)?;
         if !self.price.is_empty() {
             struct_ser.serialize_field("price", &self.price)?;
         }
@@ -6654,7 +7140,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationPriceResponse {
             type Value = QueryLiquidationPriceResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLiquidationPriceResponse")
+                formatter.write_str("struct bitway.lending.QueryLiquidationPriceResponse")
             }
 
             fn visit_map<V>(
@@ -6689,7 +7175,7 @@ impl<'de> serde::Deserialize<'de> for QueryLiquidationPriceResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLiquidationPriceResponse",
+            "bitway.lending.QueryLiquidationPriceResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6711,7 +7197,7 @@ impl serde::Serialize for QueryLoanAuthorizationRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanAuthorizationRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanAuthorizationRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -6775,7 +7261,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanAuthorizationRequest {
             type Value = QueryLoanAuthorizationRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanAuthorizationRequest")
+                formatter.write_str("struct bitway.lending.QueryLoanAuthorizationRequest")
             }
 
             fn visit_map<V>(
@@ -6813,7 +7299,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanAuthorizationRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanAuthorizationRequest",
+            "bitway.lending.QueryLoanAuthorizationRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6835,7 +7321,7 @@ impl serde::Serialize for QueryLoanAuthorizationResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanAuthorizationResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanAuthorizationResponse", len)?;
         if !self.deposits.is_empty() {
             struct_ser.serialize_field("deposits", &self.deposits)?;
         }
@@ -6900,7 +7386,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanAuthorizationResponse {
             type Value = QueryLoanAuthorizationResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanAuthorizationResponse")
+                formatter.write_str("struct bitway.lending.QueryLoanAuthorizationResponse")
             }
 
             fn visit_map<V>(
@@ -6935,7 +7421,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanAuthorizationResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanAuthorizationResponse",
+            "bitway.lending.QueryLoanAuthorizationResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -6953,10 +7439,16 @@ impl serde::Serialize for QueryLoanCetInfosRequest {
         if !self.loan_id.is_empty() {
             len += 1;
         }
+        if !self.collateral_amount.is_empty() {
+            len += 1;
+        }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanCetInfosRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanCetInfosRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
+        }
+        if !self.collateral_amount.is_empty() {
+            struct_ser.serialize_field("collateralAmount", &self.collateral_amount)?;
         }
         struct_ser.end()
     }
@@ -6968,11 +7460,12 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosRequest {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["loan_id", "loanId"];
+        const FIELDS: &[&str] = &["loan_id", "loanId", "collateral_amount", "collateralAmount"];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             LoanId,
+            CollateralAmount,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -6999,6 +7492,9 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosRequest {
                     {
                         match value {
                             "loanId" | "loan_id" => Ok(GeneratedField::LoanId),
+                            "collateralAmount" | "collateral_amount" => {
+                                Ok(GeneratedField::CollateralAmount)
+                            }
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -7011,7 +7507,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosRequest {
             type Value = QueryLoanCetInfosRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanCetInfosRequest")
+                formatter.write_str("struct bitway.lending.QueryLoanCetInfosRequest")
             }
 
             fn visit_map<V>(
@@ -7022,6 +7518,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosRequest {
                 V: serde::de::MapAccess<'de>,
             {
                 let mut loan_id__ = None;
+                let mut collateral_amount__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::LoanId => {
@@ -7030,15 +7527,22 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosRequest {
                             }
                             loan_id__ = Some(map_.next_value()?);
                         }
+                        GeneratedField::CollateralAmount => {
+                            if collateral_amount__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("collateralAmount"));
+                            }
+                            collateral_amount__ = Some(map_.next_value()?);
+                        }
                     }
                 }
                 Ok(QueryLoanCetInfosRequest {
                     loan_id: loan_id__.unwrap_or_default(),
+                    collateral_amount: collateral_amount__.unwrap_or_default(),
                 })
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanCetInfosRequest",
+            "bitway.lending.QueryLoanCetInfosRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7063,7 +7567,7 @@ impl serde::Serialize for QueryLoanCetInfosResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanCetInfosResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanCetInfosResponse", len)?;
         if let Some(v) = self.liquidation_cet_info.as_ref() {
             struct_ser.serialize_field("liquidationCetInfo", v)?;
         }
@@ -7143,7 +7647,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosResponse {
             type Value = QueryLoanCetInfosResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanCetInfosResponse")
+                formatter.write_str("struct bitway.lending.QueryLoanCetInfosResponse")
             }
 
             fn visit_map<V>(
@@ -7190,7 +7694,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanCetInfosResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanCetInfosResponse",
+            "bitway.lending.QueryLoanCetInfosResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7209,7 +7713,7 @@ impl serde::Serialize for QueryLoanDepositsRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanDepositsRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanDepositsRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -7266,7 +7770,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDepositsRequest {
             type Value = QueryLoanDepositsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanDepositsRequest")
+                formatter.write_str("struct bitway.lending.QueryLoanDepositsRequest")
             }
 
             fn visit_map<V>(
@@ -7293,7 +7797,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDepositsRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanDepositsRequest",
+            "bitway.lending.QueryLoanDepositsRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7312,7 +7816,7 @@ impl serde::Serialize for QueryLoanDepositsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanDepositsResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanDepositsResponse", len)?;
         if !self.deposits.is_empty() {
             struct_ser.serialize_field("deposits", &self.deposits)?;
         }
@@ -7369,7 +7873,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDepositsResponse {
             type Value = QueryLoanDepositsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanDepositsResponse")
+                formatter.write_str("struct bitway.lending.QueryLoanDepositsResponse")
             }
 
             fn visit_map<V>(
@@ -7396,7 +7900,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDepositsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanDepositsResponse",
+            "bitway.lending.QueryLoanDepositsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7415,7 +7919,7 @@ impl serde::Serialize for QueryLoanDlcMetaRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanDlcMetaRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanDlcMetaRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -7472,7 +7976,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDlcMetaRequest {
             type Value = QueryLoanDlcMetaRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanDlcMetaRequest")
+                formatter.write_str("struct bitway.lending.QueryLoanDlcMetaRequest")
             }
 
             fn visit_map<V>(
@@ -7499,7 +8003,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDlcMetaRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanDlcMetaRequest",
+            "bitway.lending.QueryLoanDlcMetaRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7518,7 +8022,7 @@ impl serde::Serialize for QueryLoanDlcMetaResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoanDlcMetaResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoanDlcMetaResponse", len)?;
         if let Some(v) = self.dlc_meta.as_ref() {
             struct_ser.serialize_field("dlcMeta", v)?;
         }
@@ -7575,7 +8079,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDlcMetaResponse {
             type Value = QueryLoanDlcMetaResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanDlcMetaResponse")
+                formatter.write_str("struct bitway.lending.QueryLoanDlcMetaResponse")
             }
 
             fn visit_map<V>(
@@ -7602,7 +8106,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanDlcMetaResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoanDlcMetaResponse",
+            "bitway.lending.QueryLoanDlcMetaResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7620,7 +8124,7 @@ impl serde::Serialize for QueryLoanRequest {
         if !self.id.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryLoanRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.QueryLoanRequest", len)?;
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
@@ -7677,7 +8181,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanRequest {
             type Value = QueryLoanRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanRequest")
+                formatter.write_str("struct bitway.lending.QueryLoanRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryLoanRequest, V::Error>
@@ -7700,7 +8204,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryLoanRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.QueryLoanRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -7715,7 +8219,8 @@ impl serde::Serialize for QueryLoanResponse {
         if self.loan.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryLoanResponse", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryLoanResponse", len)?;
         if let Some(v) = self.loan.as_ref() {
             struct_ser.serialize_field("loan", v)?;
         }
@@ -7772,7 +8277,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoanResponse {
             type Value = QueryLoanResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoanResponse")
+                formatter.write_str("struct bitway.lending.QueryLoanResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryLoanResponse, V::Error>
@@ -7793,7 +8298,11 @@ impl<'de> serde::Deserialize<'de> for QueryLoanResponse {
                 Ok(QueryLoanResponse { loan: loan__ })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryLoanResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryLoanResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -7815,7 +8324,7 @@ impl serde::Serialize for QueryLoansByAddressRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoansByAddressRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoansByAddressRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -7885,7 +8394,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoansByAddressRequest {
             type Value = QueryLoansByAddressRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoansByAddressRequest")
+                formatter.write_str("struct bitway.lending.QueryLoansByAddressRequest")
             }
 
             fn visit_map<V>(
@@ -7928,7 +8437,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoansByAddressRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoansByAddressRequest",
+            "bitway.lending.QueryLoansByAddressRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -7950,7 +8459,7 @@ impl serde::Serialize for QueryLoansByAddressResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryLoansByAddressResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryLoansByAddressResponse", len)?;
         if !self.loans.is_empty() {
             struct_ser.serialize_field("loans", &self.loans)?;
         }
@@ -8012,7 +8521,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoansByAddressResponse {
             type Value = QueryLoansByAddressResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoansByAddressResponse")
+                formatter.write_str("struct bitway.lending.QueryLoansByAddressResponse")
             }
 
             fn visit_map<V>(
@@ -8047,7 +8556,245 @@ impl<'de> serde::Deserialize<'de> for QueryLoansByAddressResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryLoansByAddressResponse",
+            "bitway.lending.QueryLoansByAddressResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for QueryLoansByOracleRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.oracle_pubkey.is_empty() {
+            len += 1;
+        }
+        if self.pagination.is_some() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryLoansByOracleRequest", len)?;
+        if !self.oracle_pubkey.is_empty() {
+            struct_ser.serialize_field("oraclePubkey", &self.oracle_pubkey)?;
+        }
+        if let Some(v) = self.pagination.as_ref() {
+            struct_ser.serialize_field("pagination", v)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for QueryLoansByOracleRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &["oracle_pubkey", "oraclePubkey", "pagination"];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            OraclePubkey,
+            Pagination,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "oraclePubkey" | "oracle_pubkey" => Ok(GeneratedField::OraclePubkey),
+                            "pagination" => Ok(GeneratedField::Pagination),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryLoansByOracleRequest;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.QueryLoansByOracleRequest")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<QueryLoansByOracleRequest, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut oracle_pubkey__ = None;
+                let mut pagination__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::OraclePubkey => {
+                            if oracle_pubkey__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("oraclePubkey"));
+                            }
+                            oracle_pubkey__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Pagination => {
+                            if pagination__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("pagination"));
+                            }
+                            pagination__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(QueryLoansByOracleRequest {
+                    oracle_pubkey: oracle_pubkey__.unwrap_or_default(),
+                    pagination: pagination__,
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryLoansByOracleRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for QueryLoansByOracleResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.loans.is_empty() {
+            len += 1;
+        }
+        if self.pagination.is_some() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryLoansByOracleResponse", len)?;
+        if !self.loans.is_empty() {
+            struct_ser.serialize_field("loans", &self.loans)?;
+        }
+        if let Some(v) = self.pagination.as_ref() {
+            struct_ser.serialize_field("pagination", v)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for QueryLoansByOracleResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &["loans", "pagination"];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Loans,
+            Pagination,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "loans" => Ok(GeneratedField::Loans),
+                            "pagination" => Ok(GeneratedField::Pagination),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryLoansByOracleResponse;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.QueryLoansByOracleResponse")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<QueryLoansByOracleResponse, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut loans__ = None;
+                let mut pagination__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Loans => {
+                            if loans__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("loans"));
+                            }
+                            loans__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Pagination => {
+                            if pagination__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("pagination"));
+                            }
+                            pagination__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(QueryLoansByOracleResponse {
+                    loans: loans__.unwrap_or_default(),
+                    pagination: pagination__,
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryLoansByOracleResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8068,7 +8815,8 @@ impl serde::Serialize for QueryLoansRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryLoansRequest", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryLoansRequest", len)?;
         if self.status != 0 {
             let v = LoanStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
@@ -8133,7 +8881,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoansRequest {
             type Value = QueryLoansRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoansRequest")
+                formatter.write_str("struct bitway.lending.QueryLoansRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryLoansRequest, V::Error>
@@ -8164,7 +8912,11 @@ impl<'de> serde::Deserialize<'de> for QueryLoansRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryLoansRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryLoansRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -8182,7 +8934,8 @@ impl serde::Serialize for QueryLoansResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryLoansResponse", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryLoansResponse", len)?;
         if !self.loans.is_empty() {
             struct_ser.serialize_field("loans", &self.loans)?;
         }
@@ -8244,7 +8997,7 @@ impl<'de> serde::Deserialize<'de> for QueryLoansResponse {
             type Value = QueryLoansResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryLoansResponse")
+                formatter.write_str("struct bitway.lending.QueryLoansResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryLoansResponse, V::Error>
@@ -8275,7 +9028,11 @@ impl<'de> serde::Deserialize<'de> for QueryLoansResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryLoansResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryLoansResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -8287,7 +9044,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("side.lending.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("bitway.lending.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -8336,7 +9093,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryParamsRequest")
+                formatter.write_str("struct bitway.lending.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryParamsRequest, V::Error>
@@ -8349,7 +9106,11 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 Ok(QueryParamsRequest {})
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryParamsRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryParamsRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -8365,7 +9126,7 @@ impl serde::Serialize for QueryParamsResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryParamsResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -8422,7 +9183,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryParamsResponse")
+                formatter.write_str("struct bitway.lending.QueryParamsResponse")
             }
 
             fn visit_map<V>(
@@ -8447,7 +9208,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryParamsResponse",
+            "bitway.lending.QueryParamsResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8466,7 +9227,7 @@ impl serde::Serialize for QueryPoolExchangeRateRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryPoolExchangeRateRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryPoolExchangeRateRequest", len)?;
         if !self.pool_id.is_empty() {
             struct_ser.serialize_field("poolId", &self.pool_id)?;
         }
@@ -8523,7 +9284,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolExchangeRateRequest {
             type Value = QueryPoolExchangeRateRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolExchangeRateRequest")
+                formatter.write_str("struct bitway.lending.QueryPoolExchangeRateRequest")
             }
 
             fn visit_map<V>(
@@ -8550,7 +9311,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolExchangeRateRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryPoolExchangeRateRequest",
+            "bitway.lending.QueryPoolExchangeRateRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8569,7 +9330,7 @@ impl serde::Serialize for QueryPoolExchangeRateResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryPoolExchangeRateResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryPoolExchangeRateResponse", len)?;
         if !self.exchange_rate.is_empty() {
             struct_ser.serialize_field("exchangeRate", &self.exchange_rate)?;
         }
@@ -8626,7 +9387,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolExchangeRateResponse {
             type Value = QueryPoolExchangeRateResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolExchangeRateResponse")
+                formatter.write_str("struct bitway.lending.QueryPoolExchangeRateResponse")
             }
 
             fn visit_map<V>(
@@ -8653,7 +9414,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolExchangeRateResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryPoolExchangeRateResponse",
+            "bitway.lending.QueryPoolExchangeRateResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -8671,7 +9432,7 @@ impl serde::Serialize for QueryPoolRequest {
         if !self.id.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryPoolRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.QueryPoolRequest", len)?;
         if !self.id.is_empty() {
             struct_ser.serialize_field("id", &self.id)?;
         }
@@ -8728,7 +9489,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolRequest {
             type Value = QueryPoolRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolRequest")
+                formatter.write_str("struct bitway.lending.QueryPoolRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryPoolRequest, V::Error>
@@ -8751,7 +9512,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryPoolRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.QueryPoolRequest", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -8766,7 +9527,8 @@ impl serde::Serialize for QueryPoolResponse {
         if self.pool.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryPoolResponse", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryPoolResponse", len)?;
         if let Some(v) = self.pool.as_ref() {
             struct_ser.serialize_field("pool", v)?;
         }
@@ -8823,7 +9585,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolResponse {
             type Value = QueryPoolResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolResponse")
+                formatter.write_str("struct bitway.lending.QueryPoolResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryPoolResponse, V::Error>
@@ -8844,7 +9606,11 @@ impl<'de> serde::Deserialize<'de> for QueryPoolResponse {
                 Ok(QueryPoolResponse { pool: pool__ })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryPoolResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryPoolResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -8859,7 +9625,8 @@ impl serde::Serialize for QueryPoolsRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryPoolsRequest", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryPoolsRequest", len)?;
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
         }
@@ -8916,7 +9683,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolsRequest {
             type Value = QueryPoolsRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolsRequest")
+                formatter.write_str("struct bitway.lending.QueryPoolsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryPoolsRequest, V::Error>
@@ -8939,7 +9706,11 @@ impl<'de> serde::Deserialize<'de> for QueryPoolsRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryPoolsRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryPoolsRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -8957,7 +9728,8 @@ impl serde::Serialize for QueryPoolsResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.QueryPoolsResponse", len)?;
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryPoolsResponse", len)?;
         if !self.pools.is_empty() {
             struct_ser.serialize_field("pools", &self.pools)?;
         }
@@ -9019,7 +9791,7 @@ impl<'de> serde::Deserialize<'de> for QueryPoolsResponse {
             type Value = QueryPoolsResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryPoolsResponse")
+                formatter.write_str("struct bitway.lending.QueryPoolsResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryPoolsResponse, V::Error>
@@ -9050,7 +9822,11 @@ impl<'de> serde::Deserialize<'de> for QueryPoolsResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.QueryPoolsResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryPoolsResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
     }
 }
 #[cfg(feature = "serde")]
@@ -9066,7 +9842,7 @@ impl serde::Serialize for QueryRedemptionRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryRedemptionRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryRedemptionRequest", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -9125,7 +9901,7 @@ impl<'de> serde::Deserialize<'de> for QueryRedemptionRequest {
             type Value = QueryRedemptionRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryRedemptionRequest")
+                formatter.write_str("struct bitway.lending.QueryRedemptionRequest")
             }
 
             fn visit_map<V>(
@@ -9155,7 +9931,7 @@ impl<'de> serde::Deserialize<'de> for QueryRedemptionRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryRedemptionRequest",
+            "bitway.lending.QueryRedemptionRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9174,7 +9950,7 @@ impl serde::Serialize for QueryRedemptionResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryRedemptionResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryRedemptionResponse", len)?;
         if let Some(v) = self.redemption.as_ref() {
             struct_ser.serialize_field("redemption", v)?;
         }
@@ -9231,7 +10007,7 @@ impl<'de> serde::Deserialize<'de> for QueryRedemptionResponse {
             type Value = QueryRedemptionResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryRedemptionResponse")
+                formatter.write_str("struct bitway.lending.QueryRedemptionResponse")
             }
 
             fn visit_map<V>(
@@ -9258,7 +10034,229 @@ impl<'de> serde::Deserialize<'de> for QueryRedemptionResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryRedemptionResponse",
+            "bitway.lending.QueryRedemptionResponse",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for QueryReferrersRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.pagination.is_some() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryReferrersRequest", len)?;
+        if let Some(v) = self.pagination.as_ref() {
+            struct_ser.serialize_field("pagination", v)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for QueryReferrersRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &["pagination"];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Pagination,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "pagination" => Ok(GeneratedField::Pagination),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryReferrersRequest;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.QueryReferrersRequest")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<QueryReferrersRequest, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut pagination__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Pagination => {
+                            if pagination__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("pagination"));
+                            }
+                            pagination__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(QueryReferrersRequest {
+                    pagination: pagination__,
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryReferrersRequest",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for QueryReferrersResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.referrers.is_empty() {
+            len += 1;
+        }
+        if self.pagination.is_some() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.lending.QueryReferrersResponse", len)?;
+        if !self.referrers.is_empty() {
+            struct_ser.serialize_field("referrers", &self.referrers)?;
+        }
+        if let Some(v) = self.pagination.as_ref() {
+            struct_ser.serialize_field("pagination", v)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for QueryReferrersResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &["referrers", "pagination"];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Referrers,
+            Pagination,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "referrers" => Ok(GeneratedField::Referrers),
+                            "pagination" => Ok(GeneratedField::Pagination),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryReferrersResponse;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.QueryReferrersResponse")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<QueryReferrersResponse, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut referrers__ = None;
+                let mut pagination__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Referrers => {
+                            if referrers__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referrers"));
+                            }
+                            referrers__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Pagination => {
+                            if pagination__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("pagination"));
+                            }
+                            pagination__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(QueryReferrersResponse {
+                    referrers: referrers__.unwrap_or_default(),
+                    pagination: pagination__,
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.lending.QueryReferrersResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9277,7 +10275,7 @@ impl serde::Serialize for QueryRepaymentRequest {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryRepaymentRequest", len)?;
+            serializer.serialize_struct("bitway.lending.QueryRepaymentRequest", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -9334,7 +10332,7 @@ impl<'de> serde::Deserialize<'de> for QueryRepaymentRequest {
             type Value = QueryRepaymentRequest;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryRepaymentRequest")
+                formatter.write_str("struct bitway.lending.QueryRepaymentRequest")
             }
 
             fn visit_map<V>(
@@ -9361,7 +10359,7 @@ impl<'de> serde::Deserialize<'de> for QueryRepaymentRequest {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryRepaymentRequest",
+            "bitway.lending.QueryRepaymentRequest",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9380,7 +10378,7 @@ impl serde::Serialize for QueryRepaymentResponse {
             len += 1;
         }
         let mut struct_ser =
-            serializer.serialize_struct("side.lending.QueryRepaymentResponse", len)?;
+            serializer.serialize_struct("bitway.lending.QueryRepaymentResponse", len)?;
         if let Some(v) = self.repayment.as_ref() {
             struct_ser.serialize_field("repayment", v)?;
         }
@@ -9437,7 +10435,7 @@ impl<'de> serde::Deserialize<'de> for QueryRepaymentResponse {
             type Value = QueryRepaymentResponse;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.QueryRepaymentResponse")
+                formatter.write_str("struct bitway.lending.QueryRepaymentResponse")
             }
 
             fn visit_map<V>(
@@ -9464,7 +10462,7 @@ impl<'de> serde::Deserialize<'de> for QueryRepaymentResponse {
             }
         }
         deserializer.deserialize_struct(
-            "side.lending.QueryRepaymentResponse",
+            "bitway.lending.QueryRepaymentResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -9500,7 +10498,7 @@ impl serde::Serialize for Redemption {
         if self.create_at.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.Redemption", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Redemption", len)?;
         if self.id != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser
@@ -9600,7 +10598,7 @@ impl<'de> serde::Deserialize<'de> for Redemption {
             type Value = Redemption;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.Redemption")
+                formatter.write_str("struct bitway.lending.Redemption")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Redemption, V::Error>
@@ -9674,7 +10672,159 @@ impl<'de> serde::Deserialize<'de> for Redemption {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.Redemption", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.Redemption", FIELDS, GeneratedVisitor)
+    }
+}
+#[cfg(feature = "serde")]
+impl serde::Serialize for Referrer {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.name.is_empty() {
+            len += 1;
+        }
+        if !self.referral_code.is_empty() {
+            len += 1;
+        }
+        if !self.address.is_empty() {
+            len += 1;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Referrer", len)?;
+        if !self.name.is_empty() {
+            struct_ser.serialize_field("name", &self.name)?;
+        }
+        if !self.referral_code.is_empty() {
+            struct_ser.serialize_field("referralCode", &self.referral_code)?;
+        }
+        if !self.address.is_empty() {
+            struct_ser.serialize_field("address", &self.address)?;
+        }
+        if !self.referral_fee_factor.is_empty() {
+            struct_ser.serialize_field("referralFeeFactor", &self.referral_fee_factor)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for Referrer {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "name",
+            "referral_code",
+            "referralCode",
+            "address",
+            "referral_fee_factor",
+            "referralFeeFactor",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Name,
+            ReferralCode,
+            Address,
+            ReferralFeeFactor,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "name" => Ok(GeneratedField::Name),
+                            "referralCode" | "referral_code" => Ok(GeneratedField::ReferralCode),
+                            "address" => Ok(GeneratedField::Address),
+                            "referralFeeFactor" | "referral_fee_factor" => {
+                                Ok(GeneratedField::ReferralFeeFactor)
+                            }
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = Referrer;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.lending.Referrer")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> core::result::Result<Referrer, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut name__ = None;
+                let mut referral_code__ = None;
+                let mut address__ = None;
+                let mut referral_fee_factor__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Name => {
+                            if name__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("name"));
+                            }
+                            name__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralCode => {
+                            if referral_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralCode"));
+                            }
+                            referral_code__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Address => {
+                            if address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("address"));
+                            }
+                            address__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ReferralFeeFactor => {
+                            if referral_fee_factor__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("referralFeeFactor"));
+                            }
+                            referral_fee_factor__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(Referrer {
+                    name: name__.unwrap_or_default(),
+                    referral_code: referral_code__.unwrap_or_default(),
+                    address: address__.unwrap_or_default(),
+                    referral_fee_factor: referral_fee_factor__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("bitway.lending.Referrer", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -9695,7 +10845,7 @@ impl serde::Serialize for Repayment {
         if self.create_at.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.Repayment", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.Repayment", len)?;
         if !self.loan_id.is_empty() {
             struct_ser.serialize_field("loanId", &self.loan_id)?;
         }
@@ -9762,7 +10912,7 @@ impl<'de> serde::Deserialize<'de> for Repayment {
             type Value = Repayment;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.Repayment")
+                formatter.write_str("struct bitway.lending.Repayment")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<Repayment, V::Error>
@@ -9801,7 +10951,7 @@ impl<'de> serde::Deserialize<'de> for Repayment {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.Repayment", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.Repayment", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
@@ -9828,7 +10978,7 @@ impl serde::Serialize for RepaymentCet {
         if !self.signed_tx_hex.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("side.lending.RepaymentCet", len)?;
+        let mut struct_ser = serializer.serialize_struct("bitway.lending.RepaymentCet", len)?;
         if !self.tx.is_empty() {
             struct_ser.serialize_field("tx", &self.tx)?;
         }
@@ -9921,7 +11071,7 @@ impl<'de> serde::Deserialize<'de> for RepaymentCet {
             type Value = RepaymentCet;
 
             fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct side.lending.RepaymentCet")
+                formatter.write_str("struct bitway.lending.RepaymentCet")
             }
 
             fn visit_map<V>(self, mut map_: V) -> core::result::Result<RepaymentCet, V::Error>
@@ -9982,7 +11132,7 @@ impl<'de> serde::Deserialize<'de> for RepaymentCet {
                 })
             }
         }
-        deserializer.deserialize_struct("side.lending.RepaymentCet", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("bitway.lending.RepaymentCet", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]
