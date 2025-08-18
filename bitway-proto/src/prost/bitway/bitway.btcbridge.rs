@@ -45,12 +45,15 @@ pub struct Params {
     /// TSS params
     #[prost(message, optional, tag = "14")]
     pub tss_params: ::core::option::Option<TssParams>,
-    /// IBC params
-    #[prost(message, optional, tag = "15")]
-    pub ibc_params: ::core::option::Option<IbcParams>,
     /// Rate limit params
-    #[prost(message, optional, tag = "16")]
+    #[prost(message, optional, tag = "15")]
     pub rate_limit_params: ::core::option::Option<RateLimitParams>,
+    /// IBC params
+    #[prost(message, optional, tag = "16")]
+    pub ibc_params: ::core::option::Option<IbcParams>,
+    /// Fee sponsorship params
+    #[prost(message, optional, tag = "17")]
+    pub fee_sponsorship_params: ::core::option::Option<FeeSponsorshipParams>,
 }
 impl ::prost::Name for Params {
     const NAME: &'static str = "Params";
@@ -145,6 +148,25 @@ impl ::prost::Name for ProtocolFees {
         ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
+/// TSSParams defines the params related to TSS
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TssParams {
+    /// Timeout duration for DKG request
+    #[prost(message, optional, tag = "1")]
+    pub dkg_timeout_period: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+    /// Transition period after which TSS participants update process is completed
+    #[prost(message, optional, tag = "2")]
+    pub participant_update_transition_period:
+        ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+}
+impl ::prost::Name for TssParams {
+    const NAME: &'static str = "TSSParams";
+    const PACKAGE: &'static str = "bitway.btcbridge";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
+    }
+}
 /// RateLimitParams defines the params related to the rate limit for BTC withdrawal
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -199,25 +221,6 @@ impl ::prost::Name for AddressRateLimitParams {
         ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
     }
 }
-/// TSSParams defines the params related to TSS
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TssParams {
-    /// Timeout duration for DKG request
-    #[prost(message, optional, tag = "1")]
-    pub dkg_timeout_period: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
-    /// Transition period after which TSS participants update process is completed
-    #[prost(message, optional, tag = "2")]
-    pub participant_update_transition_period:
-        ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
-}
-impl ::prost::Name for TssParams {
-    const NAME: &'static str = "TSSParams";
-    const PACKAGE: &'static str = "bitway.btcbridge";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
-    }
-}
 /// IBCParams defines the params related to IBC
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -231,6 +234,21 @@ pub struct IbcParams {
 }
 impl ::prost::Name for IbcParams {
     const NAME: &'static str = "IBCParams";
+    const PACKAGE: &'static str = "bitway.btcbridge";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
+    }
+}
+/// FeeSponsorshipParams defines the params related to fee sponsorship
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FeeSponsorshipParams {
+    /// Maximum sponsorship fee per tx
+    #[prost(message, repeated, tag = "1")]
+    pub max_sponsor_fee: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
+}
+impl ::prost::Name for FeeSponsorshipParams {
+    const NAME: &'static str = "FeeSponsorshipParams";
     const PACKAGE: &'static str = "bitway.btcbridge";
     fn full_name() -> ::prost::alloc::string::String {
         ::prost::alloc::format!("bitway.btcbridge.{}", Self::NAME)
@@ -850,8 +868,18 @@ pub struct GenesisState {
     pub params: ::core::option::Option<Params>,
     #[prost(message, repeated, tag = "2")]
     pub utxos: ::prost::alloc::vec::Vec<Utxo>,
-    #[prost(message, optional, tag = "3")]
-    pub dkg_request: ::core::option::Option<DkgRequest>,
+    #[prost(message, repeated, tag = "3")]
+    pub dkg_requests: ::prost::alloc::vec::Vec<DkgRequest>,
+    #[prost(message, repeated, tag = "4")]
+    pub dkg_completions: ::prost::alloc::vec::Vec<DkgCompletionRequest>,
+    #[prost(message, repeated, tag = "5")]
+    pub signing_requests: ::prost::alloc::vec::Vec<SigningRequest>,
+    #[prost(message, repeated, tag = "6")]
+    pub withdraw_requests: ::prost::alloc::vec::Vec<WithdrawRequest>,
+    #[prost(message, repeated, tag = "7")]
+    pub pending_btc_withdraw_requests: ::prost::alloc::vec::Vec<WithdrawRequest>,
+    #[prost(string, repeated, tag = "8")]
+    pub minted_tx_hashes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 impl ::prost::Name for GenesisState {
     const NAME: &'static str = "GenesisState";

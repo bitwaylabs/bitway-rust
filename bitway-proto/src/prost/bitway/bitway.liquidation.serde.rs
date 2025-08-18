@@ -362,6 +362,9 @@ impl serde::Serialize for Liquidation {
         if self.unliquidated_collateral_amount.is_some() {
             len += 1;
         }
+        if self.accrued_interest_during_liquidation.is_some() {
+            len += 1;
+        }
         if !self.liquidation_cet.is_empty() {
             len += 1;
         }
@@ -425,6 +428,9 @@ impl serde::Serialize for Liquidation {
         if let Some(v) = self.unliquidated_collateral_amount.as_ref() {
             struct_ser.serialize_field("unliquidatedCollateralAmount", v)?;
         }
+        if let Some(v) = self.accrued_interest_during_liquidation.as_ref() {
+            struct_ser.serialize_field("accruedInterestDuringLiquidation", v)?;
+        }
         if !self.liquidation_cet.is_empty() {
             struct_ser.serialize_field("liquidationCet", &self.liquidation_cet)?;
         }
@@ -480,6 +486,8 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
             "protocolLiquidationFee",
             "unliquidated_collateral_amount",
             "unliquidatedCollateralAmount",
+            "accrued_interest_during_liquidation",
+            "accruedInterestDuringLiquidation",
             "liquidation_cet",
             "liquidationCet",
             "settlement_tx",
@@ -507,6 +515,7 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
             LiquidationBonusAmount,
             ProtocolLiquidationFee,
             UnliquidatedCollateralAmount,
+            AccruedInterestDuringLiquidation,
             LiquidationCet,
             SettlementTx,
             SettlementTxId,
@@ -572,6 +581,10 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
                             "unliquidatedCollateralAmount" | "unliquidated_collateral_amount" => {
                                 Ok(GeneratedField::UnliquidatedCollateralAmount)
                             }
+                            "accruedInterestDuringLiquidation"
+                            | "accrued_interest_during_liquidation" => {
+                                Ok(GeneratedField::AccruedInterestDuringLiquidation)
+                            }
                             "liquidationCet" | "liquidation_cet" => {
                                 Ok(GeneratedField::LiquidationCet)
                             }
@@ -615,6 +628,7 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
                 let mut liquidation_bonus_amount__ = None;
                 let mut protocol_liquidation_fee__ = None;
                 let mut unliquidated_collateral_amount__ = None;
+                let mut accrued_interest_during_liquidation__ = None;
                 let mut liquidation_cet__ = None;
                 let mut settlement_tx__ = None;
                 let mut settlement_tx_id__ = None;
@@ -732,6 +746,14 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
                             }
                             unliquidated_collateral_amount__ = map_.next_value()?;
                         }
+                        GeneratedField::AccruedInterestDuringLiquidation => {
+                            if accrued_interest_during_liquidation__.is_some() {
+                                return Err(serde::de::Error::duplicate_field(
+                                    "accruedInterestDuringLiquidation",
+                                ));
+                            }
+                            accrued_interest_during_liquidation__ = map_.next_value()?;
+                        }
                         GeneratedField::LiquidationCet => {
                             if liquidation_cet__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("liquidationCet"));
@@ -775,6 +797,7 @@ impl<'de> serde::Deserialize<'de> for Liquidation {
                     liquidation_bonus_amount: liquidation_bonus_amount__,
                     protocol_liquidation_fee: protocol_liquidation_fee__,
                     unliquidated_collateral_amount: unliquidated_collateral_amount__,
+                    accrued_interest_during_liquidation: accrued_interest_during_liquidation__,
                     liquidation_cet: liquidation_cet__.unwrap_or_default(),
                     settlement_tx: settlement_tx__.unwrap_or_default(),
                     settlement_tx_id: settlement_tx_id__.unwrap_or_default(),
@@ -1518,26 +1541,26 @@ impl serde::Serialize for Params {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
-        if self.min_liquidation_factor != 0 {
+        if !self.min_liquidation_factor.is_empty() {
             len += 1;
         }
-        if self.liquidation_bonus_factor != 0 {
+        if !self.liquidation_bonus_factor.is_empty() {
             len += 1;
         }
-        if self.protocol_liquidation_fee_factor != 0 {
+        if !self.protocol_liquidation_fee_factor.is_empty() {
             len += 1;
         }
         if !self.protocol_liquidation_fee_collector.is_empty() {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("bitway.liquidation.Params", len)?;
-        if self.min_liquidation_factor != 0 {
+        if !self.min_liquidation_factor.is_empty() {
             struct_ser.serialize_field("minLiquidationFactor", &self.min_liquidation_factor)?;
         }
-        if self.liquidation_bonus_factor != 0 {
+        if !self.liquidation_bonus_factor.is_empty() {
             struct_ser.serialize_field("liquidationBonusFactor", &self.liquidation_bonus_factor)?;
         }
-        if self.protocol_liquidation_fee_factor != 0 {
+        if !self.protocol_liquidation_fee_factor.is_empty() {
             struct_ser.serialize_field(
                 "protocolLiquidationFeeFactor",
                 &self.protocol_liquidation_fee_factor,
@@ -1645,10 +1668,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                                     "minLiquidationFactor",
                                 ));
                             }
-                            min_liquidation_factor__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
+                            min_liquidation_factor__ = Some(map_.next_value()?);
                         }
                         GeneratedField::LiquidationBonusFactor => {
                             if liquidation_bonus_factor__.is_some() {
@@ -1656,10 +1676,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                                     "liquidationBonusFactor",
                                 ));
                             }
-                            liquidation_bonus_factor__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
+                            liquidation_bonus_factor__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProtocolLiquidationFeeFactor => {
                             if protocol_liquidation_fee_factor__.is_some() {
@@ -1667,10 +1684,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                                     "protocolLiquidationFeeFactor",
                                 ));
                             }
-                            protocol_liquidation_fee_factor__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
+                            protocol_liquidation_fee_factor__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ProtocolLiquidationFeeCollector => {
                             if protocol_liquidation_fee_collector__.is_some() {

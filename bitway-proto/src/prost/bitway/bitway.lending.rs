@@ -7,14 +7,17 @@ pub struct Params {
     #[prost(message, optional, tag = "1")]
     pub final_timeout_duration:
         ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+    /// maximum fee rate multiplier for liquidation cet; 0 means no limit
+    #[prost(int64, tag = "2")]
+    pub max_liquidation_fee_rate_multiplier: i64,
     /// request fee collector address
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "3")]
     pub request_fee_collector: ::prost::alloc::string::String,
     /// origination fee collector address
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "4")]
     pub origination_fee_collector: ::prost::alloc::string::String,
     /// protocol fee collector address
-    #[prost(string, tag = "4")]
+    #[prost(string, tag = "5")]
     pub protocol_fee_collector: ::prost::alloc::string::String,
 }
 impl ::prost::Name for Params {
@@ -53,9 +56,9 @@ pub struct PoolTrancheConfig {
     /// maturity duration in seconds
     #[prost(int64, tag = "1")]
     pub maturity: i64,
-    /// borrow apr permille
-    #[prost(uint32, tag = "2")]
-    pub borrow_apr: u32,
+    /// borrow apr
+    #[prost(string, tag = "2")]
+    pub borrow_apr: ::prost::alloc::string::String,
 }
 impl ::prost::Name for PoolTrancheConfig {
     const NAME: &'static str = "PoolTrancheConfig";
@@ -92,18 +95,18 @@ pub struct PoolConfig {
     /// request fee
     #[prost(message, optional, tag = "8")]
     pub request_fee: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    /// origination fee factor permille
-    #[prost(uint32, tag = "9")]
-    pub origination_fee_factor: u32,
-    /// reserve factor permille
-    #[prost(uint32, tag = "10")]
-    pub reserve_factor: u32,
-    /// maximum ltv percent
-    #[prost(uint32, tag = "11")]
-    pub max_ltv: u32,
-    /// liquidation ltv percent
-    #[prost(uint32, tag = "12")]
-    pub liquidation_threshold: u32,
+    /// origination fee factor
+    #[prost(string, tag = "9")]
+    pub origination_fee_factor: ::prost::alloc::string::String,
+    /// reserve factor
+    #[prost(string, tag = "10")]
+    pub reserve_factor: ::prost::alloc::string::String,
+    /// maximum ltv
+    #[prost(string, tag = "11")]
+    pub max_ltv: ::prost::alloc::string::String,
+    /// liquidation ltv
+    #[prost(string, tag = "12")]
+    pub liquidation_threshold: ::prost::alloc::string::String,
     /// indicates if the pool is paused
     #[prost(bool, tag = "13")]
     pub paused: bool,
@@ -222,8 +225,8 @@ pub struct Loan {
     pub protocol_fee: ::prost::alloc::string::String,
     #[prost(int64, tag = "14")]
     pub maturity: i64,
-    #[prost(uint32, tag = "15")]
-    pub borrow_apr: u32,
+    #[prost(string, tag = "15")]
+    pub borrow_apr: ::prost::alloc::string::String,
     #[prost(string, tag = "16")]
     pub start_borrow_index: ::prost::alloc::string::String,
     #[prost(string, tag = "17")]
@@ -1204,6 +1207,32 @@ pub struct QueryCurrentInterestResponse {
 }
 impl ::prost::Name for QueryCurrentInterestResponse {
     const NAME: &'static str = "QueryCurrentInterestResponse";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryReferrerRequest {
+    #[prost(string, tag = "1")]
+    pub referral_code: ::prost::alloc::string::String,
+}
+impl ::prost::Name for QueryReferrerRequest {
+    const NAME: &'static str = "QueryReferrerRequest";
+    const PACKAGE: &'static str = "bitway.lending";
+    fn full_name() -> ::prost::alloc::string::String {
+        ::prost::alloc::format!("bitway.lending.{}", Self::NAME)
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryReferrerResponse {
+    #[prost(message, optional, tag = "1")]
+    pub referrer: ::core::option::Option<Referrer>,
+}
+impl ::prost::Name for QueryReferrerResponse {
+    const NAME: &'static str = "QueryReferrerResponse";
     const PACKAGE: &'static str = "bitway.lending";
     fn full_name() -> ::prost::alloc::string::String {
         ::prost::alloc::format!("bitway.lending.{}", Self::NAME)

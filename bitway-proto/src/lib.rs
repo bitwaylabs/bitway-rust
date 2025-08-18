@@ -28,22 +28,25 @@ pub mod bitway {
     pub mod btcbridge {
         include!("prost/bitway/bitway.btcbridge.rs");
     }
+    pub mod incentive {
+        include!("prost/bitway/bitway.incentive.rs");
+    }
+    pub mod lending {
+        include!("prost/bitway/bitway.lending.rs");
+    }
     pub mod liquidation {
         include!("prost/bitway/bitway.liquidation.rs");
     }
     pub mod dlc {
         include!("prost/bitway/bitway.dlc.rs");
     }
-    pub mod lending {
-        include!("prost/bitway/bitway.lending.rs");
+    pub mod farming {
+        include!("prost/bitway/bitway.farming.rs");
     }
     pub mod oracle {
         include!("prost/bitway/bitway.oracle.rs");
     }
     pub mod tss {
         include!("prost/bitway/bitway.tss.rs");
-    }
-    pub mod farming {
-        include!("prost/bitway/bitway.farming.rs");
     }
 }

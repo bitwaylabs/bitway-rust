@@ -195,24 +195,6 @@ pub mod query_client {
                 .insert(GrpcMethod::new("bitway.dlc.Query", "Attestations"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn nonce(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryNonceRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryNonceResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    alloc::format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/Nonce");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("bitway.dlc.Query", "Nonce"));
-            self.inner.unary(req, path, codec).await
-        }
         pub async fn nonces(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryNoncesRequest>,
@@ -229,24 +211,6 @@ pub mod query_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("bitway.dlc.Query", "Nonces"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn count_nonces(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryCountNoncesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryCountNoncesResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    alloc::format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/bitway.dlc.Query/CountNonces");
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("bitway.dlc.Query", "CountNonces"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn dcm(
@@ -380,18 +344,10 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryAttestationsRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryAttestationsResponse>, tonic::Status>;
-        async fn nonce(
-            &self,
-            request: tonic::Request<super::QueryNonceRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryNonceResponse>, tonic::Status>;
         async fn nonces(
             &self,
             request: tonic::Request<super::QueryNoncesRequest>,
         ) -> core::result::Result<tonic::Response<super::QueryNoncesResponse>, tonic::Status>;
-        async fn count_nonces(
-            &self,
-            request: tonic::Request<super::QueryCountNoncesRequest>,
-        ) -> core::result::Result<tonic::Response<super::QueryCountNoncesResponse>, tonic::Status>;
         async fn dcm(
             &self,
             request: tonic::Request<super::QueryDcmRequest>,
@@ -723,44 +679,6 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/bitway.dlc.Query/Nonce" => {
-                    #[allow(non_camel_case_types)]
-                    struct NonceSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryNonceRequest> for NonceSvc<T> {
-                        type Response = super::QueryNonceResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryNonceRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).nonce(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = NonceSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
                 "/bitway.dlc.Query/Nonces" => {
                     #[allow(non_camel_case_types)]
                     struct NoncesSvc<T: Query>(pub Arc<T>);
@@ -784,44 +702,6 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = NoncesSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/bitway.dlc.Query/CountNonces" => {
-                    #[allow(non_camel_case_types)]
-                    struct CountNoncesSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryCountNoncesRequest> for CountNoncesSvc<T> {
-                        type Response = super::QueryCountNoncesResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryCountNoncesRequest>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).count_nonces(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = CountNoncesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

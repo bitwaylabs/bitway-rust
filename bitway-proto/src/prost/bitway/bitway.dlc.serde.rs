@@ -1460,6 +1460,9 @@ impl serde::Serialize for MsgCreateDcm {
         if self.threshold != 0 {
             len += 1;
         }
+        if self.timeout_duration.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("bitway.dlc.MsgCreateDCM", len)?;
         if !self.authority.is_empty() {
             struct_ser.serialize_field("authority", &self.authority)?;
@@ -1469,6 +1472,9 @@ impl serde::Serialize for MsgCreateDcm {
         }
         if self.threshold != 0 {
             struct_ser.serialize_field("threshold", &self.threshold)?;
+        }
+        if let Some(v) = self.timeout_duration.as_ref() {
+            struct_ser.serialize_field("timeoutDuration", v)?;
         }
         struct_ser.end()
     }
@@ -1480,13 +1486,20 @@ impl<'de> serde::Deserialize<'de> for MsgCreateDcm {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["authority", "participants", "threshold"];
+        const FIELDS: &[&str] = &[
+            "authority",
+            "participants",
+            "threshold",
+            "timeout_duration",
+            "timeoutDuration",
+        ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Authority,
             Participants,
             Threshold,
+            TimeoutDuration,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -1515,6 +1528,9 @@ impl<'de> serde::Deserialize<'de> for MsgCreateDcm {
                             "authority" => Ok(GeneratedField::Authority),
                             "participants" => Ok(GeneratedField::Participants),
                             "threshold" => Ok(GeneratedField::Threshold),
+                            "timeoutDuration" | "timeout_duration" => {
+                                Ok(GeneratedField::TimeoutDuration)
+                            }
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1537,6 +1553,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateDcm {
                 let mut authority__ = None;
                 let mut participants__ = None;
                 let mut threshold__ = None;
+                let mut timeout_duration__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
@@ -1560,12 +1577,19 @@ impl<'de> serde::Deserialize<'de> for MsgCreateDcm {
                                     .0,
                             );
                         }
+                        GeneratedField::TimeoutDuration => {
+                            if timeout_duration__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("timeoutDuration"));
+                            }
+                            timeout_duration__ = map_.next_value()?;
+                        }
                     }
                 }
                 Ok(MsgCreateDcm {
                     authority: authority__.unwrap_or_default(),
                     participants: participants__.unwrap_or_default(),
                     threshold: threshold__.unwrap_or_default(),
+                    timeout_duration: timeout_duration__,
                 })
             }
         }
@@ -2037,6 +2061,9 @@ impl serde::Serialize for Params {
         if self.nonce_generation_interval != 0 {
             len += 1;
         }
+        if self.nonce_generation_timeout_duration.is_some() {
+            len += 1;
+        }
         if !self.allowed_oracle_participants.is_empty() {
             len += 1;
         }
@@ -2062,6 +2089,9 @@ impl serde::Serialize for Params {
                 "nonceGenerationInterval",
                 alloc::string::ToString::to_string(&self.nonce_generation_interval).as_str(),
             )?;
+        }
+        if let Some(v) = self.nonce_generation_timeout_duration.as_ref() {
+            struct_ser.serialize_field("nonceGenerationTimeoutDuration", v)?;
         }
         if !self.allowed_oracle_participants.is_empty() {
             struct_ser.serialize_field(
@@ -2095,6 +2125,8 @@ impl<'de> serde::Deserialize<'de> for Params {
             "nonceGenerationBatchSize",
             "nonce_generation_interval",
             "nonceGenerationInterval",
+            "nonce_generation_timeout_duration",
+            "nonceGenerationTimeoutDuration",
             "allowed_oracle_participants",
             "allowedOracleParticipants",
             "oracle_participant_num",
@@ -2108,6 +2140,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             NonceQueueSize,
             NonceGenerationBatchSize,
             NonceGenerationInterval,
+            NonceGenerationTimeoutDuration,
             AllowedOracleParticipants,
             OracleParticipantNum,
             OracleParticipantThreshold,
@@ -2145,6 +2178,10 @@ impl<'de> serde::Deserialize<'de> for Params {
                             "nonceGenerationInterval" | "nonce_generation_interval" => {
                                 Ok(GeneratedField::NonceGenerationInterval)
                             }
+                            "nonceGenerationTimeoutDuration"
+                            | "nonce_generation_timeout_duration" => {
+                                Ok(GeneratedField::NonceGenerationTimeoutDuration)
+                            }
                             "allowedOracleParticipants" | "allowed_oracle_participants" => {
                                 Ok(GeneratedField::AllowedOracleParticipants)
                             }
@@ -2176,6 +2213,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut nonce_queue_size__ = None;
                 let mut nonce_generation_batch_size__ = None;
                 let mut nonce_generation_interval__ = None;
+                let mut nonce_generation_timeout_duration__ = None;
                 let mut allowed_oracle_participants__ = None;
                 let mut oracle_participant_num__ = None;
                 let mut oracle_participant_threshold__ = None;
@@ -2211,6 +2249,14 @@ impl<'de> serde::Deserialize<'de> for Params {
                                 map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
                                     .0,
                             );
+                        }
+                        GeneratedField::NonceGenerationTimeoutDuration => {
+                            if nonce_generation_timeout_duration__.is_some() {
+                                return Err(serde::de::Error::duplicate_field(
+                                    "nonceGenerationTimeoutDuration",
+                                ));
+                            }
+                            nonce_generation_timeout_duration__ = map_.next_value()?;
                         }
                         GeneratedField::AllowedOracleParticipants => {
                             if allowed_oracle_participants__.is_some() {
@@ -2248,6 +2294,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                     nonce_queue_size: nonce_queue_size__.unwrap_or_default(),
                     nonce_generation_batch_size: nonce_generation_batch_size__.unwrap_or_default(),
                     nonce_generation_interval: nonce_generation_interval__.unwrap_or_default(),
+                    nonce_generation_timeout_duration: nonce_generation_timeout_duration__,
                     allowed_oracle_participants: allowed_oracle_participants__.unwrap_or_default(),
                     oracle_participant_num: oracle_participant_num__.unwrap_or_default(),
                     oracle_participant_threshold: oracle_participant_threshold__
@@ -2899,193 +2946,6 @@ impl<'de> serde::Deserialize<'de> for QueryAttestationsResponse {
         }
         deserializer.deserialize_struct(
             "bitway.dlc.QueryAttestationsResponse",
-            FIELDS,
-            GeneratedVisitor,
-        )
-    }
-}
-#[cfg(feature = "serde")]
-impl serde::Serialize for QueryCountNoncesRequest {
-    #[allow(deprecated)]
-    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        use serde::ser::SerializeStruct;
-        let len = 0;
-        let struct_ser = serializer.serialize_struct("bitway.dlc.QueryCountNoncesRequest", len)?;
-        struct_ser.end()
-    }
-}
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for QueryCountNoncesRequest {
-    #[allow(deprecated)]
-    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        const FIELDS: &[&str] = &[];
-
-        #[allow(clippy::enum_variant_names)]
-        enum GeneratedField {}
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for GeneratedField {
-            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                struct GeneratedVisitor;
-
-                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-                    type Value = GeneratedField;
-
-                    fn expecting(
-                        &self,
-                        formatter: &mut core::fmt::Formatter<'_>,
-                    ) -> core::fmt::Result {
-                        write!(formatter, "expected one of: {:?}", &FIELDS)
-                    }
-
-                    #[allow(unused_variables)]
-                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
-                    where
-                        E: serde::de::Error,
-                    {
-                        Err(serde::de::Error::unknown_field(value, FIELDS))
-                    }
-                }
-                deserializer.deserialize_identifier(GeneratedVisitor)
-            }
-        }
-        struct GeneratedVisitor;
-        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = QueryCountNoncesRequest;
-
-            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct bitway.dlc.QueryCountNoncesRequest")
-            }
-
-            fn visit_map<V>(
-                self,
-                mut map_: V,
-            ) -> core::result::Result<QueryCountNoncesRequest, V::Error>
-            where
-                V: serde::de::MapAccess<'de>,
-            {
-                while map_.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
-                }
-                Ok(QueryCountNoncesRequest {})
-            }
-        }
-        deserializer.deserialize_struct(
-            "bitway.dlc.QueryCountNoncesRequest",
-            FIELDS,
-            GeneratedVisitor,
-        )
-    }
-}
-#[cfg(feature = "serde")]
-impl serde::Serialize for QueryCountNoncesResponse {
-    #[allow(deprecated)]
-    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        use serde::ser::SerializeStruct;
-        let mut len = 0;
-        if !self.counts.is_empty() {
-            len += 1;
-        }
-        let mut struct_ser =
-            serializer.serialize_struct("bitway.dlc.QueryCountNoncesResponse", len)?;
-        if !self.counts.is_empty() {
-            struct_ser.serialize_field("counts", &self.counts)?;
-        }
-        struct_ser.end()
-    }
-}
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for QueryCountNoncesResponse {
-    #[allow(deprecated)]
-    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        const FIELDS: &[&str] = &["counts"];
-
-        #[allow(clippy::enum_variant_names)]
-        enum GeneratedField {
-            Counts,
-        }
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for GeneratedField {
-            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                struct GeneratedVisitor;
-
-                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-                    type Value = GeneratedField;
-
-                    fn expecting(
-                        &self,
-                        formatter: &mut core::fmt::Formatter<'_>,
-                    ) -> core::fmt::Result {
-                        write!(formatter, "expected one of: {:?}", &FIELDS)
-                    }
-
-                    #[allow(unused_variables)]
-                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
-                    where
-                        E: serde::de::Error,
-                    {
-                        match value {
-                            "counts" => Ok(GeneratedField::Counts),
-                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
-                        }
-                    }
-                }
-                deserializer.deserialize_identifier(GeneratedVisitor)
-            }
-        }
-        struct GeneratedVisitor;
-        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = QueryCountNoncesResponse;
-
-            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct bitway.dlc.QueryCountNoncesResponse")
-            }
-
-            fn visit_map<V>(
-                self,
-                mut map_: V,
-            ) -> core::result::Result<QueryCountNoncesResponse, V::Error>
-            where
-                V: serde::de::MapAccess<'de>,
-            {
-                let mut counts__ = None;
-                while let Some(k) = map_.next_key()? {
-                    match k {
-                        GeneratedField::Counts => {
-                            if counts__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("counts"));
-                            }
-                            counts__ =
-                                Some(map_.next_value::<alloc::vec::Vec<::pbjson::private::NumberDeserialize<_>>>()?
-                                    .into_iter().map(|x| x.0).collect())
-                            ;
-                        }
-                    }
-                }
-                Ok(QueryCountNoncesResponse {
-                    counts: counts__.unwrap_or_default(),
-                })
-            }
-        }
-        deserializer.deserialize_struct(
-            "bitway.dlc.QueryCountNoncesResponse",
             FIELDS,
             GeneratedVisitor,
         )
@@ -3959,224 +3819,6 @@ impl<'de> serde::Deserialize<'de> for QueryEventsResponse {
             }
         }
         deserializer.deserialize_struct("bitway.dlc.QueryEventsResponse", FIELDS, GeneratedVisitor)
-    }
-}
-#[cfg(feature = "serde")]
-impl serde::Serialize for QueryNonceRequest {
-    #[allow(deprecated)]
-    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        use serde::ser::SerializeStruct;
-        let mut len = 0;
-        if self.oracle_id != 0 {
-            len += 1;
-        }
-        if self.index != 0 {
-            len += 1;
-        }
-        let mut struct_ser = serializer.serialize_struct("bitway.dlc.QueryNonceRequest", len)?;
-        if self.oracle_id != 0 {
-            #[allow(clippy::needless_borrow)]
-            struct_ser.serialize_field(
-                "oracleId",
-                alloc::string::ToString::to_string(&self.oracle_id).as_str(),
-            )?;
-        }
-        if self.index != 0 {
-            #[allow(clippy::needless_borrow)]
-            struct_ser.serialize_field(
-                "index",
-                alloc::string::ToString::to_string(&self.index).as_str(),
-            )?;
-        }
-        struct_ser.end()
-    }
-}
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for QueryNonceRequest {
-    #[allow(deprecated)]
-    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        const FIELDS: &[&str] = &["oracle_id", "oracleId", "index"];
-
-        #[allow(clippy::enum_variant_names)]
-        enum GeneratedField {
-            OracleId,
-            Index,
-        }
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for GeneratedField {
-            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                struct GeneratedVisitor;
-
-                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-                    type Value = GeneratedField;
-
-                    fn expecting(
-                        &self,
-                        formatter: &mut core::fmt::Formatter<'_>,
-                    ) -> core::fmt::Result {
-                        write!(formatter, "expected one of: {:?}", &FIELDS)
-                    }
-
-                    #[allow(unused_variables)]
-                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
-                    where
-                        E: serde::de::Error,
-                    {
-                        match value {
-                            "oracleId" | "oracle_id" => Ok(GeneratedField::OracleId),
-                            "index" => Ok(GeneratedField::Index),
-                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
-                        }
-                    }
-                }
-                deserializer.deserialize_identifier(GeneratedVisitor)
-            }
-        }
-        struct GeneratedVisitor;
-        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = QueryNonceRequest;
-
-            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct bitway.dlc.QueryNonceRequest")
-            }
-
-            fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryNonceRequest, V::Error>
-            where
-                V: serde::de::MapAccess<'de>,
-            {
-                let mut oracle_id__ = None;
-                let mut index__ = None;
-                while let Some(k) = map_.next_key()? {
-                    match k {
-                        GeneratedField::OracleId => {
-                            if oracle_id__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("oracleId"));
-                            }
-                            oracle_id__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                        GeneratedField::Index => {
-                            if index__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("index"));
-                            }
-                            index__ = Some(
-                                map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?
-                                    .0,
-                            );
-                        }
-                    }
-                }
-                Ok(QueryNonceRequest {
-                    oracle_id: oracle_id__.unwrap_or_default(),
-                    index: index__.unwrap_or_default(),
-                })
-            }
-        }
-        deserializer.deserialize_struct("bitway.dlc.QueryNonceRequest", FIELDS, GeneratedVisitor)
-    }
-}
-#[cfg(feature = "serde")]
-impl serde::Serialize for QueryNonceResponse {
-    #[allow(deprecated)]
-    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        use serde::ser::SerializeStruct;
-        let mut len = 0;
-        if self.nonce.is_some() {
-            len += 1;
-        }
-        let mut struct_ser = serializer.serialize_struct("bitway.dlc.QueryNonceResponse", len)?;
-        if let Some(v) = self.nonce.as_ref() {
-            struct_ser.serialize_field("nonce", v)?;
-        }
-        struct_ser.end()
-    }
-}
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for QueryNonceResponse {
-    #[allow(deprecated)]
-    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        const FIELDS: &[&str] = &["nonce"];
-
-        #[allow(clippy::enum_variant_names)]
-        enum GeneratedField {
-            Nonce,
-        }
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for GeneratedField {
-            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                struct GeneratedVisitor;
-
-                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-                    type Value = GeneratedField;
-
-                    fn expecting(
-                        &self,
-                        formatter: &mut core::fmt::Formatter<'_>,
-                    ) -> core::fmt::Result {
-                        write!(formatter, "expected one of: {:?}", &FIELDS)
-                    }
-
-                    #[allow(unused_variables)]
-                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
-                    where
-                        E: serde::de::Error,
-                    {
-                        match value {
-                            "nonce" => Ok(GeneratedField::Nonce),
-                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
-                        }
-                    }
-                }
-                deserializer.deserialize_identifier(GeneratedVisitor)
-            }
-        }
-        struct GeneratedVisitor;
-        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = QueryNonceResponse;
-
-            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-                formatter.write_str("struct bitway.dlc.QueryNonceResponse")
-            }
-
-            fn visit_map<V>(self, mut map_: V) -> core::result::Result<QueryNonceResponse, V::Error>
-            where
-                V: serde::de::MapAccess<'de>,
-            {
-                let mut nonce__ = None;
-                while let Some(k) = map_.next_key()? {
-                    match k {
-                        GeneratedField::Nonce => {
-                            if nonce__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("nonce"));
-                            }
-                            nonce__ = map_.next_value()?;
-                        }
-                    }
-                }
-                Ok(QueryNonceResponse { nonce: nonce__ })
-            }
-        }
-        deserializer.deserialize_struct("bitway.dlc.QueryNonceResponse", FIELDS, GeneratedVisitor)
     }
 }
 #[cfg(feature = "serde")]

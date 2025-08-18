@@ -1744,6 +1744,111 @@ impl<'de> serde::Deserialize<'de> for FeeRate {
     }
 }
 #[cfg(feature = "serde")]
+impl serde::Serialize for FeeSponsorshipParams {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.max_sponsor_fee.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser =
+            serializer.serialize_struct("bitway.btcbridge.FeeSponsorshipParams", len)?;
+        if !self.max_sponsor_fee.is_empty() {
+            struct_ser.serialize_field("maxSponsorFee", &self.max_sponsor_fee)?;
+        }
+        struct_ser.end()
+    }
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for FeeSponsorshipParams {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> core::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &["max_sponsor_fee", "maxSponsorFee"];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            MaxSponsorFee,
+        }
+        #[cfg(feature = "serde")]
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> core::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(
+                        &self,
+                        formatter: &mut core::fmt::Formatter<'_>,
+                    ) -> core::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> core::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "maxSponsorFee" | "max_sponsor_fee" => {
+                                Ok(GeneratedField::MaxSponsorFee)
+                            }
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = FeeSponsorshipParams;
+
+            fn expecting(&self, formatter: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+                formatter.write_str("struct bitway.btcbridge.FeeSponsorshipParams")
+            }
+
+            fn visit_map<V>(
+                self,
+                mut map_: V,
+            ) -> core::result::Result<FeeSponsorshipParams, V::Error>
+            where
+                V: serde::de::MapAccess<'de>,
+            {
+                let mut max_sponsor_fee__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::MaxSponsorFee => {
+                            if max_sponsor_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("maxSponsorFee"));
+                            }
+                            max_sponsor_fee__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(FeeSponsorshipParams {
+                    max_sponsor_fee: max_sponsor_fee__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct(
+            "bitway.btcbridge.FeeSponsorshipParams",
+            FIELDS,
+            GeneratedVisitor,
+        )
+    }
+}
+#[cfg(feature = "serde")]
 impl serde::Serialize for GenesisState {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
@@ -1758,7 +1863,22 @@ impl serde::Serialize for GenesisState {
         if !self.utxos.is_empty() {
             len += 1;
         }
-        if self.dkg_request.is_some() {
+        if !self.dkg_requests.is_empty() {
+            len += 1;
+        }
+        if !self.dkg_completions.is_empty() {
+            len += 1;
+        }
+        if !self.signing_requests.is_empty() {
+            len += 1;
+        }
+        if !self.withdraw_requests.is_empty() {
+            len += 1;
+        }
+        if !self.pending_btc_withdraw_requests.is_empty() {
+            len += 1;
+        }
+        if !self.minted_tx_hashes.is_empty() {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.GenesisState", len)?;
@@ -1768,8 +1888,26 @@ impl serde::Serialize for GenesisState {
         if !self.utxos.is_empty() {
             struct_ser.serialize_field("utxos", &self.utxos)?;
         }
-        if let Some(v) = self.dkg_request.as_ref() {
-            struct_ser.serialize_field("dkgRequest", v)?;
+        if !self.dkg_requests.is_empty() {
+            struct_ser.serialize_field("dkgRequests", &self.dkg_requests)?;
+        }
+        if !self.dkg_completions.is_empty() {
+            struct_ser.serialize_field("dkgCompletions", &self.dkg_completions)?;
+        }
+        if !self.signing_requests.is_empty() {
+            struct_ser.serialize_field("signingRequests", &self.signing_requests)?;
+        }
+        if !self.withdraw_requests.is_empty() {
+            struct_ser.serialize_field("withdrawRequests", &self.withdraw_requests)?;
+        }
+        if !self.pending_btc_withdraw_requests.is_empty() {
+            struct_ser.serialize_field(
+                "pendingBtcWithdrawRequests",
+                &self.pending_btc_withdraw_requests,
+            )?;
+        }
+        if !self.minted_tx_hashes.is_empty() {
+            struct_ser.serialize_field("mintedTxHashes", &self.minted_tx_hashes)?;
         }
         struct_ser.end()
     }
@@ -1781,13 +1919,33 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["params", "utxos", "dkg_request", "dkgRequest"];
+        const FIELDS: &[&str] = &[
+            "params",
+            "utxos",
+            "dkg_requests",
+            "dkgRequests",
+            "dkg_completions",
+            "dkgCompletions",
+            "signing_requests",
+            "signingRequests",
+            "withdraw_requests",
+            "withdrawRequests",
+            "pending_btc_withdraw_requests",
+            "pendingBtcWithdrawRequests",
+            "minted_tx_hashes",
+            "mintedTxHashes",
+        ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Params,
             Utxos,
-            DkgRequest,
+            DkgRequests,
+            DkgCompletions,
+            SigningRequests,
+            WithdrawRequests,
+            PendingBtcWithdrawRequests,
+            MintedTxHashes,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -1815,7 +1973,22 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                         match value {
                             "params" => Ok(GeneratedField::Params),
                             "utxos" => Ok(GeneratedField::Utxos),
-                            "dkgRequest" | "dkg_request" => Ok(GeneratedField::DkgRequest),
+                            "dkgRequests" | "dkg_requests" => Ok(GeneratedField::DkgRequests),
+                            "dkgCompletions" | "dkg_completions" => {
+                                Ok(GeneratedField::DkgCompletions)
+                            }
+                            "signingRequests" | "signing_requests" => {
+                                Ok(GeneratedField::SigningRequests)
+                            }
+                            "withdrawRequests" | "withdraw_requests" => {
+                                Ok(GeneratedField::WithdrawRequests)
+                            }
+                            "pendingBtcWithdrawRequests" | "pending_btc_withdraw_requests" => {
+                                Ok(GeneratedField::PendingBtcWithdrawRequests)
+                            }
+                            "mintedTxHashes" | "minted_tx_hashes" => {
+                                Ok(GeneratedField::MintedTxHashes)
+                            }
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1837,7 +2010,12 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             {
                 let mut params__ = None;
                 let mut utxos__ = None;
-                let mut dkg_request__ = None;
+                let mut dkg_requests__ = None;
+                let mut dkg_completions__ = None;
+                let mut signing_requests__ = None;
+                let mut withdraw_requests__ = None;
+                let mut pending_btc_withdraw_requests__ = None;
+                let mut minted_tx_hashes__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
@@ -1852,18 +2030,56 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                             }
                             utxos__ = Some(map_.next_value()?);
                         }
-                        GeneratedField::DkgRequest => {
-                            if dkg_request__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("dkgRequest"));
+                        GeneratedField::DkgRequests => {
+                            if dkg_requests__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("dkgRequests"));
                             }
-                            dkg_request__ = map_.next_value()?;
+                            dkg_requests__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::DkgCompletions => {
+                            if dkg_completions__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("dkgCompletions"));
+                            }
+                            dkg_completions__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::SigningRequests => {
+                            if signing_requests__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("signingRequests"));
+                            }
+                            signing_requests__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::WithdrawRequests => {
+                            if withdraw_requests__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("withdrawRequests"));
+                            }
+                            withdraw_requests__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::PendingBtcWithdrawRequests => {
+                            if pending_btc_withdraw_requests__.is_some() {
+                                return Err(serde::de::Error::duplicate_field(
+                                    "pendingBtcWithdrawRequests",
+                                ));
+                            }
+                            pending_btc_withdraw_requests__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::MintedTxHashes => {
+                            if minted_tx_hashes__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("mintedTxHashes"));
+                            }
+                            minted_tx_hashes__ = Some(map_.next_value()?);
                         }
                     }
                 }
                 Ok(GenesisState {
                     params: params__,
                     utxos: utxos__.unwrap_or_default(),
-                    dkg_request: dkg_request__,
+                    dkg_requests: dkg_requests__.unwrap_or_default(),
+                    dkg_completions: dkg_completions__.unwrap_or_default(),
+                    signing_requests: signing_requests__.unwrap_or_default(),
+                    withdraw_requests: withdraw_requests__.unwrap_or_default(),
+                    pending_btc_withdraw_requests: pending_btc_withdraw_requests__
+                        .unwrap_or_default(),
+                    minted_tx_hashes: minted_tx_hashes__.unwrap_or_default(),
                 })
             }
         }
@@ -5823,10 +6039,13 @@ impl serde::Serialize for Params {
         if self.tss_params.is_some() {
             len += 1;
         }
+        if self.rate_limit_params.is_some() {
+            len += 1;
+        }
         if self.ibc_params.is_some() {
             len += 1;
         }
-        if self.rate_limit_params.is_some() {
+        if self.fee_sponsorship_params.is_some() {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("bitway.btcbridge.Params", len)?;
@@ -5884,11 +6103,14 @@ impl serde::Serialize for Params {
         if let Some(v) = self.tss_params.as_ref() {
             struct_ser.serialize_field("tssParams", v)?;
         }
+        if let Some(v) = self.rate_limit_params.as_ref() {
+            struct_ser.serialize_field("rateLimitParams", v)?;
+        }
         if let Some(v) = self.ibc_params.as_ref() {
             struct_ser.serialize_field("ibcParams", v)?;
         }
-        if let Some(v) = self.rate_limit_params.as_ref() {
-            struct_ser.serialize_field("rateLimitParams", v)?;
+        if let Some(v) = self.fee_sponsorship_params.as_ref() {
+            struct_ser.serialize_field("feeSponsorshipParams", v)?;
         }
         struct_ser.end()
     }
@@ -5928,10 +6150,12 @@ impl<'de> serde::Deserialize<'de> for Params {
             "protocolFees",
             "tss_params",
             "tssParams",
-            "ibc_params",
-            "ibcParams",
             "rate_limit_params",
             "rateLimitParams",
+            "ibc_params",
+            "ibcParams",
+            "fee_sponsorship_params",
+            "feeSponsorshipParams",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -5950,8 +6174,9 @@ impl<'de> serde::Deserialize<'de> for Params {
             ProtocolLimits,
             ProtocolFees,
             TssParams,
-            IbcParams,
             RateLimitParams,
+            IbcParams,
+            FeeSponsorshipParams,
         }
         #[cfg(feature = "serde")]
         impl<'de> serde::Deserialize<'de> for GeneratedField {
@@ -6013,9 +6238,12 @@ impl<'de> serde::Deserialize<'de> for Params {
                             }
                             "protocolFees" | "protocol_fees" => Ok(GeneratedField::ProtocolFees),
                             "tssParams" | "tss_params" => Ok(GeneratedField::TssParams),
-                            "ibcParams" | "ibc_params" => Ok(GeneratedField::IbcParams),
                             "rateLimitParams" | "rate_limit_params" => {
                                 Ok(GeneratedField::RateLimitParams)
+                            }
+                            "ibcParams" | "ibc_params" => Ok(GeneratedField::IbcParams),
+                            "feeSponsorshipParams" | "fee_sponsorship_params" => {
+                                Ok(GeneratedField::FeeSponsorshipParams)
                             }
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
@@ -6050,8 +6278,9 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut protocol_limits__ = None;
                 let mut protocol_fees__ = None;
                 let mut tss_params__ = None;
-                let mut ibc_params__ = None;
                 let mut rate_limit_params__ = None;
+                let mut ibc_params__ = None;
+                let mut fee_sponsorship_params__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DepositConfirmationDepth => {
@@ -6162,17 +6391,25 @@ impl<'de> serde::Deserialize<'de> for Params {
                             }
                             tss_params__ = map_.next_value()?;
                         }
+                        GeneratedField::RateLimitParams => {
+                            if rate_limit_params__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("rateLimitParams"));
+                            }
+                            rate_limit_params__ = map_.next_value()?;
+                        }
                         GeneratedField::IbcParams => {
                             if ibc_params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ibcParams"));
                             }
                             ibc_params__ = map_.next_value()?;
                         }
-                        GeneratedField::RateLimitParams => {
-                            if rate_limit_params__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("rateLimitParams"));
+                        GeneratedField::FeeSponsorshipParams => {
+                            if fee_sponsorship_params__.is_some() {
+                                return Err(serde::de::Error::duplicate_field(
+                                    "feeSponsorshipParams",
+                                ));
                             }
-                            rate_limit_params__ = map_.next_value()?;
+                            fee_sponsorship_params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -6191,8 +6428,9 @@ impl<'de> serde::Deserialize<'de> for Params {
                     protocol_limits: protocol_limits__,
                     protocol_fees: protocol_fees__,
                     tss_params: tss_params__,
-                    ibc_params: ibc_params__,
                     rate_limit_params: rate_limit_params__,
+                    ibc_params: ibc_params__,
+                    fee_sponsorship_params: fee_sponsorship_params__,
                 })
             }
         }

@@ -416,10 +416,10 @@ impl ::prost::Name for QueryDkgRequestResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDkgRequestsRequest {
-    #[prost(string, tag = "1")]
-    pub module: ::prost::alloc::string::String,
-    #[prost(enumeration = "DkgStatus", tag = "2")]
+    #[prost(enumeration = "DkgStatus", tag = "1")]
     pub status: i32,
+    #[prost(string, tag = "2")]
+    pub module: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
     pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
@@ -506,10 +506,10 @@ impl ::prost::Name for QuerySigningRequestResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuerySigningRequestsRequest {
-    #[prost(string, tag = "1")]
-    pub module: ::prost::alloc::string::String,
-    #[prost(enumeration = "SigningStatus", tag = "2")]
+    #[prost(enumeration = "SigningStatus", tag = "1")]
     pub status: i32,
+    #[prost(string, tag = "2")]
+    pub module: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
     pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
 }

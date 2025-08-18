@@ -295,11 +295,14 @@ pub struct Params {
     pub nonce_generation_batch_size: u32,
     #[prost(int64, tag = "3")]
     pub nonce_generation_interval: i64,
-    #[prost(string, repeated, tag = "4")]
+    #[prost(message, optional, tag = "4")]
+    pub nonce_generation_timeout_duration:
+        ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
+    #[prost(string, repeated, tag = "5")]
     pub allowed_oracle_participants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(uint32, tag = "5")]
-    pub oracle_participant_num: u32,
     #[prost(uint32, tag = "6")]
+    pub oracle_participant_num: u32,
+    #[prost(uint32, tag = "7")]
     pub oracle_participant_threshold: u32,
 }
 impl ::prost::Name for Params {
@@ -532,60 +535,6 @@ impl ::prost::Name for QueryOraclesResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryCountNoncesRequest {}
-impl ::prost::Name for QueryCountNoncesRequest {
-    const NAME: &'static str = "QueryCountNoncesRequest";
-    const PACKAGE: &'static str = "bitway.dlc";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
-    }
-}
-/// QueryCountNoncesResponse is response type for the Query/CountNonces RPC method.
-/// counts should use the same order as recommended oracles in Params
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryCountNoncesResponse {
-    /// qty of nonce in the cache queue
-    #[prost(uint32, repeated, tag = "1")]
-    pub counts: ::prost::alloc::vec::Vec<u32>,
-}
-impl ::prost::Name for QueryCountNoncesResponse {
-    const NAME: &'static str = "QueryCountNoncesResponse";
-    const PACKAGE: &'static str = "bitway.dlc";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryNonceRequest {
-    #[prost(uint64, tag = "1")]
-    pub oracle_id: u64,
-    #[prost(uint64, tag = "2")]
-    pub index: u64,
-}
-impl ::prost::Name for QueryNonceRequest {
-    const NAME: &'static str = "QueryNonceRequest";
-    const PACKAGE: &'static str = "bitway.dlc";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryNonceResponse {
-    #[prost(message, optional, tag = "1")]
-    pub nonce: ::core::option::Option<DlcNonce>,
-}
-impl ::prost::Name for QueryNonceResponse {
-    const NAME: &'static str = "QueryNonceResponse";
-    const PACKAGE: &'static str = "bitway.dlc";
-    fn full_name() -> ::prost::alloc::string::String {
-        ::prost::alloc::format!("bitway.dlc.{}", Self::NAME)
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryNoncesRequest {
     #[prost(uint64, tag = "1")]
     pub oracle_id: u64,
@@ -739,6 +688,8 @@ pub struct MsgCreateDcm {
     pub participants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(uint32, tag = "3")]
     pub threshold: u32,
+    #[prost(message, optional, tag = "4")]
+    pub timeout_duration: ::core::option::Option<::tendermint_proto::google::protobuf::Duration>,
 }
 impl ::prost::Name for MsgCreateDcm {
     const NAME: &'static str = "MsgCreateDCM";

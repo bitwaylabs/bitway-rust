@@ -166,6 +166,9 @@ pub struct Asset {
     /// Ratio of the reward relative to the total rewards
     #[prost(string, tag = "2")]
     pub reward_ratio: ::prost::alloc::string::String,
+    /// Minimum staking amount
+    #[prost(string, tag = "3")]
+    pub min_staking_amount: ::prost::alloc::string::String,
 }
 impl ::prost::Name for Asset {
     const NAME: &'static str = "Asset";

@@ -57,13 +57,16 @@ pub struct Liquidation {
     #[prost(message, optional, tag = "16")]
     pub unliquidated_collateral_amount:
         ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(string, tag = "17")]
-    pub liquidation_cet: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "17")]
+    pub accrued_interest_during_liquidation:
+        ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
     #[prost(string, tag = "18")]
-    pub settlement_tx: ::prost::alloc::string::String,
+    pub liquidation_cet: ::prost::alloc::string::String,
     #[prost(string, tag = "19")]
+    pub settlement_tx: ::prost::alloc::string::String,
+    #[prost(string, tag = "20")]
     pub settlement_tx_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "LiquidationStatus", tag = "20")]
+    #[prost(enumeration = "LiquidationStatus", tag = "21")]
     pub status: i32,
 }
 impl ::prost::Name for Liquidation {
@@ -161,15 +164,15 @@ impl SigningIntent {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
-    /// minimum liquidation factor permille
-    #[prost(uint32, tag = "1")]
-    pub min_liquidation_factor: u32,
-    /// liquidation bonus factor permille
-    #[prost(uint32, tag = "2")]
-    pub liquidation_bonus_factor: u32,
-    /// protocol liquidation fee factor permille
-    #[prost(uint32, tag = "3")]
-    pub protocol_liquidation_fee_factor: u32,
+    /// minimum liquidation factor
+    #[prost(string, tag = "1")]
+    pub min_liquidation_factor: ::prost::alloc::string::String,
+    /// liquidation bonus factor
+    #[prost(string, tag = "2")]
+    pub liquidation_bonus_factor: ::prost::alloc::string::String,
+    /// protocol liquidation fee factor
+    #[prost(string, tag = "3")]
+    pub protocol_liquidation_fee_factor: ::prost::alloc::string::String,
     /// protocol liquidation fee collector
     #[prost(string, tag = "4")]
     pub protocol_liquidation_fee_collector: ::prost::alloc::string::String,

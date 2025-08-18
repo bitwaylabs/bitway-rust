@@ -2513,10 +2513,10 @@ impl serde::Serialize for QueryDkgRequestsRequest {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
-        if !self.module.is_empty() {
+        if self.status != 0 {
             len += 1;
         }
-        if self.status != 0 {
+        if !self.module.is_empty() {
             len += 1;
         }
         if self.pagination.is_some() {
@@ -2524,14 +2524,14 @@ impl serde::Serialize for QueryDkgRequestsRequest {
         }
         let mut struct_ser =
             serializer.serialize_struct("bitway.tss.QueryDKGRequestsRequest", len)?;
-        if !self.module.is_empty() {
-            struct_ser.serialize_field("module", &self.module)?;
-        }
         if self.status != 0 {
             let v = DkgStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
             })?;
             struct_ser.serialize_field("status", &v)?;
+        }
+        if !self.module.is_empty() {
+            struct_ser.serialize_field("module", &self.module)?;
         }
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
@@ -2546,12 +2546,12 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["module", "status", "pagination"];
+        const FIELDS: &[&str] = &["status", "module", "pagination"];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
-            Module,
             Status,
+            Module,
             Pagination,
         }
         #[cfg(feature = "serde")]
@@ -2578,8 +2578,8 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
                         E: serde::de::Error,
                     {
                         match value {
-                            "module" => Ok(GeneratedField::Module),
                             "status" => Ok(GeneratedField::Status),
+                            "module" => Ok(GeneratedField::Module),
                             "pagination" => Ok(GeneratedField::Pagination),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
@@ -2603,22 +2603,22 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
             where
                 V: serde::de::MapAccess<'de>,
             {
-                let mut module__ = None;
                 let mut status__ = None;
+                let mut module__ = None;
                 let mut pagination__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
-                        GeneratedField::Module => {
-                            if module__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("module"));
-                            }
-                            module__ = Some(map_.next_value()?);
-                        }
                         GeneratedField::Status => {
                             if status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("status"));
                             }
                             status__ = Some(map_.next_value::<DkgStatus>()? as i32);
+                        }
+                        GeneratedField::Module => {
+                            if module__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("module"));
+                            }
+                            module__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
@@ -2629,8 +2629,8 @@ impl<'de> serde::Deserialize<'de> for QueryDkgRequestsRequest {
                     }
                 }
                 Ok(QueryDkgRequestsRequest {
-                    module: module__.unwrap_or_default(),
                     status: status__.unwrap_or_default(),
+                    module: module__.unwrap_or_default(),
                     pagination: pagination__,
                 })
             }
@@ -3842,10 +3842,10 @@ impl serde::Serialize for QuerySigningRequestsRequest {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
-        if !self.module.is_empty() {
+        if self.status != 0 {
             len += 1;
         }
-        if self.status != 0 {
+        if !self.module.is_empty() {
             len += 1;
         }
         if self.pagination.is_some() {
@@ -3853,14 +3853,14 @@ impl serde::Serialize for QuerySigningRequestsRequest {
         }
         let mut struct_ser =
             serializer.serialize_struct("bitway.tss.QuerySigningRequestsRequest", len)?;
-        if !self.module.is_empty() {
-            struct_ser.serialize_field("module", &self.module)?;
-        }
         if self.status != 0 {
             let v = SigningStatus::try_from(self.status).map_err(|_| {
                 serde::ser::Error::custom(alloc::format!("Invalid variant {}", self.status))
             })?;
             struct_ser.serialize_field("status", &v)?;
+        }
+        if !self.module.is_empty() {
+            struct_ser.serialize_field("module", &self.module)?;
         }
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
@@ -3875,12 +3875,12 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
     where
         D: serde::Deserializer<'de>,
     {
-        const FIELDS: &[&str] = &["module", "status", "pagination"];
+        const FIELDS: &[&str] = &["status", "module", "pagination"];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
-            Module,
             Status,
+            Module,
             Pagination,
         }
         #[cfg(feature = "serde")]
@@ -3907,8 +3907,8 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
                         E: serde::de::Error,
                     {
                         match value {
-                            "module" => Ok(GeneratedField::Module),
                             "status" => Ok(GeneratedField::Status),
+                            "module" => Ok(GeneratedField::Module),
                             "pagination" => Ok(GeneratedField::Pagination),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
@@ -3932,22 +3932,22 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
             where
                 V: serde::de::MapAccess<'de>,
             {
-                let mut module__ = None;
                 let mut status__ = None;
+                let mut module__ = None;
                 let mut pagination__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
-                        GeneratedField::Module => {
-                            if module__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("module"));
-                            }
-                            module__ = Some(map_.next_value()?);
-                        }
                         GeneratedField::Status => {
                             if status__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("status"));
                             }
                             status__ = Some(map_.next_value::<SigningStatus>()? as i32);
+                        }
+                        GeneratedField::Module => {
+                            if module__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("module"));
+                            }
+                            module__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
@@ -3958,8 +3958,8 @@ impl<'de> serde::Deserialize<'de> for QuerySigningRequestsRequest {
                     }
                 }
                 Ok(QuerySigningRequestsRequest {
-                    module: module__.unwrap_or_default(),
                     status: status__.unwrap_or_default(),
+                    module: module__.unwrap_or_default(),
                     pagination: pagination__,
                 })
             }
